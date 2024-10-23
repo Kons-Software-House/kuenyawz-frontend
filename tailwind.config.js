@@ -39,6 +39,14 @@ export default {
         }
       },
     },
+    fontFamily: {
+      clear: ['Poppins', 'sans-serif'],
+      fancy: ['Pacifico', 'cursive'],
+      semi: ['Merriweather', 'serif'],
+      nav: ['Prociono', 'serif'],
+    },
   },
-  plugins: [],
+  plugins: [
+    require("@designbycode/tailwindcss-text-shadow"),
+  ],
 }
