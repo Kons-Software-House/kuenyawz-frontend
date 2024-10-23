@@ -1,26 +1,33 @@
 import { motion } from "framer-motion";
-
+import { Link } from 'react-router-dom';
+import Icon from "../../assets/Navbar/Logo.png"
+import UserIcon from "../../assets/Navbar/UserIcon.png"
 
 export default function Navbar() {
   return (
-    <nav className={`w-full text-base font-nav text-xl bg-black/10 absolute z-10 h-16`}>
-      <div className="h-full w-full text-inherit flex p-2 pt-6">
-        <div className={"basis-3/12 flex items-center justify-start"}>
-          <div className="text-inherit">
+    <motion.div exit={{ rotate: -180, transition: { duration: 2 } }} transition={{ duration: 3 }}>
+      <nav className={`w-full text-base font-nav text-xl bg-black/10 absolute z-10 h-16`}>
+        <div className="h-full w-full text-inherit flex gap-4">
+          <div className={"basis-3/12 flex items-center justify-end"}>
+            <Link to="/">
+              <img src={Icon} className="aspect-[4/2] h-14 mt-1 object-cover brightness-75 hover:brightness-125" />
+            </Link>
+          </div>
+          <ul className="grow flex items-center justify-between text-inherit">
+            <NavButton text="KREASI KAMI" href="/products" />
+            <NavButton text="KALENDER" href="/calendar" />
+            <NavButton text="KONTAK KAMI" href="/contact" />
+            <NavButton text="KERANJANG" href="/" />
+          </ul>
+          <div className="basis-3/12 flex items-center justify-end text-inherit">
+            <Link to="/login">
+              <img src={UserIcon}
+                className="h-10 object-cover brightness-75 hover:brightness-125 mx-4" />
+            </Link>
           </div>
         </div>
-        <ul className="grow flex items-center justify-between text-inherit">
-          <NavButton text="KREASI KAMI" href="/products" />
-          <NavButton text="KALENDER" href="/calendar" />
-          <NavButton text="KONTAK KAMI" href="/contact" />
-          <NavButton text="KERANJANG" href="/cart" />
-        </ul>
-        <div className="basis-3/12 flex items-center justify-end text-inherit">
-          <div className="text-inherit">
-          </div>
-        </div>
-      </div>
-    </nav >
+      </nav >
+    </motion.div>
   )
 }
 
@@ -44,13 +51,15 @@ function NavButton(
   }
 
   return (
-    <li>
-      <motion.a className="text-inherit lg:text-md flex items-end hover:items-start flex-col font-semibold tracking-wider" href={href} initial="default" whileHover="hover">
-        <motion.p variants={textVariant}>
-          {text}
-        </motion.p>
-        <motion.div className="h-1 bg-white" variants={textUnderlineVariant} />
-      </motion.a>
+    <li className="grow flex justify-center mt-4">
+      <Link to={href}>
+        <motion.div className="text-inherit lg:text-md flex items-end hover:items-start flex-col font-semibold tracking-wider" initial="default" whileHover="hover">
+          <motion.p variants={textVariant}>
+            {text}
+          </motion.p>
+          <motion.div className="h-1 bg-white" variants={textUnderlineVariant} />
+        </motion.div>
+      </Link>
     </li>
   )
 }
