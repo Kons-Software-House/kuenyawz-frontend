@@ -39,7 +39,7 @@ function NavButton(
   }
 
   const textVariant = {
-    default: { color: "#101010" },
+    default: { color: "#000000" },
     hover: { color: "#FFFFFF" },
   }
 
