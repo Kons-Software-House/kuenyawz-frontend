@@ -6,7 +6,7 @@ import CartIcon from "../../assets/Navbar/Cart.svg"
 export default function Navbar() {
   return (
     <motion.div>
-      <nav className={`w-full text-base font-nav text-[24px] bg-black/10 absolute z-10 h-16 px-12 z-20`}>
+      <nav className={`w-full text-base font-nav text-[22px] bg-black/10 absolute z-10 h-16 px-12 z-20`}>
         <div className="h-full w-full flex gap-4">
           <div className={"basis-3/12 flex items-center justify-start"}>
             <Link to="/">
