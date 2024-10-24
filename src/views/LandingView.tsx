@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import HorizontalScroller from "../components/LandingView/HorizontalScroller";
 
 export default function LandingView() {
@@ -29,19 +30,19 @@ type ColumnProps = {
   background: "bg-secondary-100" | "bg-secondary-200" | "bg-secondary-300";
   header: string;
   description: string;
-  href?: string;
+  href: string;
 };
 
 function Column(
   { children, background, header, description, href }: ColumnProps
 ) {
   return (
-    <a href={href} className={`${background}` + ' grow flex justify-center items-center px-[20%] py-[6%] hover:bg-secondary-400 transition ease-in-out duration-300'}>
+    <Link to={href} className={`${background}` + ' grow flex justify-center items-center px-[20%] py-[6%] hover:bg-secondary-400 transition ease-in-out duration-300'}>
       <div className='h-full w-full flex flex-col gap-4 items-center justify-center'>
         {children}
         <h2 className='font-fancy text-4xl text-center font-bold tracking-wide'>{header}</h2>
         <p className='font-semi text-xl text-center'>{description}</p>
       </div>
-    </a>
+    </Link>
   );
 }
