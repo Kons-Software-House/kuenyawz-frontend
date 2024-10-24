@@ -26,7 +26,7 @@ export default function Navbar() {
                 </motion.button>
               </div>
             </Link>
-            <Link to="/cart">
+            <Link to="/keranjang">
               <motion.img src={CartIcon} className="h-8" whileHover={{ scale: 1.1 }} />
             </Link>
           </div>
