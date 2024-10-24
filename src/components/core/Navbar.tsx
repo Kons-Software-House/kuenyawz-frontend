@@ -6,7 +6,7 @@ import CartIcon from "../../assets/Navbar/Cart.svg"
 export default function Navbar() {
   return (
     <motion.div>
-      <nav className={`w-full text-base font-nav text-lg bg-black/10 absolute z-10 h-16 px-12`}>
+      <nav className={`w-full text-base font-nav text-lg bg-black/10 absolute z-10 h-16 px-12 z-20`}>
         <div className="h-full w-full flex gap-4">
           <div className={"basis-3/12 flex items-center justify-start"}>
             <Link to="/">
@@ -14,9 +14,9 @@ export default function Navbar() {
             </Link>
           </div>
           <ul className="grow flex items-center">
-            <NavButton text="Produk Kami" href="/products" />
-            <NavButton text="Kalender" href="/calendar" />
-            <NavButton text="Tentang Kami" href="/contact" />
+            <NavButton text="Produk Kami" href="/menu" />
+            <NavButton text="Kalender" href="/kalender" />
+            <NavButton text="Tentang Kami" href="/tentang-kami" />
           </ul>
           <div className="basis-3/12 flex items-center justify-end gap-4">
             <Link to="/login">
