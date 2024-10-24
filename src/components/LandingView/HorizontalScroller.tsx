@@ -33,7 +33,6 @@ export default function HorizontalScroller() {
                         <h1 className='font-fancy font-bold text-4xl md:text-6xl lg:text-8xl text-center text-shadow-sm tracking-wider z-10'>
                             WZ Snack & Bites
                         </h1>
-                        {/* <ProductsButton /> */}
                     </div>
                     <div className="-ml-[10rem] flex w-max scroller gap-2 h-[40rem]" ref={scrollerRef}>
                         <img src={placeholder1} alt="placeholder1" className="h-full aspect-[3/6] object-cover rounded" draggable="false" />
@@ -49,22 +48,6 @@ export default function HorizontalScroller() {
     );
 }
 
-// function ProductsButton() {
-//   const hoverVariant = {
-//     default: { width: "0%" },
-//     hover: { width: "100%" },
-//   }
-
-//   return (
-//     <motion.a className='border bg-[#6C4F32]/75 hover:text-black transition ease-in-out duration-300 shadow-2xl rounded-lg mt-3' href="/products">
-//       <motion.div className='relative z-50 aspect-[3/1] h-10 md:h-14 lg:h-20 flex' initial="default" whileHover="hover">
-//         <p className='font-clear text-xl md:text-2xl lg:text-4xl text-center m-auto'>Kreasi Kami</p>
-//         <motion.div variants={hoverVariant} className='absolute bg-tetriary-500/95 w-10 top-0 bottom-0 z-[-1] rounded-lg'>
-//         </motion.div>
-//       </motion.div>
-//     </motion.a >
-//   )
-// }
 
 function startAnimation(scroller: HTMLDivElement): number {
     let transformX = 0;
