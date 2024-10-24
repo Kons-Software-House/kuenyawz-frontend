@@ -13,16 +13,21 @@ export default function Navbar() {
               <img src={Icon} className="aspect-[4/2] h-14 mt-1 object-cover brightness-75 hover:brightness-125" />
             </Link>
           </div>
-          <ul className="grow flex items-center justify-between text-inherit">
-            <NavButton text="KREASI KAMI" href="/products" />
-            <NavButton text="KALENDER" href="/calendar" />
-            <NavButton text="KONTAK KAMI" href="/contact" />
-            <NavButton text="KERANJANG" href="/" />
+          <ul className="grow flex items-center">
+            <NavButton text="Produk Kami" href="/products" />
+            <NavButton text="Kalender" href="/calendar" />
+            <NavButton text="Tentang Kami" href="/contact" />
           </ul>
-          <div className="basis-3/12 flex items-center justify-end text-inherit">
+          <div className="basis-3/12 flex items-center justify-end gap-4">
             <Link to="/login">
-              <img src={UserIcon}
-                className="h-10 object-cover brightness-75 hover:brightness-125 mx-4" />
+              <div className="border-2 border-black rounded-lg">
+                <motion.button className="px-4 py-1" whileHover={{ scale: 1.1 }}>
+                  Masuk
+                </motion.button>
+              </div>
+            </Link>
+            <Link to="/cart">
+              <motion.img src={CartIcon} className="h-8" whileHover={{ scale: 1.1 }} />
             </Link>
           </div>
         </div>
