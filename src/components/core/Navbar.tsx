@@ -6,7 +6,7 @@ import UserIcon from "../../assets/Navbar/UserIcon.png"
 export default function Navbar() {
   return (
     <motion.div exit={{ rotate: -180, transition: { duration: 2 } }} transition={{ duration: 3 }}>
-      <nav className={`w-full text-base font-nav text-xl bg-black/10 absolute z-10 h-16`}>
+      <nav className={`w-full text-base font-nav text-xl bg-black/10 absolute z-20 h-16`}>
         <div className="h-full w-full text-inherit flex gap-4">
           <div className={"basis-3/12 flex items-center justify-end"}>
             <Link to="/">
