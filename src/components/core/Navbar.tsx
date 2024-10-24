@@ -6,14 +6,14 @@ import CartIcon from "../../assets/Navbar/Cart.svg"
 export default function Navbar() {
   return (
     <motion.div>
-      <nav className={`w-full text-base font-nav text-lg bg-black/10 absolute z-10 h-16 px-12 z-20`}>
+      <nav className={`w-full text-base font-nav text-xl bg-black/10 absolute z-10 h-16 px-12 z-20`}>
         <div className="h-full w-full flex gap-4">
           <div className={"basis-3/12 flex items-center justify-start"}>
             <Link to="/">
               <motion.img src={Icon} className="aspect-[4/2] h-16 mt-1 object-cover" />
             </Link>
           </div>
-          <ul className="grow flex items-center">
+          <ul className="grow flex items-center mx-6">
             <NavButton text="Produk Kami" href="/menu" />
             <NavButton text="Kalender" href="/kalender" />
             <NavButton text="Tentang Kami" href="/tentang-kami" />
@@ -21,7 +21,7 @@ export default function Navbar() {
           <div className="basis-3/12 flex items-center justify-end gap-4">
             <Link to="/login">
               <div className="border-2 border-black rounded-lg">
-                <motion.button className="px-4 py-1" whileHover={{ scale: 1.1 }}>
+                <motion.button className="px-4 py-1 font-semibold" whileHover={{ scale: 1.1 }}>
                   Masuk
                 </motion.button>
               </div>
@@ -58,7 +58,7 @@ function NavButton(
   return (
     <li className="grow flex justify-center mt-4">
       <Link to={href}>
-        <motion.div className="lg:text-md flex items-end hover:items-start flex-col font-semibold tracking-widest" initial="default" whileHover="hover">
+        <motion.div className="lg:text-md flex items-end hover:items-start flex-col font-[900] tracking-[1.2px]" initial="default" whileHover="hover">
           <motion.p variants={textVariant}>
             {text}
           </motion.p>
