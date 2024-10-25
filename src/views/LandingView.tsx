@@ -1,22 +1,24 @@
 import { Link } from "react-router-dom";
 import HorizontalScroller from "../components/LandingView/HorizontalScroller";
+import TransitionLayer from "../components/core/TransitionLayer";
 
 export default function LandingView() {
   return (
     <>
+      <TransitionLayer background='bg-secondary-200' />
       <div className='h-16 bg-secondary-100'>
       </div>
       <HorizontalScroller />
       <div className='h-[28rem] grid grid-cols-3'>
-        <Column background='bg-secondary-300' header='Kontak Kami' description='Ciptakan Pertemuan Manis' href='/contact'>
+        <Column background='bg-secondary-300' header='Produk Kami' description='Kelezatan Dalam Setiap Kreasi' href='/menu'>
           <div className='bg-white h-1/2 w-11/12 shadow-lg'>
           </div>
         </Column>
-        <Column background='bg-secondary-200' header='Kreasi Kami' description='Karya kebanggaan dari KuenyaWZ' href='/location'>
+        <Column background='bg-secondary-200' header='Kalender' description='Perayaan Anda, Kreasi Kami' href='/kalender'>
           <div className='bg-white h-1/2 w-11/12 shadow-lg'>
           </div>
         </Column>
-        <Column background='bg-secondary-100' header='Kalender' description='Perayaan Anda, Kreasi Kami' href='/calendar'>
+        <Column background='bg-secondary-100' header='Tentang Kami' description='Ciptakan Pertemuan Manis' href='/tentang-kami'>
           <div className='bg-white h-1/2 w-11/12 shadow-lg'>
           </div>
         </Column>
