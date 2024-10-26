@@ -4,12 +4,15 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import { ModalProvider } from './contexts/ModalContext.tsx'
 import App from './App.tsx'
 import './index.css'
+import { TransitionColorProvider } from './contexts/TransitionColorContext.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Router>
       <ModalProvider>
-        <App />
+        <TransitionColorProvider>
+          <App />
+        </TransitionColorProvider>
       </ModalProvider>
     </Router>
   </StrictMode>,
