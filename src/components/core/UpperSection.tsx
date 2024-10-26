@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
-import { BackgroundColors, LighterBackgroundColors } from './Colors';
+import { LighterBackgroundColors } from './Colors';
 import TransitionLayer from './TransitionLayer';
 
 type UpperSectionProps = {
   title?: string;
   subtitle?: string;
+  background?: 'bg-secondary-200' | 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500' | 'bg-tetriary-600';
 }
 
 type HeaderProps = {
@@ -12,7 +13,7 @@ type HeaderProps = {
   background?: string;
 }
 
-export default function UpperSection({ title, subtitle }: UpperSectionProps, { background = 'bg-secondary-200' }: BackgroundColors) {
+export default function UpperSection({ title, subtitle, background = 'bg-secondary-200' }: UpperSectionProps) {
   return (
     <motion.div>
       <TransitionLayer background={background} />
