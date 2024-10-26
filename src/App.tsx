@@ -7,6 +7,7 @@ import LoginModal from "./components/modals/LoginModal"
 import LandingView from "./views/LandingView";
 import AboutUsView from "./views/AboutUsView";
 import CalendarView from "./views/CalendarView";
+import ProductDetailPage from "./views/ProductDetailView";
 
 function App() {
   const location = useLocation();
@@ -25,6 +26,7 @@ function App() {
           <Route path="/" element={<LandingView />} />
           <Route path="/tentang-kami" element={<AboutUsView />} />
           <Route path="/kalender" element={<CalendarView />} />
+          <Route path="/produk/" element={<ProductDetailPage background="bg-tetriary-500" />} />
         </Routes>
       </AnimatePresence>
     </>
