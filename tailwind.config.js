@@ -30,8 +30,11 @@ export default {
           650: '#FFC6C9',
         },
         availability: {
-          200: '#6C757D',
-          300: '#C59B9D',
+          200: '#C2DCFB',
+          300: '#FFC1C1',
+          400: '#FFE6A4',
+          500: '#C3F2EA',
+          
         },
         text: {
           dark: '#66481D',

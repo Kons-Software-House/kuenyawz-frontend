@@ -4,6 +4,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import Navbar from "./components/core/Navbar";
 import LandingView from "./views/LandingView";
 import AboutUsView from "./views/AboutUsView";
+import CalendarView from "./views/CalendarView";
 
 function App() {
   const location = useLocation();
@@ -19,6 +20,7 @@ function App() {
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<LandingView />} />
           <Route path="/tentang-kami" element={<AboutUsView />} />
+          <Route path="/kalender" element={<CalendarView />} />
         </Routes>
       </AnimatePresence>
     </>
