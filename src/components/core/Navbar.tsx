@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
 import { Link } from 'react-router-dom';
+import { useModal } from "../../contexts/ModalContext";
 import Main from "../../assets/Navbar/Main.png"
 import CartIcon from "../../assets/Navbar/Cart.svg"
 
 export default function Navbar() {
+  const modalContext = useModal()
   return (
     <motion.div>
       <nav className={`w-full text-base font-nav text-xl bg-black/10 absolute z-10 h-16 px-12 z-30`}>
@@ -19,13 +21,13 @@ export default function Navbar() {
             <NavButton text="Tentang Kami" href="/tentang-kami" />
           </ul>
           <div className="basis-3/12 flex items-center justify-end gap-4">
-            <Link to="/login">
+            <button onClick={() => { modalContext.setShowLoginModal(true) }}>
               <div className="border-2 border-black rounded-lg">
                 <motion.button className="px-4 py-1 font-semibold" whileHover={{ scale: 1.1 }}>
                   Masuk
                 </motion.button>
               </div>
-            </Link>
+            </button>
             <Link to="/keranjang">
               <motion.img src={CartIcon} className="h-8" whileHover={{ scale: 1.1 }} />
             </Link>
