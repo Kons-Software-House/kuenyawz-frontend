@@ -5,7 +5,7 @@ import TransitionLayer from "../components/core/TransitionLayer";
 export default function LandingView() {
   return (
     <>
-      <TransitionLayer background='bg-secondary-200' />
+      <TransitionLayer />
       <div className='h-16 bg-secondary-100'>
       </div>
       <HorizontalScroller />

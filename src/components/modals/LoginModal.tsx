@@ -6,7 +6,7 @@ import Backdrop from "../core/Backdrop";
 export default function LoginModal() {
   const { setShowLoginModal, setShowRegisterModal } = useModal();
   return (
-    <Backdrop onClose={() => { setShowLoginModal(false); console.log("clicked") }}>
+    <Backdrop onClose={() => { setShowLoginModal(false) }}>
       <div className="p-5">
         <h1 className="text-2xl font-clear font-bold text-center tracking-wide">Login</h1>
         <div className="flex flex-col gap-4 px-8 py-4">

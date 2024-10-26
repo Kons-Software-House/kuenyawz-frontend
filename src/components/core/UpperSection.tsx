@@ -16,7 +16,7 @@ type HeaderProps = {
 export default function UpperSection({ title, subtitle, background = 'bg-secondary-200' }: UpperSectionProps) {
   return (
     <motion.div>
-      <TransitionLayer background={background} />
+      <TransitionLayer />
       <Header title={title} background={background} />
       <motion.div
         className={`${LighterBackgroundColors[background]} h-[6rem]`}>

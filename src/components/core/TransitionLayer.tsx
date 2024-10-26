@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
-import { BackgroundColors, LighterBackgroundColors } from './Colors';
+import { LighterBackgroundColors } from './Colors';
+import { useTransitionColor } from '../../contexts/TransitionColorContext';
 
-export default function TransitionLayer({ background = 'bg-secondary-200' }: BackgroundColors) {
+export default function TransitionLayer() {
   const handleAnimationStart = () => {
     document.body.style.overflow = 'hidden';
   };
@@ -9,6 +10,8 @@ export default function TransitionLayer({ background = 'bg-secondary-200' }: Bac
   const handleAnimationEnd = () => {
     document.body.style.overflow = '';
   };
+
+  const { transitionColor } = useTransitionColor();
 
   return (
     <motion.div
@@ -26,7 +29,7 @@ export default function TransitionLayer({ background = 'bg-secondary-200' }: Bac
     >
       <motion.div className='flex' initial={{ justifyItems: 'start' }} exit={{ justifyContent: 'end' }}>
         <motion.div
-          className={`${background} h-[18rem] brightness-[95%]`}
+          className={`${transitionColor} h-[18rem] brightness-[95%]`}
           initial={{ width: '120%' }}
           animate={{ width: '0%' }}
           exit={{ width: '120%' }}
@@ -35,7 +38,7 @@ export default function TransitionLayer({ background = 'bg-secondary-200' }: Bac
       </motion.div>
       <motion.div className='flex h-full' initial={{ justifyItems: 'start' }} exit={{ justifyContent: 'end' }}>
         <motion.div
-          className={`${LighterBackgroundColors[background]} brightness-[95%]`}
+          className={`${LighterBackgroundColors[transitionColor]} brightness-[95%]`}
           initial={{ width: '120%' }}
           animate={{ width: '0%' }}
           exit={{ width: '120%' }}
