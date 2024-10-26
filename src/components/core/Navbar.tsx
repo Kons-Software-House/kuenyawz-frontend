@@ -21,13 +21,13 @@ export default function Navbar() {
             <NavButton text="Tentang Kami" href="/tentang-kami" />
           </ul>
           <div className="basis-3/12 flex items-center justify-end gap-4">
-            <button onClick={() => { modalContext.setShowLoginModal(true) }}>
+            <div onClick={() => { modalContext.setShowLoginModal(true) }}>
               <div className="border-2 border-black rounded-lg">
                 <motion.button className="px-4 py-1 font-semibold" whileHover={{ scale: 1.1 }}>
                   Masuk
                 </motion.button>
               </div>
-            </button>
+            </div>
             <Link to="/keranjang">
               <motion.img src={CartIcon} className="h-8" whileHover={{ scale: 1.1 }} />
             </Link>
