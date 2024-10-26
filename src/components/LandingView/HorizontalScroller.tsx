@@ -30,8 +30,8 @@ export default function HorizontalScroller() {
       <div className='gradient-mask'>
         <div className="overflow-hidden">
           <div className='absolute  text-white w-full h-1/2 flex flex-col gap-6 justify-center items-center'>
-            <h1 className='font-fancy font-bold text-4xl md:text-6xl lg:text-8xl text-center text-shadow-sm tracking-wider z-10'>
-              WZ Snack & Bites
+            <h1 className='font-fancy font-bold text-4xl md:text-6xl lg:text-8xl text-center text-shadow-sm tracking-widest z-10'>
+              Kuenya WZ
             </h1>
           </div>
           <div className="-ml-[10rem] flex w-max scroller gap-2 h-[40rem]" ref={scrollerRef}>

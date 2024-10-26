@@ -12,14 +12,14 @@ export default function AboutUsView() {
       <Container>
         <section className="lg:mx-10 flex flex-col h-[60dvh] md:p-20">
           <h3 className="font-clear text-lg mb-8">
-            Kuenya WZ Snack & Bites siap membantu Anda! Hubungi kami untuk pemesanan kue, pastry, camilan, atau pertanyaan seputar layanan catering kami. Kami senang bisa menjadi bagian dari momen spesial Anda.
+            Kuenya WZ siap membantu Anda! Hubungi kami untuk pemesanan kue, pastry, camilan, atau pertanyaan seputar layanan catering kami. Kami senang bisa menjadi bagian dari momen spesial Anda.
           </h3>
           <div className="flex gap-4 mb-2">
             <div className="">
               <img className="h-12 md:h-14" src={PinpointIcon} alt="" />
             </div>
             <div className="grid grid-rows-2">
-              <h3 className="font-clear text-text-dark text-lg md:text-xl tracking-tight">Kuenya WZ Snack & Bites
+              <h3 className="font-clear text-text-dark text-lg md:text-xl tracking-tight">Kuenya WZ
               </h3>
               <p className="font-clear text-text-light text-md md:text-lg">
                 Jl. Belimbing No. 9F, Jagakarsa, Jakarta Selatan, 12620

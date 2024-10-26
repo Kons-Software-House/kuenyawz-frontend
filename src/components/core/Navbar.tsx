@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from 'react-router-dom';
-import Icon from "../../assets/Navbar/Logo.png"
+import Main from "../../assets/Navbar/Main.png"
 import CartIcon from "../../assets/Navbar/Cart.svg"
 
 export default function Navbar() {
@@ -10,7 +10,7 @@ export default function Navbar() {
         <div className="h-full w-full flex gap-4">
           <div className={"basis-3/12 flex items-center justify-start"}>
             <Link to="/">
-              <motion.img src={Icon} className="aspect-[4/2] h-16 mt-1 object-cover" />
+              <motion.img src={Main} className="h-12 mt-1 object-cover" />
             </Link>
           </div>
           <ul className="grow flex items-center mx-6">
