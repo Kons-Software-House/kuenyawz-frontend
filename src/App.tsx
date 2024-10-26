@@ -4,6 +4,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { useModal } from "./contexts/ModalContext";
 import Navbar from "./components/core/Navbar";
 import LoginModal from "./components/modals/LoginModal"
+import RegisterModal from "./components/modals/RegisterModal";
 import LandingView from "./views/LandingView";
 import AboutUsView from "./views/AboutUsView";
 import CalendarView from "./views/CalendarView";
@@ -11,7 +12,7 @@ import ProductDetailPage from "./views/ProductDetailView";
 
 function App() {
   const location = useLocation();
-  const { showLoginModal } = useModal();
+  const { showLoginModal, showRegisterModal } = useModal();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -21,6 +22,7 @@ function App() {
     <>
       <Navbar />
       {showLoginModal && <LoginModal />}
+      {showRegisterModal && <RegisterModal />}
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<LandingView />} />
