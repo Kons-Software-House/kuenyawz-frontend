@@ -1,7 +1,11 @@
-export default function Calendar() {
+type CalendarProps = {
+  isSmall?: boolean;
+}
+
+export default function Calendar({ isSmall }: CalendarProps) {
   return (
     <>
-      <div className={`aspect-[18/17] grid grid-cols-7 gap-x-2 bg-secondary-500 p-4 lg:p-6 shadow-xl rounded-md w-full max-w-[46rem]`} >
+      <div className={`aspect-[18/17] grid grid-cols-7 gap-x-2 bg-secondary-500 p-4 lg:p-6 shadow-xl rounded-md w-full max-w-[46rem] ${isSmall ? 'text-sm lg:text-md' : 'text-lg lg:text-xl'}`} >
         <YearMonth year={2021} month={8} />
         <div className="grid grid-cols-7 col-span-7 gap-x-2 mb-2 lg:mb-3">
           <WeekDay day="Sun" />
@@ -105,7 +109,7 @@ function WeekDay(
   { day }: WeekDayProps
 ) {
   return (
-    <div className="bg-secondary-100 flex flex-col items-center justify-center font-clear text-md lg:text-xl rounded shadow-md font-semibold">
+    <div className="bg-secondary-100 flex flex-col items-center justify-center font-clear rounded shadow-md font-semibold">
       {day}
     </div>
   )
@@ -131,7 +135,7 @@ function Date(
 
   return (
     <div className={(thisMonth ? '' : 'text-gray-400') + " bg-gray-50 hover:brightness-[102%] flex flex-col items-center justify-center aspect-[1/1] rounded shadow-md transition ease-in-out duration-150"}>
-      <p className={(eventType ? availability[eventType] : '') + " " + (eventType ? 'text-white' : '') + ' h-2/3 w-2/3 aspect-[1/1] rounded-full flex justify-center items-center font-semibold text-md lg:text-xl'} >
+      <p className={(eventType ? availability[eventType] : '') + " " + (eventType ? 'text-white' : '') + ' h-2/3 w-2/3 aspect-[1/1] rounded-full flex justify-center items-center font-semibold'} >
         {date}
       </p>
     </div >
