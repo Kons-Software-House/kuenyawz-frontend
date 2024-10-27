@@ -32,6 +32,14 @@ type CardProps = {
 
 function Card({ background, picture, title }: CardProps) {
   const { setTransitionColor } = useTransitionColor();
+  const beforeBackground = {
+    'bg-tetriary-100': 'before:bg-tetriary-100',
+    'bg-tetriary-200': 'before:bg-tetriary-200',
+    'bg-tetriary-300': 'before:bg-tetriary-300',
+    'bg-tetriary-400': 'before:bg-tetriary-400',
+    'bg-tetriary-500': 'before:bg-tetriary-500',
+    'bg-tetriary-600': 'before:bg-tetriary-600',
+  }
   const hoverVariant = {
     default: { x: "20%", opacity: 0 },
     hover: { x: "0%", opacity: 1 },
@@ -39,7 +47,7 @@ function Card({ background, picture, title }: CardProps) {
   return (
     <Link to="/produk" onClick={() => { setTransitionColor(background) }}>
       <motion.div className={`aspect-[2/3] relative flex justify-center items-center ${LighterBorderColors[background]} border-4
-       before:absolute before:-inset-0 before:rotate-6 before:${background} hover:before:rotate-12 before:-z-10 before:transition-transform before:duration-300`} initial='default' whileHover='hover'>
+       before:absolute before:-inset-0 before:rotate-6 ${beforeBackground[background]} hover:before:rotate-12 before:-z-10 before:transition-transform before:duration-300`} initial='default' whileHover='hover'>
         <motion.p className="absolute font-fancy text-2xl lg:text-3xl text-white text-shadow-sm overflow-hidden text-center" variants={hoverVariant}>
           {title}
         </motion.p>
