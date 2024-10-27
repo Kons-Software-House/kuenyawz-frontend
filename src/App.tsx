@@ -7,6 +7,7 @@ import Navbar from "./components/core/Navbar";
 import LoginModal from "./components/modals/LoginModal";
 import RegisterModal from "./components/modals/RegisterModal";
 import LandingView from "./views/LandingView";
+import NotFoundView from "./views/NotFoundView";
 import AboutUsView from "./views/AboutUsView";
 import CalendarView from "./views/CalendarView";
 import ProductListView from "./views/ProductListView";
@@ -42,6 +43,7 @@ function App() {
           <Route path="/kalender" element={<CalendarView />} />
           <Route path="/menu" element={<ProductListView />} />
           <Route path="/produk" element={<ProductDetailPage background="bg-tetriary-500" />} />
+          <Route path="*" element={<NotFoundView />} />
         </Routes>
       </AnimatePresence>
     </>
