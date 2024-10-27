@@ -1,7 +1,7 @@
 export default function Calendar() {
   return (
     <>
-      <div className={`aspect-[18/17] grid grid-cols-7 gap-x-2 bg-secondary-500 p-4 lg:p-6 shadow-xl rounded-md w-2/3 max-w-[46rem]`} >
+      <div className={`aspect-[18/17] grid grid-cols-7 gap-x-2 bg-secondary-500 p-4 lg:p-6 shadow-xl rounded-md w-full max-w-[46rem]`} >
         <YearMonth year={2021} month={8} />
         <div className="grid grid-cols-7 col-span-7 gap-x-2 mb-2 lg:mb-3">
           <WeekDay day="Sun" />
