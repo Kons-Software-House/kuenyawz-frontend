@@ -1,9 +1,9 @@
 export default function Calendar() {
   return (
     <>
-      <div className={`aspect-[18/17] grid grid-cols-7 gap-x-2 bg-secondary-500 p-6 shadow-xl rounded-md w-2/3 max-w-[46rem]`} >
+      <div className={`aspect-[18/17] grid grid-cols-7 gap-x-2 bg-secondary-500 p-4 lg:p-6 shadow-xl rounded-md w-2/3 max-w-[46rem]`} >
         <YearMonth year={2021} month={8} />
-        <div className="grid grid-cols-7 col-span-7 gap-x-2 mb-3">
+        <div className="grid grid-cols-7 col-span-7 gap-x-2 mb-2 lg:mb-3">
           <WeekDay day="Sun" />
           <WeekDay day="Mon" />
           <WeekDay day="Tue" />
@@ -78,10 +78,10 @@ function YearMonth(
   return (
     <div className="col-span-7 bg-secondary-100 flex justify-between px-4 py-1 rounded shadow-md mb-3">
       <div className="flex justify-between items-center gap-4">
-        <div className="text-4xl font-clear font-semibold rounded">
+        <div className="text-4xl font-clear font-bold rounded">
           {months[month - 1]}
         </div>
-        <div className="text-4xl font-clear font-semibold">
+        <div className="text-4xl font-clear font-bold">
           {year}
         </div>
       </div>
@@ -105,7 +105,7 @@ function WeekDay(
   { day }: WeekDayProps
 ) {
   return (
-    <div className="bg-secondary-100 flex flex-col items-center justify-center font-clear text-lg rounded shadow-md">
+    <div className="bg-secondary-100 flex flex-col items-center justify-center font-clear text-md lg:text-xl rounded shadow-md font-semibold">
       {day}
     </div>
   )
@@ -131,7 +131,7 @@ function Date(
 
   return (
     <div className={(thisMonth ? '' : 'text-gray-400') + " bg-gray-50 hover:brightness-[102%] flex flex-col items-center justify-center aspect-[1/1] rounded shadow-md transition ease-in-out duration-150"}>
-      <p className={(eventType ? availability[eventType] : '') + " " + (eventType ? 'text-white' : '') + ' h-2/3 w-2/3 aspect-[1/1] rounded-full flex justify-center items-center'} >
+      <p className={(eventType ? availability[eventType] : '') + " " + (eventType ? 'text-white' : '') + ' h-2/3 w-2/3 aspect-[1/1] rounded-full flex justify-center items-center font-semibold text-md lg:text-xl'} >
         {date}
       </p>
     </div >
