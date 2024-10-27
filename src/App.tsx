@@ -38,6 +38,7 @@ function App() {
           <Route path="/" element={<LandingView />} />
           <Route path="/tentang-kami" element={<AboutUsView />} />
           <Route path="/kalender" element={<CalendarView />} />
+          <Route path="/menu" element={<ProductListView />} />
           <Route path="/produk" element={<ProductDetailPage background="bg-tetriary-500" />} />
         </Routes>
       </AnimatePresence>
