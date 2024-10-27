@@ -9,6 +9,7 @@ import RegisterModal from "./components/modals/RegisterModal";
 import LandingView from "./views/LandingView";
 import AboutUsView from "./views/AboutUsView";
 import CalendarView from "./views/CalendarView";
+import ProductListView from "./views/ProductListView";
 import ProductDetailPage from "./views/ProductDetailView";
 
 function App() {
@@ -20,11 +21,12 @@ function App() {
     "/": "bg-secondary-200",
     "/tentang-kami": "bg-secondary-200",
     "/kalender": "bg-secondary-200",
-    "/produk": "bg-tetriary-500",
   };
 
   useEffect(() => {
-    setTransitionColor(routeColors[location.pathname] ?? "bg-secondary-200");
+    if (!location.pathname.startsWith("/produk")) {
+      setTransitionColor(routeColors[location.pathname] ?? "bg-secondary-200");
+    }
     window.scrollTo(0, 0);
   }, [location, setTransitionColor]);
 
