@@ -5,7 +5,7 @@ import TransitionLayer from './TransitionLayer';
 type UpperSectionProps = {
   title?: string;
   subtitle?: string;
-  background?: 'bg-secondary-200' | 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500' | 'bg-tetriary-600';
+  background?: 'bg-secondary-200' | 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500';
 }
 
 type HeaderProps = {

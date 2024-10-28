@@ -17,7 +17,6 @@ export default function ProductListView() {
           <Card background='bg-tetriary-300' />
           <Card background='bg-tetriary-400' />
           <Card background='bg-tetriary-500' title="Bitter Ballen" picture="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fappetizersandpartyrecipes.com%2Fwp-content%2Fuploads%2F2018%2F12%2FBeef-Bitterballen-Recipe.jpg&f=1&nofb=1&ipt=b3bedaf3c32d4f7e8316ecb27dd440cdb2f85074518337f1f2bd1f818d851e97&ipo=images" />
-          <Card background='bg-tetriary-600' />
         </div >
       </Container>
     </>
@@ -25,7 +24,7 @@ export default function ProductListView() {
 }
 
 type CardProps = {
-  background: 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500' | 'bg-tetriary-600'
+  background: 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500';
   picture?: string
   title?: string
 }
@@ -38,7 +37,6 @@ function Card({ background, picture, title }: CardProps) {
     'bg-tetriary-300': 'before:bg-tetriary-300',
     'bg-tetriary-400': 'before:bg-tetriary-400',
     'bg-tetriary-500': 'before:bg-tetriary-500',
-    'bg-tetriary-600': 'before:bg-tetriary-600',
   }
   const hoverVariant = {
     default: { x: "20%", opacity: 0 },
