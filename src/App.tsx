@@ -4,6 +4,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { useModal } from "./contexts/ModalContext";
 import { useTransitionColor } from "./contexts/TransitionColorContext";
 import Navbar from "./components/core/Navbar";
+import Footer from "./components/core/Footer";
 import LoginModal from "./components/modals/LoginModal";
 import RegisterModal from "./components/modals/RegisterModal";
 import LandingView from "./views/LandingView";
@@ -44,6 +45,7 @@ function App() {
           <Route path="/produk" element={<ProductDetailPage background="bg-tetriary-500" />} />
         </Routes>
       </AnimatePresence>
+      <Footer />
     </>
   );
 }
