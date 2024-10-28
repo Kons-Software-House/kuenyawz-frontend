@@ -13,6 +13,7 @@ import AboutUsView from "./views/AboutUsView";
 import CalendarView from "./views/CalendarView";
 import ProductListView from "./views/ProductListView";
 import ProductDetailPage from "./views/ProductDetailView";
+import CartView from "./views/CartView";
 
 function App() {
   const location = useLocation();
@@ -44,6 +45,7 @@ function App() {
           <Route path="/kalender" element={<CalendarView />} />
           <Route path="/menu" element={<ProductListView />} />
           <Route path="/produk" element={<ProductDetailPage background="bg-tetriary-500" />} />
+          <Route path="/keranjang" element={<CartView />} />
           <Route path="*" element={<NotFoundView />} />
         </Routes>
       </AnimatePresence>
