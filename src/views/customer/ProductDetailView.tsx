@@ -88,6 +88,16 @@ function AddToCartButton({ color }: { color: 'bg-tetriary-100' | 'bg-tetriary-20
     hover: { width: "100%", top: "0%", left: "0%", x: "0%", y: "0%", transition: { duration: 0.3 } },
   }
 
+  const floatingAnimation = {
+    // x: [10, -20, 10],
+    scaleX: [0.8, 1, 0.8], // slight scaling to make it "bounce"
+    transition: {
+      repeat: Infinity,
+      duration: 1.2,
+      ease: "easeInOut",
+    },
+  };
+
   return (
     <div className={`border-8 ${LighterBorderColors[color]} p-2 flex flex-col gap-2 rounded-2xl`}>
       <motion.a className={`${color} grow text-white hover:text-black transition ease-in-out duration-300 rounded-xl h-12`} href="/">
@@ -95,7 +105,7 @@ function AddToCartButton({ color }: { color: 'bg-tetriary-100' | 'bg-tetriary-20
           <p className={`flex w-full justify-center items-center font-bold tracking-wide text-lg`}>
             Tambah Ke Keranjang --/
           </p>
-          <motion.div variants={hoverVariant} className={`absolute w-10 bg-secondary-500 bottom-0 z-[-1] rounded-xl`}>
+          <motion.div variants={hoverVariant} animate={floatingAnimation} className={`absolute w-10 bg-secondary-500 bottom-0 z-[-1] rounded-xl`}>
           </motion.div>
         </motion.div>
       </motion.a >
