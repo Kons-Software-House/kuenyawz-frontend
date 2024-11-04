@@ -1,10 +1,10 @@
 import { motion } from "framer-motion"
-import { LighterBackgroundColors, LighterBorderColors } from '../components/core/Colors';
-import Container from "../components/core/Container"
-import UpperSection from "../components/core/UpperSection"
+import { LighterBackgroundColors, LighterBorderColors } from '../../components/core/Colors';
+import Container from "../../components/core/Container"
+import UpperSection from "../../components/core/UpperSection"
 
 type BgColorProps = {
-  background: 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500' 
+  background: 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500'
 }
 
 

@@ -1,5 +1,5 @@
-import UpperSection from "../components/core/UpperSection";
-import Container from "../components/core/Container";
+import UpperSection from "../../components/core/UpperSection";
+import Container from "../../components/core/Container";
 
 export default function NotFoundView() {
   return (

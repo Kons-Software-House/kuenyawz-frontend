@@ -1,9 +1,9 @@
-import Container from "../components/core/Container";
-import UpperSection from "../components/core/UpperSection";
+import Container from "../../components/core/Container";
+import UpperSection from "../../components/core/UpperSection";
 
-import PhoneIcon from "../assets/AboutUs/PhoneIcon.png";
-import PinpointIcon from "../assets/AboutUs/PinpointIcon.png";
-import InstagramIcon from "../assets/AboutUs/InstagramIcon.png";
+import PhoneIcon from "../../assets/AboutUs/PhoneIcon.png";
+import PinpointIcon from "../../assets/AboutUs/PinpointIcon.png";
+import InstagramIcon from "../../assets/AboutUs/InstagramIcon.png";
 
 export default function AboutUsView() {
   return (
