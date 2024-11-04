@@ -4,7 +4,7 @@ import { LighterBorderColors } from "./Colors";
 import { useTransitionColor } from "../../contexts/TransitionColorContext";
 
 type ProductCardProps = {
-  background: 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500' | 'bg-tetriary-600'
+  background: 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500'
   picture?: string
   title?: string
 }
