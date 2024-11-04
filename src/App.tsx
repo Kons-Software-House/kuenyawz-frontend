@@ -7,12 +7,12 @@ import Navbar from "./components/core/Navbar";
 import Footer from "./components/core/Footer";
 import LoginModal from "./components/modals/LoginModal";
 import RegisterModal from "./components/modals/RegisterModal";
-import LandingView from "./views/LandingView";
-import NotFoundView from "./views/NotFoundView";
-import AboutUsView from "./views/AboutUsView";
-import CalendarView from "./views/CalendarView";
-import ProductListView from "./views/ProductListView";
-import ProductDetailPage from "./views/ProductDetailView";
+import LandingView from "./views/customer/LandingView";
+import NotFoundView from "./views/customer/NotFoundView";
+import AboutUsView from "./views/customer/AboutUsView";
+import CalendarView from "./views/customer/CalendarView";
+import ProductListView from "./views/customer/ProductListView";
+import ProductDetailPage from "./views/customer/ProductDetailView";
 
 function App() {
   const location = useLocation();
