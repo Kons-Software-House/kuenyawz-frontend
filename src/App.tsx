@@ -13,7 +13,7 @@ import AboutUsView from "./views/customer/AboutUsView";
 import CalendarView from "./views/customer/CalendarView";
 import ProductListView from "./views/customer/ProductListView";
 import ProductDetailPage from "./views/customer/ProductDetailView";
-import Sidebar from "./components/vendor/Sidebar";
+import AdminDashboardView from "./views/admin/AdminDashboardView";
 
 function App() {
   const location = useLocation();
@@ -35,8 +35,7 @@ function App() {
 
   return (
     <>
-      {!location.pathname.includes("/vendor") && <Navbar />}
-      {location.pathname.includes("/vendor") && <Sidebar />}
+      {!location.pathname.includes("/admin") && <Navbar />}
       {showLoginModal && <LoginModal />}
       {showRegisterModal && <RegisterModal />}
       <AnimatePresence mode="wait">
@@ -47,10 +46,10 @@ function App() {
           <Route path="/menu" element={<ProductListView />} />
           <Route path="/produk" element={<ProductDetailPage background="bg-tetriary-500" />} />
           <Route path="*" element={<NotFoundView />} />
-          <Route path="vendor/dashboard" element={<></>} />
+          <Route path="admin/dashboard" element={<AdminDashboardView />} />
         </Routes>
       </AnimatePresence>
-      {!location.pathname.includes("/vendor") && <Footer />}
+      {!location.pathname.includes("/admin") && <Footer />}
     </>
   );
 }
