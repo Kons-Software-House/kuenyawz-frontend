@@ -10,7 +10,7 @@ export default function AdminProductListView() {
           <div className="m-4 text-sm">
             <div className="flex justify-between m-4">
               <div className="flex gap-4">
-                <input type="text" placeholder="Cari produk" className="p-2 border border-secondary-100 rounded-lg" />
+                <input type="text" placeholder="Cari produk" className="p-2 w-56 border border-secondary-100 rounded-lg" />
                 <select className="p-2 border border-secondary-100 rounded-lg">
                   <option value="all">Semua Kategori</option>
                   <option value="cake">Cake</option>
