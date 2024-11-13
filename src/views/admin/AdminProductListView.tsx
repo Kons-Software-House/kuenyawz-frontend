@@ -20,7 +20,7 @@ export default function AdminProductListView() {
                   <option value="lainnya">Lainnya</option>
                 </select>
               </div>
-              <button className="p-2 bg-secondary-100 rounded-lg">Tambah Produk</button>
+              <button className="p-2 px-4 bg-secondary-100 rounded-lg">Tambah Produk</button>
             </div>
             {/* table */}
             <table className="w-full bg-secondary-250">
