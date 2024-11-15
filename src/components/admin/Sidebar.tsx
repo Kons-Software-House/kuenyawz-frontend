@@ -9,25 +9,25 @@ export default function Sidebar() {
         <img src={Logo} alt="Logo" className="h-12" />
       </div>
       <nav className="flex flex-col items-start py-4">
-        <Link to="/vendor/dashboard" className="flex items-center py-2 pl-4 pr-6 hover:bg-secondary-100 w-full">
+        <Link to="/admin/dashboard" className="flex items-center py-2 pl-4 pr-6 hover:bg-secondary-100 w-full">
           <span className="mr-2">
             [ ]
           </span>
           Dashboard
         </Link>
-        <Link to="/vendor/produk" className="flex items-center py-2 pl-4 pr-6 hover:bg-secondary-100 w-full">
+        <Link to="/admin/produk" className="flex items-center py-2 pl-4 pr-6 hover:bg-secondary-100 w-full">
           <span className="mr-2">
             [ ]
           </span>
           Produk
         </Link>
-        <Link to="/vendor/pesanan" className="flex items-center py-2 pl-4 pr-6 hover:bg-secondary-100 w-full">
+        <Link to="/admin/pesanan" className="flex items-center py-2 pl-4 pr-6 hover:bg-secondary-100 w-full">
           <span className="mr-2">
             [ ]
           </span>
           Pesanan
         </Link>
-        <Link to="/vendor/kalender" className="flex items-center py-2 pl-4 pr-6 hover:bg-secondary-100 w-full">
+        <Link to="/admin/kalender" className="flex items-center py-2 pl-4 pr-6 hover:bg-secondary-100 w-full">
           <span className="mr-2">
             [ ]
           </span>
