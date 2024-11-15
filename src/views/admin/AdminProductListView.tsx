@@ -21,7 +21,7 @@ export default function AdminProductListView() {
                   <option value="lainnya">Lainnya</option>
                 </select>
               </div>
-              <Link className="p-2 px-4 bg-secondary-300 border-2 border-secondary-100 rounded-lg" to={"/admin/produk/tambah"}>Tambah Produk</Link>
+              <Link className="p-2 px-4 bg-secondary-300 border-2 border-secondary-100 rounded-lg" to={"/admin/produk/tambah"}>Buat Produk Baru</Link>
             </div>
             {/* table */}
             <table className="w-full bg-secondary-250">
