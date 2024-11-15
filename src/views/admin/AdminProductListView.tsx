@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Sidebar from "../../components/admin/Sidebar"
 
 export default function AdminProductListView() {
@@ -20,7 +21,7 @@ export default function AdminProductListView() {
                   <option value="lainnya">Lainnya</option>
                 </select>
               </div>
-              <button className="p-2 px-4 bg-secondary-100 rounded-lg">Tambah Produk</button>
+              <Link className="p-2 px-4 bg-secondary-300 border-2 border-secondary-100 rounded-lg" to={"/admin/produk/tambah"}>Tambah Produk</Link>
             </div>
             {/* table */}
             <table className="w-full bg-secondary-250">
