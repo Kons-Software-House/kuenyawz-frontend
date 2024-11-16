@@ -1,5 +1,5 @@
 import 'react-image-crop/dist/ReactCrop.css'
-import Sidebar from "../../components/admin/Sidebar";
+import Sidebar from "../../components/admin/views/AdminDashboardView/Sidebar";
 import ImageCropperModal from '../../components/admin/modals/ImageCropperModal';
 
 import { Formik, Form, Field, ErrorMessage } from "formik";
