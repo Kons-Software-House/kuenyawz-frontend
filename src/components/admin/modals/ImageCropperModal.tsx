@@ -1,6 +1,6 @@
 import { SyntheticEvent, useRef, useState } from "react";
 import ReactCrop, { centerCrop, convertToPixelCrop, makeAspectCrop, PercentCrop } from "react-image-crop";
-import Backdrop from "../../core/Backdrop";
+import Backdrop from "../../user/core/Backdrop";
 import { useModal } from "../../../contexts/ModalContext";
 import { setCanvasPreview } from "../core/SetCanvasPreview";
 

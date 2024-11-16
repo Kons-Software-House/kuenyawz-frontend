@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import Logo from "../../assets/Navbar/Main.png"
+import Logo from "../../../../assets/Navbar/Main.png"
 
 export default function Sidebar() {
   return (

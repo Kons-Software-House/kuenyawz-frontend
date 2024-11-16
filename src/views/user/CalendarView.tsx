@@ -1,7 +1,7 @@
-import UpperSection from "../../components/core/UpperSection"
-import Container from "../../components/core/Container"
-import Calendar from "../../components/views/CalendarView/Calendar"
-import AvailabilityTable from "../../components/views/CalendarView/AvailabilityTable"
+import UpperSection from "../../components/user/core/UpperSection"
+import Container from "../../components/user/core/Container"
+import Calendar from "../../components/user/views/CalendarView/Calendar"
+import AvailabilityTable from "../../components/user/views/CalendarView/AvailabilityTable"
 
 export default function CalendarView() {
   return (

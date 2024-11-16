@@ -1,27 +1,28 @@
 import { Formik, Form, Field } from "formik";
 import { motion } from "framer-motion";
-
+import { useModal } from "../../../contexts/ModalContext";
 import Backdrop from "../core/Backdrop";
-import { useModal } from "../../contexts/ModalContext";
 
-export default function RegisterModal() {
+export default function LoginModal() {
   const { setShowLoginModal, setShowRegisterModal } = useModal();
   return (
-    <Backdrop onClose={() => { setShowRegisterModal(false) }}>
+    <Backdrop onClose={() => { setShowLoginModal(false) }}>
       <div className="p-5">
-        <h1 className="text-2xl font-clear font-bold text-center tracking-wide">Daftar</h1>
+        <h1 className="text-2xl font-clear font-bold text-center tracking-wide">Login</h1>
         <div className="flex flex-col gap-4 px-8 py-4">
           <Formik initialValues={{ phone: '', password: '' }} onSubmit={(values) => { console.log(values) }}>
             <Form className="flex flex-col gap-4">
               <Field name="phone" type="text" placeholder="Nomor Telepon" className="p-2 border border-gray-300 rounded" />
               <Field name="password" type="password" placeholder="Kata Sandi" className="p-2 border border-gray-300 rounded" />
-              <Field name="password" type="password" placeholder="Ulangi Kata Sandi" className="p-2 border border-gray-300 rounded" />
-              <RegisterButton onClick={() => { setShowRegisterModal(false) }}>
-              </RegisterButton>
+              <div className="flex justify-end px-2  text-text-light underline  underline-offset-2">
+                <a href="/resetpassword"> Lupa Kata Sandi?</a>
+              </div>
+              <LoginButton onClick={() => { setShowLoginModal(false) }}>
+              </LoginButton>
             </Form>
           </Formik>
           <p className="text-center text-gray-500">Atau masuk menggunakan metode berikut</p>
-          <button className="text-center text-text-light underline underline-offset-2" type="button" onClick={() => { setShowLoginModal(true); setShowRegisterModal(false) }}>Sudah punya akun? Login di sini</button>
+          <button className="text-center text-text-light underline underline-offset-2" type="button" onClick={() => { setShowLoginModal(false); setShowRegisterModal(true) }}>Belum punya akun? Daftar di sini</button>
         </div>
       </div>
     </Backdrop>
@@ -32,7 +33,7 @@ type LoginButtonProps = {
   onClick: () => void;
 }
 
-function RegisterButton({ onClick }: LoginButtonProps) {
+function LoginButton({ onClick }: LoginButtonProps) {
   const hoverVariant = {
     default: { width: "0%" },
     hover: { width: "100%" },

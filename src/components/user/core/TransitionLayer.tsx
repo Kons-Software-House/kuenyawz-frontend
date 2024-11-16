@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { LighterBackgroundColors } from './Colors';
-import { useTransitionColor } from '../../contexts/TransitionColorContext';
+import { useTransitionColor } from '../../../contexts/TransitionColorContext';
 
 export default function TransitionLayer() {
   const handleAnimationStart = () => {

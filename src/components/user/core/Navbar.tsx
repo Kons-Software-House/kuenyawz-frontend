@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { Link } from 'react-router-dom';
-import { useModal } from "../../contexts/ModalContext";
-import Main from "../../assets/Navbar/Main.png"
-import CartIcon from "../../assets/Navbar/Cart.svg"
+import { useModal } from "../../../contexts/ModalContext";
+import Main from "../../../assets/Navbar/Main.png"
+import CartIcon from "../../../assets/Navbar/Cart.svg"
 
 export default function Navbar() {
   const modalContext = useModal()
