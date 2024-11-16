@@ -1,9 +1,9 @@
 import { motion } from "framer-motion"
 import { Link } from "react-router-dom";
 import { useTransitionColor } from "../../contexts/TransitionColorContext";
-import { LighterBorderColors } from "../../components/core/Colors";
-import UpperSection from "../../components/core/UpperSection"
-import Container from "../../components/core/Container"
+import { LighterBorderColors } from "../../components/user/core/Colors";
+import UpperSection from "../../components/user/core/UpperSection"
+import Container from "../../components/user/core/Container"
 
 
 export default function ProductListView() {
