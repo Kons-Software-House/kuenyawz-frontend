@@ -2,7 +2,7 @@ import { Formik, Form, Field } from "formik";
 import { motion } from "framer-motion";
 
 import Backdrop from "../core/Backdrop";
-import { useModal } from "../../contexts/ModalContext";
+import { useModal } from "../../../contexts/ModalContext";
 
 export default function RegisterModal() {
   const { setShowLoginModal, setShowRegisterModal } = useModal();
