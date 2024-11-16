@@ -1,8 +1,8 @@
 import { motion, useScroll, useTransform } from "framer-motion"
-import { LighterBackgroundColors, LighterBorderColors } from '../../components/core/Colors';
-import Container from "../../components/core/Container"
-import UpperSection from "../../components/core/UpperSection"
-import ProductCard from "../../components/core/ProductCard";
+import { LighterBackgroundColors, LighterBorderColors } from '../../components/user/core/Colors';
+import Container from "../../components/user/core/Container"
+import UpperSection from "../../components/user/core/UpperSection"
+import ProductCard from "../../components/user/core/ProductCard";
 
 type BgColorProps = {
   background: 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500'
