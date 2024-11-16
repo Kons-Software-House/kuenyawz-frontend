@@ -1,11 +1,11 @@
 import { useEffect, useRef } from 'react';
 
-import placeholder1 from '../../../assets/LandingView/HorizontalScroller/placeholder (1).jpeg';
-import placeholder2 from '../../../assets/LandingView/HorizontalScroller/placeholder (2).jpeg';
-import placeholder3 from '../../../assets/LandingView/HorizontalScroller/placeholder (3).jpeg';
-import placeholder4 from '../../../assets/LandingView/HorizontalScroller/placeholder (4).jpeg';
-import placeholder5 from '../../../assets/LandingView/HorizontalScroller/placeholder (5).jpeg';
-import placeholder6 from '../../../assets/LandingView/HorizontalScroller/placeholder (6).jpeg';
+import placeholder1 from '../../../../assets/LandingView/HorizontalScroller/placeholder (1).jpeg';
+import placeholder2 from '../../../../assets/LandingView/HorizontalScroller/placeholder (2).jpeg';
+import placeholder3 from '../../../../assets/LandingView/HorizontalScroller/placeholder (3).jpeg';
+import placeholder4 from '../../../../assets/LandingView/HorizontalScroller/placeholder (4).jpeg';
+import placeholder5 from '../../../../assets/LandingView/HorizontalScroller/placeholder (5).jpeg';
+import placeholder6 from '../../../../assets/LandingView/HorizontalScroller/placeholder (6).jpeg';
 
 export default function HorizontalScroller() {
   const scrollerRef = useRef<HTMLDivElement>(null);
