@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Sidebar from "../../components/admin/Sidebar"
+import Sidebar from "../../components/admin/views/AdminDashboardView/Sidebar"
 
 export default function AdminProductListView() {
   return (
