@@ -15,6 +15,7 @@ import ProductListView from "./views/customer/ProductListView";
 import ProductDetailPage from "./views/customer/ProductDetailView";
 import AdminDashboardView from "./views/admin/AdminDashboardView";
 import AdminProductListView from "./views/admin/AdminProductListView";
+import AddNewProductView from "./views/admin/AddNewProductView";
 
 function App() {
   const location = useLocation();
@@ -49,6 +50,7 @@ function App() {
           <Route path="*" element={<NotFoundView />} />
           <Route path="admin/dashboard" element={<AdminDashboardView />} />
           <Route path="admin/produk" element={<AdminProductListView />} />
+          <Route path="admin/produk/tambah" element={<AddNewProductView />} />
         </Routes>
       </AnimatePresence>
       {!location.pathname.includes("/admin") && <Footer />}
