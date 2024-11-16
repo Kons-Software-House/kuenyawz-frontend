@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { LighterBorderColors } from "./Colors";
-import { useTransitionColor } from "../../contexts/TransitionColorContext";
+import { useTransitionColor } from "../../../contexts/TransitionColorContext";
 
 type ProductCardProps = {
   background: 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500'
