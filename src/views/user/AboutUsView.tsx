@@ -1,5 +1,5 @@
-import Container from "../../components/core/Container";
-import UpperSection from "../../components/core/UpperSection";
+import Container from "../../components/user/core/Container";
+import UpperSection from "../../components/user/core/UpperSection";
 
 import PhoneIcon from "../../assets/AboutUs/PhoneIcon.png";
 import PinpointIcon from "../../assets/AboutUs/PinpointIcon.png";
