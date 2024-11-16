@@ -1,6 +1,6 @@
 import { Formik, Form, Field } from "formik";
 import { motion } from "framer-motion";
-import { useModal } from "../../contexts/ModalContext";
+import { useModal } from "../../../contexts/ModalContext";
 import Backdrop from "../core/Backdrop";
 
 export default function LoginModal() {
