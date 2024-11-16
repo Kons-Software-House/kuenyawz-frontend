@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import HorizontalScroller from "../../components/views/LandingView/HorizontalScroller";
-import TransitionLayer from "../../components/core/TransitionLayer";
+import HorizontalScroller from "../../components/user/views/LandingView/HorizontalScroller";
+import TransitionLayer from "../../components/user/core/TransitionLayer";
 
 export default function LandingView() {
   return (
