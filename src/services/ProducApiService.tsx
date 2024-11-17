@@ -1,5 +1,6 @@
 import axios from "axios";
 import JSONbig from 'json-bigint';
+import { Product } from "../types/Product";
 
 const apiClient = axios.create({
     baseURL: import.meta.env.VITE_API_URL,
@@ -32,5 +33,10 @@ export const deleteProduct = async (productId: string): Promise<any> => {
 
 export const deleteVariant = async (productId: string, variantId: string): Promise<any> => {
     const response = await apiClient.delete(`/products/${productId}/variants/${variantId}`);
+    return response.data;
+}
+
+export const createProduct = async (product: Product): Promise<any> => {
+    const response = await apiClient.post('/products', product);
     return response.data;
 }
