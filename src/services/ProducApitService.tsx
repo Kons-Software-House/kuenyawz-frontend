@@ -10,3 +10,7 @@ const apiClient = axios.create({
 
 });
 
+export const retrieveProducts = async (params?: any): Promise<any> => {
+    const response = await apiClient.get('/products', { params });
+    return response.data;
+}
