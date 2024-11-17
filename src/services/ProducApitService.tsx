@@ -25,3 +25,8 @@ export const retrieveProductsByCategory = async (category: string): Promise<any>
     return response.data;
 }
 
+export const deleteProduct = async (productId: string): Promise<any> => {
+    const response = await apiClient.delete(`/products/${productId}`);
+    return response.data;
+}
+
