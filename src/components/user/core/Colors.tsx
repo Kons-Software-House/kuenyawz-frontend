@@ -19,3 +19,11 @@ export const LighterBorderColors = {
     'bg-tetriary-400': 'border-tetriary-450',
     'bg-tetriary-500': 'border-tetriary-550',
 }
+
+export const CategoryColors = {
+    'CAKE': 'bg-tetriary-100',
+    'PASTRY': 'bg-tetriary-200',
+    'PASTA': 'bg-tetriary-300',
+    'PIE': 'bg-tetriary-400',
+    'OTHER': 'bg-tetriary-500',
+}
