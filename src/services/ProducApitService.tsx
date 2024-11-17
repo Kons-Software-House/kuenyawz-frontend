@@ -30,3 +30,7 @@ export const deleteProduct = async (productId: string): Promise<any> => {
     return response.data;
 }
 
+export const deleteVariant = async (productId: string, variantId: string): Promise<any> => {
+    const response = await apiClient.delete(`/products/${productId}/variants/${variantId}`);
+    return response.data;
+}
