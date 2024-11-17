@@ -14,3 +14,9 @@ export const retrieveProducts = async (params?: any): Promise<any> => {
     const response = await apiClient.get('/products', { params });
     return response.data;
 }
+
+export const retrieveProductById = async (productId: string): Promise<any> => {
+    const response = await apiClient.get(`/products/${productId}`);
+    return response.data;
+}
+
