@@ -32,7 +32,12 @@ export const deleteProduct = async (productId: string): Promise<any> => {
 }
 
 export const deleteVariant = async (productId: string, variantId: string): Promise<any> => {
-    const response = await apiClient.delete(`/products/${productId}/variants/${variantId}`);
+    const response = await apiClient.delete(`/products/${productId}/variants/${variantId}`, { headers: { Authorization: bearerToken } });
+    return response.data;
+}
+
+export const createProduct = async (product: any): Promise<any> => {
+    const response = await apiClient.post('/products', product, { headers: { Authorization: bearerToken } });
     return response.data;
 }
 
