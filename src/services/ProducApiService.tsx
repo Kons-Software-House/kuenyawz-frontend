@@ -41,7 +41,11 @@ export const createProduct = async (product: any): Promise<any> => {
     return response.data;
 }
 
-export const createProduct = async (product: Product): Promise<any> => {
-    const response = await apiClient.post('/products', product);
+export const uploadProductImages = async (productId: string, images: File[]): Promise<any> => {
+    const formData = new FormData();
+    images.forEach((image, index) => {
+        formData.append(`files`, image, `image${index}.jpg`);
+    });
+    const response = await apiClient.post(`/images/${productId}/batch`, formData, { headers: { Authorization: bearerToken } });
     return response.data;
 }
