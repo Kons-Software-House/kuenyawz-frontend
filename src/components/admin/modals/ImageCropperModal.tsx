@@ -7,14 +7,14 @@ import { setCanvasPreview } from "../core/SetCanvasPreview";
 const MIN_DIMENSION = 100;
 
 type ImageCropperModalProps = {
-  aspectRatio: '6/9' | '1/1' | '5/6';
+  aspectRatio: "6/9" | "1/1" | "5/6";
   onClose: (ratio: "6/9" | "1/1" | "5/6", imageUrl: string) => void;
 }
 
 const aspectRatios = {
-  '6/9': 6 / 9,
-  '1/1': 1,
-  '5/6': 5 / 6,
+  "6/9": 6 / 9,
+  "1/1": 1,
+  "5/6": 5 / 6,
 }
 
 export default function ImageCropperModal({ aspectRatio, onClose }: ImageCropperModalProps) {
@@ -22,7 +22,7 @@ export default function ImageCropperModal({ aspectRatio, onClose }: ImageCropper
   const previewCanvasRef = useRef<HTMLCanvasElement>(null);
 
   const { setShowImageCropperModal } = useModal();
-  const [imgSrc, setImgSrc] = useState('');
+  const [imgSrc, setImgSrc] = useState("");
   const [crop, setCrop] = useState<PercentCrop>();
 
   const onSelectFile = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,7 +58,7 @@ export default function ImageCropperModal({ aspectRatio, onClose }: ImageCropper
           <input className="block file:rounded-full file:border-0" type="file" accept="image" onChange={onSelectFile} />
           {imgSrc &&
             <div className="flex flex-col items-center p-2">
-              <div className='bg-black w-full flex flex-col items-center'>
+              <div className="bg-black w-full flex flex-col items-center">
                 <ReactCrop
                   crop={crop}
                   keepSelection
