@@ -1,15 +1,14 @@
 import axios from "axios";
 import JSONbig from 'json-bigint';
-import { Product } from "../types/Product";
 
 const apiClient = axios.create({
     baseURL: import.meta.env.VITE_API_URL,
     transformResponse: [(data) => {
-        // Use json-bigint to parse large numbers correctly
         return JSONbig.parse(data);
-    }]
-
+    }],
 });
+
+const bearerToken = 'api-key';
 
 export const retrieveProducts = async (params?: any): Promise<any> => {
     const response = await apiClient.get('/products', { params });
@@ -27,7 +26,7 @@ export const retrieveProductsByCategory = async (category: string): Promise<any>
 }
 
 export const deleteProduct = async (productId: string): Promise<any> => {
-    const response = await apiClient.delete(`/products/${productId}`);
+    const response = await apiClient.delete(`/products/${productId}`, { headers: { Authorization: bearerToken } });
     return response.data;
 }
 
