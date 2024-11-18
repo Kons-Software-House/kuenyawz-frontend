@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { retrieveProducts, deleteVariant } from "../../services/ProducApitService";
+import { retrieveProducts, deleteVariant, deleteProduct } from "../../services/ProducApiService";
 import { useEffect, useState } from "react";
 import { Product, Variant } from "../../types/Product";
 
@@ -146,9 +146,10 @@ function VariantItem({ product, variant, fetchProducts }: VariantItemProps) {
 
   async function handleDelete(productId: bigint, variantId: bigint) {
     try {
-      await deleteVariant(productId.toString(), variantId.toString());
+      if (product.variants.length === 1) await deleteProduct(productId.toString());
+      else await deleteVariant(productId.toString(), variantId.toString());
     } catch (error: any) {
-      console.error("Error deleting variant:", error.response || error.message);
+      console.log(error)
     } finally {
       fetchProducts();
     }
