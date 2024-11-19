@@ -4,7 +4,7 @@ import Backdrop from "../../user/core/Backdrop";
 import { useModal } from "../../../contexts/ModalContext";
 import { setCanvasPreview } from "../core/SetCanvasPreview";
 
-const MIN_DIMENSION = 100;
+const START_DIMENSION = 100;
 
 type ImageCropperModalProps = {
   aspectRatio: "6/9" | "1/1" | "5/6";
@@ -44,7 +44,7 @@ export default function ImageCropperModal({ aspectRatio, onClose }: ImageCropper
     const { naturalWidth, naturalHeight } = image.currentTarget;
     const crop = makeAspectCrop({
       unit: "%",
-      height: MIN_DIMENSION,
+      height: START_DIMENSION,
     }, aspectRatios[aspectRatio], naturalWidth, naturalHeight);
 
     const centered = centerCrop(crop, naturalWidth, naturalHeight);
@@ -63,9 +63,8 @@ export default function ImageCropperModal({ aspectRatio, onClose }: ImageCropper
                   crop={crop}
                   keepSelection
                   aspect={aspectRatios[aspectRatio]}
-                  minWidth={MIN_DIMENSION}
                   onChange={(_, percentCrop) => setCrop(percentCrop)}>
-                  <img src={imgSrc} alt="Crop" style={{ maxHeight: "28rem" }} onLoad={onImageLoad} ref={imgRef} />
+                  <img src={imgSrc} alt="Crop" style={{ maxHeight: "32rem" }} onLoad={onImageLoad} ref={imgRef} />
 
                 </ReactCrop>
               </div>
