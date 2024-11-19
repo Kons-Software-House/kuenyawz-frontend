@@ -40,6 +40,11 @@ export const createProduct = async (product: any): Promise<any> => {
     return response.data;
 }
 
+export const editProduct = async (product: any, productId: string): Promise<any> => {
+    const response = await apiClient.patch(`/products/${productId}`, product, { headers: { Authorization: bearerToken } });
+    return response.data;
+}
+
 export const uploadProductImages = async (productId: string, images: File[]): Promise<any> => {
     const formData = new FormData();
     images.forEach((image, index) => {
