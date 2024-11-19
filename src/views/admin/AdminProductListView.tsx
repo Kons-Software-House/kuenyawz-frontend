@@ -25,7 +25,6 @@ export default function AdminProductListView() {
         keyword: currentKeyword,
         page: currentPage,
         category: currentCategory,
-        available: false,
       };
 
       const response = await retrieveProducts(params);
@@ -157,7 +156,7 @@ function VariantItem({ product, variant, fetchProducts }: VariantItemProps) {
 
   return (
     <tr className="odd:bg-[#ffffe8] even:bg-[#fefed0]">
-      <td className="p-2 text-center">{product.name} ({variant.type}) [{variant.variantId.toString()}]</td>
+      <td className="p-2 text-center">{product.name} ({variant.type})</td>
       <td className="p-2 text-center">{product.category}</td>
       <td className="p-2 text-center flex justify-between">
         <p>Rp</p>
@@ -171,7 +170,7 @@ function VariantItem({ product, variant, fetchProducts }: VariantItemProps) {
       <td className="p-2 text-center">{product.available ? "Tersedia" : "Tidak Tersedia"}</td>
       <td className="p-2 text-center">
         <div className="flex justify-center gap-4">
-          <button className="rounded-lg border-secondary-100 border-2 w-20">Ubah</button>
+          <Link className="rounded-lg border-secondary-100 border-2 w-20" to={`/admin/produk/edit/${product.productId}`}>Ubah</Link>
           <button className="rounded-lg border-secondary-100 border-2 w-20" onClick={() => {
             alertDelete();
           }}>Hapus</button>
