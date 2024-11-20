@@ -52,8 +52,6 @@ export default function ProductListView() {
     fetchProducts();
   }, [])
 
-  console.log(page)
-
   return (
     <>
       <UpperSection title="Produk Kami" subtitle="Kelezatan Dalam Setiap Kreasi" />
