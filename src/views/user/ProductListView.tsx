@@ -30,6 +30,7 @@ export default function ProductListView() {
         page: currentPage,
         category: currentCategory,
         pageSize: 12,
+        available: true
       };
 
       const response = await retrieveProducts(params);
