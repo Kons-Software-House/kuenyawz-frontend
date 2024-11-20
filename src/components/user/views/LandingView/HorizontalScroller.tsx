@@ -55,7 +55,7 @@ function startAnimation(scroller: HTMLDivElement): number {
   const intervalTime = 25;
   const distanceToMove = 50;
 
-  const intervalId = setInterval(() => {
+  const intervalId = window.setInterval(() => {
     transformX += distanceToMove / (totalDuration / intervalTime);
 
     if (transformX >= distanceToMove) {

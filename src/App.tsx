@@ -16,6 +16,7 @@ import ProductDetailPage from "./views/user/ProductDetailView";
 import AdminDashboardView from "./views/admin/AdminDashboardView";
 import AdminProductListView from "./views/admin/AdminProductListView";
 import AddNewProductView from "./views/admin/AddNewProductView";
+import EditProductView from "./views/admin/EditProductView";
 
 function App() {
   const location = useLocation();
@@ -46,11 +47,12 @@ function App() {
           <Route path="/tentang-kami" element={<AboutUsView />} />
           <Route path="/kalender" element={<CalendarView />} />
           <Route path="/menu" element={<ProductListView />} />
-          <Route path="/produk" element={<ProductDetailPage background="bg-tetriary-500" />} />
+          <Route path="/produk/:productId" element={<ProductDetailPage />} />
           <Route path="*" element={<NotFoundView />} />
           <Route path="admin/dashboard" element={<AdminDashboardView />} />
           <Route path="admin/produk" element={<AdminProductListView />} />
           <Route path="admin/produk/tambah" element={<AddNewProductView />} />
+          <Route path="admin/produk/edit/:productId" element={<EditProductView />} />
         </Routes>
       </AnimatePresence>
       {!location.pathname.includes("/admin") && <Footer />}
