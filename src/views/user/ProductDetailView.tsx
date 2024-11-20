@@ -18,7 +18,6 @@ export default function ProductDetailPage() {
     if (productId) {
       try {
         const response = await retrieveProductById(productId)
-        console.log(response)
         setProduct(response)
       } catch (error) {
         console.error(error)
