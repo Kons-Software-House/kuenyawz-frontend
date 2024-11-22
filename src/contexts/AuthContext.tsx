@@ -1,10 +1,11 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
-import { registerAccount, loginAccount, checkAuthentication, refreshAuthentication } from "../services/AuthApiService";
+import { registerAccount, loginAccount, checkAuthentication, refreshAuthentication, logoutAccount } from "../services/AuthApiService";
 
 type AuthContextType = {
   isAuthenticated: boolean;
   handleLogin: (phone: string, password: string) => boolean;
   handleRegister: (fullName: string, phone: string, password: string) => boolean;
+  handleLogout: () => void;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -66,9 +67,15 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
     } catch (error: any) {
       alert("Failed to register account: " + error.response.data.message);
       return false;
-    } finally {
-      setIsAuthenticated(true);
-      return true;
+    }
+  }
+
+  const handleLogout = () => {
+    try {
+      logoutAccount();
+      setIsAuthenticated(false);
+    } catch (error: any) {
+      console.log(error);
     }
   }
 
