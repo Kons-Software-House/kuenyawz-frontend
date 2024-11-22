@@ -22,10 +22,23 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const isInitialMount = useRef(true);
 
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      checkAuth();
+      refreshAuth();
+    }
+
+    const interval = setInterval(() => {
+      refreshAuth();
+    }, 3600000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   const checkAuth = async () => {
     try {
       await checkAuthentication();
-      setIsAuthenticated(true);
     } catch (error: any) {
       setIsAuthenticated(false);
     }
@@ -41,29 +54,23 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
     }
   }
 
-  useEffect(() => {
-    if (isInitialMount.current) {
-      isInitialMount.current = false;
-      refreshAuth();
-      checkAuth();
-    }
-  }, []);
-
   const handleLogin = (phone: string, password: string) => {
     try {
       loginAccount(phone, password);
-    } catch (error: any) {
-      alert("Failed to login: " + error.response.data.message);
-      return false;
-    } finally {
       setIsAuthenticated(true);
       return true;
+    } catch (error: any) {
+      alert("Failed to login: " + error.response.data.message);
+      setIsAuthenticated(false);
+      return false;
     }
-  };
+  }
 
   const handleRegister = (fullName: string, phone: string, password: string) => {
     try {
       registerAccount(fullName, phone, password);
+      setIsAuthenticated(true);
+      return true;
     } catch (error: any) {
       alert("Failed to register account: " + error.response.data.message);
       return false;
@@ -80,7 +87,7 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
   }
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, handleLogin, handleRegister }}>
+    <AuthContext.Provider value={{ isAuthenticated, handleLogin, handleRegister, handleLogout }}>
       {children}
     </AuthContext.Provider>
   );
