@@ -15,3 +15,8 @@ export const loginAccount = async (phone: string, password: string): Promise<any
   return response.data;
 }
 
+export const checkAuthentication = async (): Promise<any> => {
+  const response = await apiClient.get('/auth/me');
+  return response.data;
+}
+
