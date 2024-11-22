@@ -10,3 +10,8 @@ export const registerAccount = async (fullName: string, phone: string, password:
   return response.data;
 }
 
+export const loginAccount = async (phone: string, password: string): Promise<any> => {
+  const response = await apiClient.post('/auth/login', { phone, password });
+  return response.data;
+}
+
