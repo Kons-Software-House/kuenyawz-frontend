@@ -24,3 +24,8 @@ export const refreshAuthentication = async (): Promise<any> => {
   const response = await apiClient.post('/auth/refresh');
   return response.data;
 }
+
+export const logoutAccount = async (): Promise<any> => {
+  const response = await apiClient.post('/auth/revoke');
+  return response.data;
+}
