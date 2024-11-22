@@ -20,3 +20,7 @@ export const checkAuthentication = async (): Promise<any> => {
   return response.data;
 }
 
+export const refreshAuthentication = async (): Promise<any> => {
+  const response = await apiClient.post('/auth/refresh');
+  return response.data;
+}
