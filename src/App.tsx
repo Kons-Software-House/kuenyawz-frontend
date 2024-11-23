@@ -19,6 +19,17 @@ import AdminDashboardView from "./views/admin/AdminDashboardView";
 import AdminProductListView from "./views/admin/AdminProductListView";
 import AddNewProductView from "./views/admin/AddNewProductView";
 import EditProductView from "./views/admin/EditProductView";
+import Navbar from "./components/core/Navbar";
+import Footer from "./components/core/Footer";
+import LoginModal from "./components/modals/LoginModal";
+import RegisterModal from "./components/modals/RegisterModal";
+import LandingView from "./views/LandingView";
+import NotFoundView from "./views/NotFoundView";
+import AboutUsView from "./views/AboutUsView";
+import CalendarView from "./views/CalendarView";
+import ProductListView from "./views/ProductListView";
+import ProductDetailPage from "./views/ProductDetailView";
+import CartView from "./views/CartView";
 
 function App() {
   const location = useLocation();
