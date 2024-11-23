@@ -20,9 +20,9 @@ export default function OtpModal() {
         <div className="flex flex-col gap-4 px-8 py-4">
           <Formik initialValues={{ phone: '' }} onSubmit={(values) => { handleSendOtp(values.phone) }}>
             <Form className="flex flex-col gap-4">
-              <div className="flex">
-                <div className="text-text-dark bg-white w-12 flex items-center justify-center border border-gray-300 rounded">
-                  <p>
+              <div className="flex w-full">
+                <div className="bg-gray-200 w-12 flex items-center justify-center border border-gray-300 rounded">
+                  <p className="font-semibold">
                     +62
                   </p>
                 </div>
@@ -57,9 +57,9 @@ export default function OtpModal() {
               </div>
               {
                 otpCountdown > 0 ? (
-                  <button type="submit" className="text-text-light rounded-lg underline" disabled={true}>Kirim ulang OTP ({otpCountdown})</button>
+                  <button type="submit" className="text-text-light rounded-lg underline w-20" disabled={true}>Kirim ulang OTP ({otpCountdown})</button>
                 ) : (
-                  <button type="submit" className="text-text-light rounded-lg underline">Kirim OTP</button>
+                  <button type="submit" className="text-text-light rounded-lg underline w-20 font-bold">Kirim OTP</button>
                 )
               }
             </Form>
