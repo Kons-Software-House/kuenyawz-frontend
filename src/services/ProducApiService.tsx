@@ -24,6 +24,11 @@ export const retrieveProductsByCategory = async (category: string): Promise<any>
     return response.data;
 }
 
+export const retrieveRecommendedProducts = async (productId: string): Promise<any> => {
+    const response = await apiClient.get(`/recommender/${productId}`, { params: { addRandom: true } });
+    return response.data;
+}
+
 export const deleteProduct = async (productId: string): Promise<any> => {
     const response = await apiClient.delete(`/products/${productId}`);
     return response.data;
