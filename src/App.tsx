@@ -1,8 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { useNavigate, Route, Routes, useLocation } from "react-router-dom";
 import { useModal } from "./contexts/ModalContext";
 import { useTransitionColor } from "./contexts/TransitionColorContext";
+import { useAuth } from "./contexts/AuthContext";
 import Navbar from "./components/user/core/Navbar";
 import Footer from "./components/user/core/Footer";
 import LoginModal from "./components/user/modals/LoginModal";
@@ -22,13 +23,31 @@ import EditProductView from "./views/admin/EditProductView";
 function App() {
   const location = useLocation();
   const { showLoginModal, showOtpModal, showRegisterModal } = useModal();
+  const { checkAuth } = useAuth();
+  const [checkingAuth, setCheckingAuth] = useState(false);
   const { setTransitionColor } = useTransitionColor();
+  const navigate = useNavigate();
 
   const routeColors: { [key: string]: "bg-secondary-200" | "bg-tetriary-100" | "bg-tetriary-300" | "bg-tetriary-500" } = {
     "/": "bg-secondary-200",
     "/tentang-kami": "bg-secondary-200",
     "/kalender": "bg-secondary-200",
   };
+
+  useEffect(() => {
+    async function pathCheck(path: string) {
+      setCheckingAuth(true);
+      if (await checkAuth()) {
+        navigate(path);
+      } else {
+        navigate("/not-found");
+      }
+      setCheckingAuth(false);
+    }
+    if (location.pathname.startsWith("/admin")) {
+      pathCheck(location.pathname);
+    }
+  }, [checkAuth]);
 
   useEffect(() => {
     if (!location.pathname.startsWith("/produk")) {
@@ -43,20 +62,23 @@ function App() {
       {showLoginModal && <LoginModal />}
       {showOtpModal && <OtpModal />}
       {showRegisterModal && <RegisterModal />}
-      <AnimatePresence mode="wait">
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<LandingView />} />
-          <Route path="/tentang-kami" element={<AboutUsView />} />
-          <Route path="/kalender" element={<CalendarView />} />
-          <Route path="/menu" element={<ProductListView />} />
-          <Route path="/produk/:productId" element={<ProductDetailPage />} />
-          <Route path="*" element={<NotFoundView />} />
-          <Route path="admin/dashboard" element={<AdminDashboardView />} />
-          <Route path="admin/produk" element={<AdminProductListView />} />
-          <Route path="admin/produk/tambah" element={<AddNewProductView />} />
-          <Route path="admin/produk/edit/:productId" element={<EditProductView />} />
-        </Routes>
-      </AnimatePresence>
+      {checkingAuth ? <div className="fixed inset-0 bg-white z-50 flex items-center justify-center">
+      </div> :
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<LandingView />} />
+            <Route path="/tentang-kami" element={<AboutUsView />} />
+            <Route path="/kalender" element={<CalendarView />} />
+            <Route path="/menu" element={<ProductListView />} />
+            <Route path="/produk/:productId" element={<ProductDetailPage />} />
+            <Route path="*" element={<NotFoundView />} />
+            <Route path="admin/dashboard" element={<AdminDashboardView />} />
+            <Route path="admin/produk" element={<AdminProductListView />} />
+            <Route path="admin/produk/tambah" element={<AddNewProductView />} />
+            <Route path="admin/produk/edit/:productId" element={<EditProductView />} />
+          </Routes>
+        </AnimatePresence>
+      }
       {!location.pathname.includes("/admin") && <Footer />}
     </>
   );
