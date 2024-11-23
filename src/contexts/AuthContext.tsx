@@ -98,7 +98,6 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
       setIsAuthenticated(false);
     } catch (error: any) {
       alert("Failed to logout: " + error.response.data.message);
-      console.log(error);
     }
   }
 
@@ -124,7 +123,6 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
       setPhone(phone);
     } catch (error: any) {
       alert("Failed to send OTP: " + error.response.data.message);
-      console.error(error);
     }
   }
 
@@ -134,7 +132,6 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
       return true;
     } catch (error: any) {
       alert("Failed to verify OTP: " + error.response.data.message);
-      console.error(error);
       return false;
     }
   }
