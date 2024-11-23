@@ -6,9 +6,8 @@ const apiClient = axios.create({
     transformResponse: [(data) => {
         return JSONbig.parse(data);
     }],
+    withCredentials: true
 });
-
-const bearerToken = 'api-key';
 
 export const retrieveProducts = async (params?: any): Promise<any> => {
     const response = await apiClient.get('/products', { params });
@@ -26,22 +25,22 @@ export const retrieveProductsByCategory = async (category: string): Promise<any>
 }
 
 export const deleteProduct = async (productId: string): Promise<any> => {
-    const response = await apiClient.delete(`/products/${productId}`, { headers: { Authorization: bearerToken } });
+    const response = await apiClient.delete(`/products/${productId}`);
     return response.data;
 }
 
 export const deleteVariant = async (productId: string, variantId: string): Promise<any> => {
-    const response = await apiClient.delete(`/products/${productId}/variants/${variantId}`, { headers: { Authorization: bearerToken } });
+    const response = await apiClient.delete(`/products/${productId}/variants/${variantId}`);
     return response.data;
 }
 
 export const createProduct = async (product: any): Promise<any> => {
-    const response = await apiClient.post('/products', product, { headers: { Authorization: bearerToken } });
+    const response = await apiClient.post('/products', product);
     return response.data;
 }
 
 export const editProduct = async (product: any, productId: string): Promise<any> => {
-    const response = await apiClient.patch(`/products/${productId}`, product, { headers: { Authorization: bearerToken } });
+    const response = await apiClient.patch(`/products/${productId}`, product);
     return response.data;
 }
 
@@ -50,6 +49,6 @@ export const uploadProductImages = async (productId: string, images: File[]): Pr
     images.forEach((image, index) => {
         formData.append(`files`, image, `image${index}.jpg`);
     });
-    const response = await apiClient.post(`/images/${productId}/batch`, formData, { headers: { Authorization: bearerToken } });
+    const response = await apiClient.post(`/images/${productId}/batch`, formData);
     return response.data;
 }
