@@ -5,15 +5,18 @@ import { ModalProvider } from './contexts/ModalContext.tsx'
 import App from './App.tsx'
 import './index.css'
 import { TransitionColorProvider } from './contexts/TransitionColorContext.tsx'
+import AuthProvider from './contexts/AuthContext.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Router>
-      <ModalProvider>
-        <TransitionColorProvider>
-          <App />
-        </TransitionColorProvider>
-      </ModalProvider>
+      <AuthProvider>
+        <ModalProvider>
+          <TransitionColorProvider>
+            <App />
+          </TransitionColorProvider>
+        </ModalProvider>
+      </AuthProvider>
     </Router>
   </StrictMode>,
 )
