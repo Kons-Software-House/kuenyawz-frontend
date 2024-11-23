@@ -11,7 +11,7 @@ interface LoginFormValues {
 }
 
 export default function LoginModal() {
-  const { setShowLoginModal, setShowRegisterModal } = useModal();
+  const { setShowLoginModal, setShowOtpModal } = useModal();
   const { handleLogin, isAuthenticated } = useAuth();
 
   useEffect(() => {
@@ -78,8 +78,7 @@ export default function LoginModal() {
               <LoginButton />
             </Form>
           </Formik>
-          <p className="text-center text-gray-500">Atau masuk menggunakan metode berikut</p>
-          <button className="text-center text-text-dark underline underline-offset-2" type="button" onClick={() => { setShowLoginModal(false); setShowRegisterModal(true) }}>Belum punya akun? Daftar di sini</button>
+          <button className="text-center text-text-dark underline underline-offset-2" type="button" onClick={() => { setShowLoginModal(false); setShowOtpModal(true) }}>Belum punya akun? Daftar di sini</button>
         </div>
       </div>
     </Backdrop>
