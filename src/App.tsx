@@ -6,6 +6,7 @@ import { useTransitionColor } from "./contexts/TransitionColorContext";
 import Navbar from "./components/user/core/Navbar";
 import Footer from "./components/user/core/Footer";
 import LoginModal from "./components/user/modals/LoginModal";
+import OtpModal from "./components/user/modals/OtpModal";
 import RegisterModal from "./components/user/modals/RegisterModal";
 import LandingView from "./views/user/LandingView";
 import NotFoundView from "./views/user/NotFoundView";
@@ -20,7 +21,7 @@ import EditProductView from "./views/admin/EditProductView";
 
 function App() {
   const location = useLocation();
-  const { showLoginModal, showRegisterModal } = useModal();
+  const { showLoginModal, showOtpModal, showRegisterModal } = useModal();
   const { setTransitionColor } = useTransitionColor();
 
   const routeColors: { [key: string]: "bg-secondary-200" | "bg-tetriary-100" | "bg-tetriary-300" | "bg-tetriary-500" } = {
@@ -40,6 +41,7 @@ function App() {
     <>
       {!location.pathname.includes("/admin") && <Navbar />}
       {showLoginModal && <LoginModal />}
+      {showOtpModal && <OtpModal />}
       {showRegisterModal && <RegisterModal />}
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
