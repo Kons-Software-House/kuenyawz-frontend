@@ -6,6 +6,7 @@ type AuthContextType = {
   otpCountdown: number;
   fullName: string;
   phone: string;
+  checkAuth: () => Promise<boolean>;
   handleLogin: (phone: string, password: string) => Promise<boolean>;
   handleLogout: () => void;
   handleRegister: (fullName: string, phone: string, password: string) => Promise<boolean>;
@@ -60,8 +61,13 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
       setIsAuthenticated(true);
       setFullName(response.fullName);
       setPhone(response.phone);
+      if (response.privilege === 'ROLE_ADMIN') {
+        return true;
+      }
+      return false;
     } catch (error: any) {
       setIsAuthenticated(false);
+      return false;
     }
   }
 
@@ -134,7 +140,7 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
   }
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, otpCountdown, fullName, phone, handleLogin, handleLogout, handleRegister, handleSendOtp, handleVerifyOtp }}>
+    <AuthContext.Provider value={{ isAuthenticated, otpCountdown, fullName, phone, checkAuth, handleLogin, handleLogout, handleRegister, handleSendOtp, handleVerifyOtp }}>
       {children}
     </AuthContext.Provider>
   );
