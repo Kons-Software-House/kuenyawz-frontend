@@ -1,6 +1,6 @@
 import Backdrop from "../core/Backdrop";
 
-import { Formik, Form, Field, FieldProps } from "formik";
+import { Formik, Form, Field, FieldProps, ErrorMessage } from "formik";
 import { motion } from "framer-motion";
 import { useModal } from "../../../contexts/ModalContext";
 import { useAuth } from "../../../contexts/AuthContext";
@@ -13,12 +13,20 @@ export default function OtpModal() {
   const { setShowLoginModal, setShowOtpModal, setShowRegisterModal } = useModal();
   const { otpCountdown, handleSendOtp, handleVerifyOtp } = useAuth();
 
+  const validateValues = (values: OtpFormValues) => {
+    const errors: Partial<OtpFormValues> = {};
+
+    if (values.phone.length < 8) errors.phone = 'Nomor telepon minimal 8 digit';
+
+    return errors;
+  }
+
   return (
     <Backdrop onClose={() => { setShowOtpModal(false) }}>
       <div className="p-5">
         <h1 className="text-2xl font-clear font-bold text-center tracking-wide">Daftar</h1>
         <div className="flex flex-col gap-4 px-8 py-4">
-          <Formik initialValues={{ phone: '' }} onSubmit={(values) => { handleSendOtp(values.phone) }}>
+          <Formik initialValues={{ phone: '' }} onSubmit={(values) => { handleSendOtp(values.phone) }} validate={validateValues}>
             <Form className="flex flex-col gap-4">
               <div className="flex w-full">
                 <div className="bg-gray-200 w-12 flex items-center justify-center border border-gray-300 rounded">
@@ -55,6 +63,7 @@ export default function OtpModal() {
                   )}
                 </Field>
               </div>
+              <ErrorMessage name="phone" component="p" className="text-red-500 text-sm" />
               {
                 otpCountdown > 0 ? (
                   <button type="submit" className="text-text-light rounded-lg underline w-20" disabled={true}>Kirim ulang OTP ({otpCountdown})</button>
