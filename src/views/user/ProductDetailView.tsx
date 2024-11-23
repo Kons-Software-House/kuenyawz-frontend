@@ -3,7 +3,7 @@ import { LighterBorderColors, CategoryColors } from '../../components/user/core/
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Product } from "../../types/Product";
-import { retrieveProductById } from "../../services/ProducApiService";
+import { retrieveProductById, retrieveRecommendedProducts } from "../../services/ProducApiService";
 import Container from "../../components/user/core/Container"
 import UpperSection from "../../components/user/core/UpperSection"
 import ProductCard from "../../components/user/core/ProductCard";
@@ -14,11 +14,14 @@ export default function ProductDetailPage() {
   const { productId } = useParams<{ productId: string }>();
   const [product, setProduct] = useState<Product>();
   const [isLoading, setIsLoading] = useState(true);
-  async function fetchProduct() {
+  const [isRecommendedLoading, setIsRecommendedLoading] = useState(true);
+  const [recommendedProducts, setRecommendedProducts] = useState<Product[]>([]);
+
+  const fetchProduct = async () => {
     if (productId) {
       try {
+        setIsLoading(true)
         const response = await retrieveProductById(productId)
-        console.log(response)
         setProduct(response)
       } catch (error) {
         console.error(error)
@@ -30,9 +33,22 @@ export default function ProductDetailPage() {
     }
   }
 
+  const fetchRecommendedProducts = async () => {
+    try {
+      setIsRecommendedLoading(true)
+      const response = await retrieveRecommendedProducts(productId || "")
+      setRecommendedProducts(response.products)
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setIsRecommendedLoading(false)
+    }
+  }
+
   useEffect(() => {
     fetchProduct()
-  }, [])
+    fetchRecommendedProducts()
+  }, [productId])
 
   return (
     <>
@@ -71,15 +87,11 @@ export default function ProductDetailPage() {
           <Container>
             <h4 className="w-full text-center text-3xl font-semi mt-4">Cocok ditambah dengan</h4>
             <div className="flex mt-6 w-full lg:w-5/6 p-8 gap-20 justify-between">
-              <div className="bg-gray-100 aspect-[1/1] w-1/4">
-                <ProductCard background="bg-tetriary-100" title="Baller" />
-              </div>
-              <div className="bg-gray-100 aspect-[1/1] w-1/4">
-                <ProductCard background="bg-tetriary-300" title="Baller" />
-              </div>
-              <div className="bg-gray-100 aspect-[1/1] w-1/4">
-                <ProductCard background="bg-tetriary-400" title="Baller" />
-              </div>
+              {isRecommendedLoading ? <div>Loading</div> : recommendedProducts.map((product, index) => (
+                <div key={`product-${productId}-${product.productId.toString()}-${index}`} className="bg-gray-100 aspect-[1/1] w-1/4">
+                  <ProductCard product={product} />
+                </div>
+              ))}
             </div>
           </Container>
         </>
