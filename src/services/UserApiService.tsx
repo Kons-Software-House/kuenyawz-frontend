@@ -14,3 +14,7 @@ export const retrieveUserCart = async (): Promise<any> => {
     return response.data;
 }
 
+export const addToUserCart = async (variantId: string, quantity: number, note: string): Promise<any> => {
+    const response = await apiClient.post('/user/cart', { variantId, quantity, note });
+    return response.data;
+}
