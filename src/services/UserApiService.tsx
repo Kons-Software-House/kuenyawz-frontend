@@ -15,8 +15,11 @@ export const retrieveUserCart = async (): Promise<any> => {
 }
 
 export const addToUserCart = async (variantId: string, quantity: number, note: string): Promise<any> => {
-    const response = await apiClient.post('/user/cart', { variantId, quantity, note });
-    return response.data;
+    if (note === '' || note === null || note === undefined) {
+        return await apiClient.post('/user/cart', { variantId, quantity });
+    } else {
+        return await apiClient.post('/user/cart', { variantId, quantity, note });
+    }
 }
 
 export const deleteFromUserCart = async (cartItemId: string): Promise<any> => {
