@@ -25,4 +25,12 @@ export const addToUserCart = async (variantId: string, quantity: number, note: s
 export const deleteFromUserCart = async (cartItemId: string): Promise<any> => {
     const response = await apiClient.delete(`/user/cart/${cartItemId}`);
     return response.data;
-}   
+}
+
+export const updateCartItem = async (cartItemId: string, variantId: string, quantity: number, note: string): Promise<any> => {
+    if (note === '' || note === null || note === undefined) {
+        return await apiClient.patch(`/user/cart/${cartItemId}`, { variantId, quantity });
+    } else {
+        return await apiClient.patch(`/user/cart/${cartItemId}`, { variantId, quantity, note });
+    }
+}
