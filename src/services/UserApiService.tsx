@@ -8,3 +8,9 @@ const apiClient = axios.create({
     }],
     withCredentials: true
 });
+
+export const retrieveUserCart = async (): Promise<any> => {
+    const response = await apiClient.get('/user/cart');
+    return response.data;
+}
+
