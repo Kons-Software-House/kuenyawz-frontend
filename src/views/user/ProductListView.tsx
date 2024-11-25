@@ -30,10 +30,10 @@ export default function ProductListView() {
       };
 
       const response = await retrieveProducts(params);
-      const { content, totalPages } = response;
+      const { content, page } = response;
 
       setProducts(content);
-      setTotalPages(totalPages);
+      setTotalPages(Math.ceil(page.totalElements / 12));
       setPage(currentPage);
       setKeyword(currentKeyword);
       setCategory(currentCategory);
