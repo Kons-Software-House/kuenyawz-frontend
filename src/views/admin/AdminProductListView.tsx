@@ -9,7 +9,7 @@ export default function AdminProductListView() {
   const [loading, setLoading] = useState(true)
   const [products, setProducts] = useState<Product[]>([])
   const [page, setPage] = useState(1);
-  const [totalPage, setTotalPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
   const [keyword, setKeyword] = useState("");
   const [category, setCategory] = useState("");
 
@@ -28,7 +28,7 @@ export default function AdminProductListView() {
       };
 
       const response = await retrieveProducts(params);
-      const { content, totalPages } = response;
+      const { content, page } = response;
 
       const updatedContent = content.map((product: Product) => ({
         ...product,
@@ -40,7 +40,7 @@ export default function AdminProductListView() {
       }));
 
       setProducts(updatedContent);
-      setTotalPage(totalPages);
+      setTotalPages(Math.ceil(page.totalElements / 12));
       setPage(currentPage);
       setKeyword(currentKeyword);
       setCategory(currentCategory);
@@ -119,8 +119,8 @@ export default function AdminProductListView() {
             {/* navigate page */}
             <div className="flex justify-center gap-4 mt-4">
               {page > 1 && (<button className="p-2 px-4 bg-secondary-300 border-2 border-secondary-100 rounded-lg" onClick={() => fetchProducts(page - 1, keyword, category)}>Sebelumnya</button>)}
-              {totalPage > 1 && <p className="p-2 px-4 bg-secondary-300 border-2 border-secondary-100 rounded-lg">{page} / {totalPage}</p>}
-              {page < totalPage && (<button className="p-2 px-4 bg-secondary-300 border-2 border-secondary-100 rounded-lg" onClick={() => fetchProducts(page + 1, keyword, category)}>Selanjutnya</button>)}
+              {totalPages > 1 && <p className="p-2 px-4 bg-secondary-300 border-2 border-secondary-100 rounded-lg">{page} / {totalPages}</p>}
+              {page < totalPages && (<button className="p-2 px-4 bg-secondary-300 border-2 border-secondary-100 rounded-lg" onClick={() => fetchProducts(page + 1, keyword, category)}>Selanjutnya</button>)}
             </div>
           </div>
         </div>
