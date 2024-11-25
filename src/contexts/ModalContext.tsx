@@ -5,10 +5,12 @@ type ModalContextType = {
   showOtpModal: boolean;
   showRegisterModal: boolean;
   showImageCropperModal: boolean;
+  showAddToCartModal: boolean;
   setShowLoginModal: (show: boolean) => void;
   setShowOtpModal: (show: boolean) => void;
   setShowRegisterModal: (show: boolean) => void;
   setShowImageCropperModal: (show: boolean) => void;
+  setShowAddToCartModal: (show: boolean) => void;
 };
 
 const ModalContext = createContext<ModalContextType | undefined>(undefined)
@@ -18,9 +20,10 @@ export function ModalProvider({ children }: { children: ReactNode }) {
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showOtpModal, setShowOtpModal] = useState(false);
   const [showImageCropperModal, setShowImageCropperModal] = useState(false);
+  const [showAddToCartModal, setShowAddToCartModal] = useState(false);
 
   return (
-    <ModalContext.Provider value={{ showLoginModal, showOtpModal: showRegisterModal, showRegisterModal: showOtpModal, showImageCropperModal, setShowLoginModal, setShowOtpModal: setShowRegisterModal, setShowRegisterModal: setShowOtpModal, setShowImageCropperModal }}>
+    <ModalContext.Provider value={{ showLoginModal, showOtpModal: showRegisterModal, showRegisterModal: showOtpModal, showImageCropperModal, showAddToCartModal, setShowLoginModal, setShowOtpModal: setShowRegisterModal, setShowRegisterModal: setShowOtpModal, setShowImageCropperModal, setShowAddToCartModal }}>
       {children}
     </ModalContext.Provider>
   );
