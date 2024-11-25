@@ -18,3 +18,8 @@ export const addToUserCart = async (variantId: string, quantity: number, note: s
     const response = await apiClient.post('/user/cart', { variantId, quantity, note });
     return response.data;
 }
+
+export const deleteFromUserCart = async (cartItemId: string): Promise<any> => {
+    const response = await apiClient.delete(`/user/cart/${cartItemId}`);
+    return response.data;
+}   
