@@ -4,10 +4,12 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Product } from "../../types/Product";
 import { retrieveProductById, retrieveRecommendedProducts } from "../../services/ProducApiService";
+import { useModal } from "../../contexts/ModalContext";
 import Container from "../../components/user/core/Container"
 import UpperSection from "../../components/user/core/UpperSection"
 import ProductCard from "../../components/user/core/ProductCard";
 import LoadingLayer from "../../components/user/core/LoadingLayer";
+import AddToCartModal from "../../components/user/modals/AddToCartModal";
 
 
 export default function ProductDetailPage() {
@@ -16,6 +18,7 @@ export default function ProductDetailPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [isRecommendedLoading, setIsRecommendedLoading] = useState(true);
   const [recommendedProducts, setRecommendedProducts] = useState<Product[]>([]);
+  const { setShowAddToCartModal, showAddToCartModal } = useModal();
 
   const fetchProduct = async () => {
     if (productId) {
@@ -54,6 +57,7 @@ export default function ProductDetailPage() {
     <>
       {isLoading ? <LoadingLayer /> : product &&
         <>
+          {showAddToCartModal && <AddToCartModal variants={product.variants} />}
           <UpperSection title={product.name} background={CategoryColors[product.category] as 'bg-secondary-200' | 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500'} />
           <Container>
             <div className="grid grid-cols-6 lg:grid-cols-11 gap-10 w-full mb-4 -mt-20">
@@ -79,7 +83,7 @@ export default function ProductDetailPage() {
                 <div className={`overflow-hidden aspect-[10/12] bg-gray-100 w-full rounded-lg border-8 ${LighterBorderColors[CategoryColors[product.category as keyof typeof CategoryColors] as keyof typeof LighterBorderColors]} rounded-lg`}>
                   <img className="aspect-[10/12] w-full scale-105 hover:scale-110 transition ease-in-out duration-300" draggable="false" alt="Product" src={product.images[2]} />
                 </div>
-                <AddToCartButton color={CategoryColors[product.category] as 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500'} />
+                <AddToCartButton color={CategoryColors[product.category] as 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500'} onClick={() => setShowAddToCartModal(true)} />
               </Column>
             </div>
           </Container>
@@ -121,7 +125,13 @@ function Column({ span2, children, moveRange }: ColumnProps) {
   )
 }
 
-function AddToCartButton({ color }: { color: 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500' }) {
+type AddToCartButtonProps = {
+  color: 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500'
+  product?: Product
+  onClick: () => void
+}
+
+function AddToCartButton({ color, product, onClick }: AddToCartButtonProps) {
   const hoverVariant = {
     default: { width: "10%", top: "50%", left: "80%", x: "-50%", y: "-50%", transition: { duration: 0.3 } },
     hover: { width: "100%", top: "0%", left: "0%", x: "0%", y: "0%", transition: { duration: 0.3 } },
@@ -139,7 +149,7 @@ function AddToCartButton({ color }: { color: 'bg-tetriary-100' | 'bg-tetriary-20
 
   return (
     <div className={`border-8 ${LighterBorderColors[color]} p-2 flex flex-col gap-2 rounded-2xl`}>
-      <motion.a className={`${color} grow text-white hover:text-black transition ease-in-out duration-300 rounded-xl h-12`} href="/">
+      <motion.button className={`${color} grow text-white hover:text-black transition ease-in-out duration-300 rounded-xl h-12`} onClick={onClick}>
         <motion.div className='relative z-50 flex h-full' initial="default" whileHover="hover">
           <p className={`flex w-full justify-center items-center font-bold tracking-wide text-lg`}>
             Tambah Ke Keranjang --/
@@ -147,7 +157,7 @@ function AddToCartButton({ color }: { color: 'bg-tetriary-100' | 'bg-tetriary-20
           <motion.div variants={hoverVariant} animate={floatingAnimation} className={`absolute w-10 bg-secondary-500 bottom-0 z-[-1] rounded-xl`}>
           </motion.div>
         </motion.div>
-      </motion.a >
+      </motion.button >
     </div>
   )
 }
