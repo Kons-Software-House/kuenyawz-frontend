@@ -27,10 +27,10 @@ export const deleteFromUserCart = async (cartItemId: string): Promise<any> => {
     return response.data;
 }
 
-export const updateCartItem = async (cartItemId: string, variantId: string, quantity: number, note: string): Promise<any> => {
-    if (note === '' || note === null || note === undefined) {
-        return await apiClient.patch(`/user/cart/${cartItemId}`, { variantId, quantity });
-    } else {
-        return await apiClient.patch(`/user/cart/${cartItemId}`, { variantId, quantity, note });
-    }
+export const updateCartItem = async (cartItemId: string, quantity?: number, variantId?: string, note?: string): Promise<any> => {
+    let params: { cartItemId: string; quantity?: number; note?: string; variantId?: string } = { cartItemId };
+    if (note) params = { ...params, note };
+    if (variantId) params = { ...params, variantId };
+    if (quantity) params = { ...params, quantity };
+    return await apiClient.patch(`/user/cart/${cartItemId}`, params);
 }
