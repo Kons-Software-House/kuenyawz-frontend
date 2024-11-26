@@ -74,8 +74,8 @@ export default function ProductListView() {
               const newKeyword = e.target.value;
               setKeyword(newKeyword);
               fetchProducts(1, newKeyword, category);
-            }} />
-          <button className="bg-secondary-100 text-white px-8" onClick={() => { fetchProducts(1, keyword, category) }}>Cari</button>
+            }}
+          />
         </div>
 
         {/* Page Controls */}
