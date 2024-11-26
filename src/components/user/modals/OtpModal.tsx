@@ -22,7 +22,7 @@ export default function OtpModal() {
   }
 
   return (
-    <Backdrop onClose={() => { setShowOtpModal(false) }}>
+    <Backdrop onClose={() => { setShowOtpModal(false) }} width="w-[25rem]">
       <div className="p-5 font-clear">
         <h1 className="text-2xl font-clear font-bold text-center tracking-wide">Daftar</h1>
         <div className="flex flex-col gap-4 px-8 py-4">
