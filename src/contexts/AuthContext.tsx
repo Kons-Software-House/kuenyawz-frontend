@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { loginAccount, checkAuthentication, refreshAuthentication, logoutAccount, registerAccount, requestOtp, verifyOtp } from "../services/AuthApiService";
+import { useNavigate } from "react-router-dom";
 
 type AuthContextType = {
   isAuthenticated: boolean;
@@ -30,6 +31,7 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
   const [fullName, setFullName] = useState('');
   const [phone, setPhone] = useState('');
   const isInitialMount = useRef(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isInitialMount.current) {
@@ -96,6 +98,7 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
     try {
       logoutAccount();
       setIsAuthenticated(false);
+      navigate('/');
     } catch (error: any) {
       alert("Failed to logout: " + error.response.data.message);
     }
