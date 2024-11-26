@@ -44,9 +44,9 @@ export default function AddToCartModal({ variants }: AddToCartModalProps) {
           <Form className="flex flex-col gap-4 px-8 py-4">
             <div className="flex flex-col gap-2">
               <span className="text-lg font-semibold">Pilih Varian</span>
-              <div className="grid grid-cols-3 gap-2">
+              <div className="flex gap-2">
                 {variants.map((variant, index) => (
-                  <div key={index} className={`flex flex-col items-center justify-center p-2 rounded-md cursor-pointer ${selectedVariant === variant ? 'bg-secondary-100 text-white' : 'bg-white'}`} onClick={() => setSelectedVariant(variant)}>
+                  <div key={index} className={`flex flex-col grow items-center justify-center p-2 rounded-md cursor-pointer ${selectedVariant === variant ? 'bg-secondary-100 text-white' : 'bg-white'}`} onClick={() => setSelectedVariant(variant)}>
                     <span>{variant.type}</span>
                     <span>Rp {variant.price}</span>
                   </div>
