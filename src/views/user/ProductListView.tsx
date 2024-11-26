@@ -82,7 +82,7 @@ export default function ProductListView() {
         <div className="flex justify-between items-center my-4 gap-2">
           <p className="text-lg">Menampilkan {page} dari {totalPages} halaman</p>
           <div className="flex gap-2">
-            <button className="bg-secondary-100 text-white px-4"
+            <button className="bg-secondary-100 text-white px-4 rounded"
               onClick={() => {
                 if (page > 1) {
                   setPage(page - 1)
@@ -90,7 +90,7 @@ export default function ProductListView() {
                 }
               }}
             >Sebelumnya</button>
-            <button className="bg-secondary-100 text-white px-4"
+            <button className="bg-secondary-100 text-white px-4 rounded"
               onClick={() => {
                 if (page < totalPages) {
                   setPage(page + 1)
@@ -113,7 +113,7 @@ export default function ProductListView() {
         <div className="flex justify-between items-center my-4 gap-2">
           <p className="text-lg">Menampilkan {page} dari {totalPages} halaman</p>
           <div className="flex gap-2">
-            <button className="bg-secondary-100 text-white px-4"
+            <button className="bg-secondary-100 text-white px-4 rounded"
               onClick={() => {
                 if (page > 1) {
                   setPage(page - 1)
@@ -121,7 +121,7 @@ export default function ProductListView() {
                 }
               }}
             >Sebelumnya</button>
-            <button className="bg-secondary-100 text-white px-4"
+            <button className="bg-secondary-100 text-white px-4 rounded"
               onClick={() => {
                 if (page < totalPages) {
                   setPage(page + 1)
