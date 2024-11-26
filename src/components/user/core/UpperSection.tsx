@@ -38,13 +38,12 @@ export default function UpperSection({ title, subtitle, background = 'bg-seconda
 function Header({ title, background }: HeaderProps) {
   return (
     <motion.div
-      className={`${background} h-[18rem] flex items-center justify-center pt-[6rem]`}>
+      className={`${background} h-[18rem] flex items-center justify-center pt-[4rem]`}>
       <motion.h1
         className="font-fancy tracking-tighter text-6xl md:text-8xl lg:text-8xl xl:text-9xl text-white text-shadow-[4]"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.6, duration: 0.4, ease: 'easeInOut' }}
-      >
+        transition={{ delay: 0.6, duration: 0.4, ease: 'easeInOut' }}>
         {title}
       </motion.h1>
     </motion.div>
