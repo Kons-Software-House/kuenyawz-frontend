@@ -23,7 +23,7 @@ export default function OtpModal() {
 
   return (
     <Backdrop onClose={() => { setShowOtpModal(false) }}>
-      <div className="p-5">
+      <div className="p-5 font-clear">
         <h1 className="text-2xl font-clear font-bold text-center tracking-wide">Daftar</h1>
         <div className="flex flex-col gap-4 px-8 py-4">
           <Formik initialValues={{ phone: '' }} onSubmit={(values) => { handleSendOtp(values.phone) }} validate={validateValues}>
@@ -66,9 +66,9 @@ export default function OtpModal() {
               <ErrorMessage name="phone" component="p" className="text-red-500 text-sm" />
               {
                 otpCountdown > 0 ? (
-                  <button type="submit" className="text-text-light rounded-lg underline w-20" disabled={true}>Kirim ulang OTP ({otpCountdown})</button>
+                  <button type="submit" className="text-text-dark rounded-lg underline w-20" disabled={true}>Kirim ulang OTP ({otpCountdown})</button>
                 ) : (
-                  <button type="submit" className="text-text-light rounded-lg underline w-20 font-bold">Kirim OTP</button>
+                  <button type="submit" className="text-text-dark rounded-lg underline underline-offset-2 w-20 font-semibold">Kirim OTP</button>
                 )
               }
             </Form>
@@ -100,7 +100,7 @@ export default function OtpModal() {
               <VerifyButton />
             </Form>
           </Formik>
-          <button className="text-center text-text-light underline underline-offset-2" type="button" onClick={() => { setShowLoginModal(true); setShowOtpModal(false) }}>Sudah punya akun? Login di sini</button>
+          <button className="text-center text-text-dark underline underline-offset-2" type="button" onClick={() => { setShowLoginModal(true); setShowOtpModal(false) }}>Sudah punya akun? Login di sini</button>
         </div>
       </div>
     </Backdrop >
