@@ -6,3 +6,10 @@ html {
     scroll-behavior: smooth;
     height: 100%;
 }
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
