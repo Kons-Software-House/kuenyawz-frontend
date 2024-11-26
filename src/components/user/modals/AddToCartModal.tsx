@@ -40,7 +40,7 @@ export default function AddToCartModal({ variants }: AddToCartModalProps) {
   }
 
   return (
-    <Backdrop onClose={() => { setShowAddToCartModal(false) }}>
+    <Backdrop onClose={() => { setShowAddToCartModal(false) }} width="w-[32rem]">
       <div className="py-6 font-clear">
         <h1 className="text-xl font-clear font-bold text-center tracking-wide">Tambah ke Keranjang</h1>
         <Formik initialValues={{ quantity: minQuantity, note: '' }} onSubmit={(values) => { handleAddToCart(values) }} validate={validateValues}>
@@ -86,7 +86,7 @@ export default function AddToCartModal({ variants }: AddToCartModalProps) {
 
 function AddToCartButton() {
   const hoverVariant = {
-    default: { width: "10%", top: "50%", left: "80%", x: "-50%", y: "-50%", transition: { duration: 0.3 } },
+    default: { width: "10%", top: "50%", left: "90%", x: "-50%", y: "-50%", transition: { duration: 0.3 } },
     hover: { width: "100%", top: "0%", left: "0%", x: "0%", y: "0%", transition: { duration: 0.3 } },
   }
 
