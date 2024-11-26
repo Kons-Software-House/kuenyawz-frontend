@@ -34,7 +34,7 @@ export default function RegisterModal() {
 
   return (
     <Backdrop onClose={() => { setShowRegisterModal(false) }}>
-      <div className="p-5">
+      <div className="p-5 font-clear">
         <h1 className="text-2xl font-clear font-bold text-center tracking-wide">Daftar</h1>
         <div className="flex">
           <div className="text-text-dark w-full flex items-center justify-center">
