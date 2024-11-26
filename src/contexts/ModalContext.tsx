@@ -17,13 +17,13 @@ const ModalContext = createContext<ModalContextType | undefined>(undefined)
 
 export function ModalProvider({ children }: { children: ReactNode }) {
   const [showLoginModal, setShowLoginModal] = useState(false);
-  const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showOtpModal, setShowOtpModal] = useState(false);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showImageCropperModal, setShowImageCropperModal] = useState(false);
   const [showAddToCartModal, setShowAddToCartModal] = useState(false);
 
   return (
-    <ModalContext.Provider value={{ showLoginModal, showOtpModal: showRegisterModal, showRegisterModal: showOtpModal, showImageCropperModal, showAddToCartModal, setShowLoginModal, setShowOtpModal: setShowRegisterModal, setShowRegisterModal: setShowOtpModal, setShowImageCropperModal, setShowAddToCartModal }}>
+    <ModalContext.Provider value={{ showLoginModal, showOtpModal, showRegisterModal, showImageCropperModal, showAddToCartModal, setShowLoginModal, setShowOtpModal, setShowRegisterModal, setShowImageCropperModal, setShowAddToCartModal }}>
       {children}
     </ModalContext.Provider>
   );
