@@ -127,7 +127,6 @@ function Column({ span2, children, moveRange }: ColumnProps) {
 
 type AddToCartButtonProps = {
   color: 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500'
-  product?: Product
   onClick: () => void
 }
 
