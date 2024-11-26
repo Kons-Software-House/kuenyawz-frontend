@@ -124,10 +124,23 @@ function CartItemComponent({ cartItem, handleDeleteCartItem, handleUpdateCartIte
         </div>
         <span className="w-28 text-center">Rp {variant?.price}</span>
         <Formik initialValues={{ quantity: cartItem.quantity }} onSubmit={(values) => { handleUpdateCartItem(cartItem.cartItemId.toString(), values.quantity) }}>
-          {({ submitForm }) => (
+          {({ submitForm, setFieldValue }) => (
             <Form className="w-14 flex justify-center">
-              <Field name='quantity' type="number" className="w-12 text-center border border-gray-400 rounded rounded [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                onBlur={submitForm}
+              <Field name='quantity' type="number" className="w-12 text-center border border-gray-400 rounded rounded [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none" min={variant?.minQuantity} max={variant?.maxQuantity}
+                onBlur={
+                  (e: React.FocusEvent<HTMLInputElement>) => {
+                    let value = parseInt(e.target.value)
+                    if (variant) {
+                      if (value < variant?.minQuantity) {
+                        value = variant?.minQuantity
+                      } else if (value > variant?.maxQuantity) {
+                        value = variant?.maxQuantity
+                      }
+                    }
+                    setFieldValue('quantity', value)
+                    submitForm()
+                  }
+                }
               />
             </Form>
           )}
