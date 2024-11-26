@@ -13,7 +13,8 @@ export default function CartView() {
   const retrieveCartItems = async () => {
     try {
       const response = await retrieveUserCart()
-      setCartItems(response)
+      const sorted = response.sort((a: CartItem, b: CartItem) => a.product.name.localeCompare(b.product.name))
+      setCartItems(sorted)
     } catch (error) {
       console.error(error)
     }
@@ -30,13 +31,20 @@ export default function CartView() {
     }
   }
 
-  const handleUpdateCartItem = async (cartItemId: string, variantId: string, quantity: number, note: string) => {
+  const handleUpdateCartItem = async (cartItemId: string, quantity: number, variantId?: string, note?: string) => {
     try {
-      await updateCartItem(cartItemId, variantId, quantity, note)
+      if (note && variantId) {
+        await updateCartItem(cartItemId, quantity, note, variantId);
+      } else if (note) {
+        await updateCartItem(cartItemId, quantity, note);
+      } else if (variantId) {
+        await updateCartItem(cartItemId, quantity, variantId);
+      } else {
+        await updateCartItem(cartItemId, quantity);
+      }
       retrieveCartItems()
     } catch (error) {
       console.error(error)
-    } finally {
       retrieveCartItems()
     }
   }
@@ -50,9 +58,9 @@ export default function CartView() {
     <>
       <UpperSection title="Keranjang" subtitle="Daftar Kreasi Pilihan Anda" />
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-3 w-full gap-4 text-sm">
+        <div className="grid grid-cols-1 2xl:grid-cols-3 w-full text-sm 2xl:gap-4">
           <div className="col-span-2">
-            <div className="grid grid-cols-1 bg-secondary-500 w-full p-8 rounded-md shadow-xl gap-2">
+            <div className="grid grid-cols-1 bg-secondary-500 w-full p-8 rounded-md shadow-lg gap-2">
               <div className="flex pl-10 pr-2 p-2 font-bold bg-secondary-100 rounded-md shadow-md gap-2">
                 <span className="grow">Produk</span>
                 <span className="w-28 text-center">Harga</span>
@@ -65,9 +73,11 @@ export default function CartView() {
               ))}
             </div>
           </div>
-          <div className="lg:col-span-1 lg:flex lg:flex-col w-full gap-4">
+          <div className="mt-4 2xl:mt-0 flex flex-col gap-4">
             <CartSummary cartItems={cartItems} />
-            <BuyingDetails />
+            <button className="bg-secondary-500 rounded-md shadow-lg p-2">
+              <Link to="/checkout" className="text-black text-lg font-semi">Lanjutkan ke Pembayaran</Link>
+            </button>
           </div>
         </div>
       </Container>
@@ -78,7 +88,7 @@ export default function CartView() {
 type CartItemComponentProps = {
   cartItem: CartItem
   handleDeleteCartItem: (cartItemId: string) => void
-  handleUpdateCartItem: (cartItemId: string, variantId: string, quantity: number, note: string) => void
+  handleUpdateCartItem: (cartItemId: string, quantity: number, variantId?: string, note?: string) => void
 }
 
 function CartItemComponent({ cartItem, handleDeleteCartItem, handleUpdateCartItem }: CartItemComponentProps) {
@@ -90,21 +100,33 @@ function CartItemComponent({ cartItem, handleDeleteCartItem, handleUpdateCartIte
     <>
       <div className="flex pl-10 pr-2 p-1 bg-white rounded-md shadow-md gap-2 items-center">
         <div className="grow">
-          <Link to={`/produk/${cartItem.product.productId}`}>
-            <div className="flex gap-4 grow">
-              <img src={cartItem.product.images ? cartItem.product.images[0] : ''} alt={cartItem.product.name} className="aspect-[6/9] w-12 object-cover rounded-md bg-gray-100 border-2 border-secondary-100" />
-              <div className="flex flex-col gap-2 justify-center">
+          <div className="flex gap-4 grow">
+            <Link to={`/produk/${cartItem.product.productId}`}>
+              <img src={cartItem.product.images ? cartItem.product.images[0] : ''} alt={cartItem.product.name} className="aspect-[6/9] w-12 object-cover rounded-md bg-gray-100 border border-gray-400 rounded" />
+            </Link>
+            <div className="flex flex-col gap-2 justify-center">
+              <Link to={`/produk/${cartItem.product.productId}`}>
                 <span className="font-semibold">{cartItem.product.name}</span>
-                <span>{cartItem.product.category}</span>
-              </div>
+              </Link>
+              <Formik initialValues={{ selectedVariantId: cartItem.selectedVariantId }} onSubmit={(values) => { handleUpdateCartItem(cartItem.cartItemId.toString(), cartItem.quantity, values.selectedVariantId.toString()) }}>
+                {({ submitForm }) => (
+                  <Form className="w-28">
+                    <Field as="select" name='selectedVariantId' className="w-full border border-gray-400 rounded" onBlur={submitForm}>
+                      {cartItem.product.variants.map((variant, index) => (
+                        <option key={index} value={variant.variantId.toString()}>{variant.type}</option>
+                      ))}
+                    </Field>
+                  </Form>
+                )}
+              </Formik>
             </div>
-          </Link>
+          </div>
         </div>
         <span className="w-28 text-center">Rp {variant?.price}</span>
-        <Formik initialValues={{ quantity: cartItem.quantity }} onSubmit={(values) => { handleUpdateCartItem(cartItem.cartItemId.toString(), cartItem.selectedVariantId.toString(), values.quantity, cartItem.note) }}>
+        <Formik initialValues={{ quantity: cartItem.quantity }} onSubmit={(values) => { handleUpdateCartItem(cartItem.cartItemId.toString(), values.quantity) }}>
           {({ submitForm }) => (
             <Form className="w-14 flex justify-center">
-              <Field name='quantity' type="number" className="w-12 text-center border border-black rounded [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+              <Field name='quantity' type="number" className="w-12 text-center border border-gray-400 rounded rounded [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 onBlur={submitForm}
               />
             </Form>
@@ -133,7 +155,7 @@ function CartSummary({ cartItems }: CartSummaryProps) {
   const formattedTotal = total.toLocaleString('id-ID')
 
   return (
-    <div className="bg-secondary-500 w-full p-8 rounded-md shadow-xl">
+    <div className="bg-secondary-500 w-full p-8 rounded-md shadow-lg">
       <span className="text-xl font-semibold">Rincian Belanja</span>
       <hr className="bg-black my-2 border-black" />
       <span className="text-lg font-semibold">Total Belanja</span>
@@ -162,7 +184,7 @@ function CartSummary({ cartItems }: CartSummaryProps) {
 function BuyingDetails() {
   const { phone } = useAuth()
   return (
-    <div className="bg-secondary-500 w-full p-8 rounded-md shadow-xl">
+    <div className="bg-secondary-500 w-full p-8 rounded-md shadow-lg">
       <span className="text-xl font-semibold">Detail Pembelian</span>
       <hr className="bg-black my-2 border-black" />
       <div className="grid gap-4">
