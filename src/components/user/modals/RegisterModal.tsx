@@ -96,7 +96,7 @@ export default function RegisterModal() {
                 </button>
               </div>
               <ErrorMessage name="confirmPassword" component="p" className="text-red-500 text-sm" />
-              <LoginButton />
+              <RegisterButton />
             </Form>
           </Formik>
         </div>
@@ -106,7 +106,7 @@ export default function RegisterModal() {
 }
 
 
-function LoginButton() {
+function RegisterButton() {
   const hoverVariant = {
     default: { width: "0%" },
     hover: { width: "100%" },

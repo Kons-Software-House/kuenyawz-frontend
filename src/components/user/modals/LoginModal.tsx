@@ -35,7 +35,7 @@ export default function LoginModal() {
   return (
     <Backdrop onClose={() => { setShowLoginModal(false) }} width="w-[25rem]">
       <div className="p-5 font-clear">
-        <h1 className="text-2xl font-clear font-bold text-center tracking-wide">Login</h1>
+        <h1 className="text-2xl font-clear font-bold text-center tracking-wide">Masuk</h1>
         <div className="flex flex-col gap-4 px-8 py-4">
           <Formik initialValues={{ phone: '', password: '' }} onSubmit={(values) => { handleLogin(values.phone, values.password); }} validate={validateValues}>
             <Form className="flex flex-col gap-4" autoComplete='on'>

@@ -100,7 +100,7 @@ export default function OtpModal() {
               <VerifyButton />
             </Form>
           </Formik>
-          <button className="text-center text-text-dark underline underline-offset-2" type="button" onClick={() => { setShowLoginModal(true); setShowOtpModal(false) }}>Sudah punya akun? Login di sini</button>
+          <button className="text-center text-text-dark underline underline-offset-2" type="button" onClick={() => { setShowLoginModal(true); setShowOtpModal(false) }}>Sudah punya akun? Masuk di sini</button>
         </div>
       </div>
     </Backdrop >
