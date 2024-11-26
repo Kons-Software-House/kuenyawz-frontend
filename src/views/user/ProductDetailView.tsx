@@ -150,7 +150,7 @@ function AddToCartButton({ color, onClick }: AddToCartButtonProps) {
     <div className={`border-8 ${LighterBorderColors[color]} p-2 flex flex-col gap-2 rounded-2xl`}>
       <motion.button className={`${color} grow text-white hover:text-black transition ease-in-out duration-300 rounded-xl h-12`} onClick={onClick}>
         <motion.div className='relative z-50 flex h-full' initial="default" whileHover="hover">
-          <p className={`flex w-full justify-center items-center font-bold tracking-wide text-lg`}>
+          <p className={`flex w-full justify-center items-center font-bold tracking-wide text-lg drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] hover:drop-shadow`}>
             Tambah Ke Keranjang --/
           </p>
           <motion.div variants={hoverVariant} animate={floatingAnimation} className={`absolute w-10 bg-secondary-500 bottom-0 z-[-1] rounded-xl`}>
