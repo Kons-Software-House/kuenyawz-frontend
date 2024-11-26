@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { Variant } from "../../../types/Product";
 import { addToUserCart } from "../../../services/UserApiService";
 import { formatToIdr } from "../../../types/Formatter";
+import { motion } from "framer-motion";
+import { LighterBorderColors } from "../core/Colors";
 
 type AddToCartModalProps = {
   variants: Variant[];
@@ -56,8 +58,8 @@ export default function AddToCartModal({ variants }: AddToCartModalProps) {
                         setFieldValue('quantity', variant.minQuantity);
                       }}
                     >
-                      <span>{variant.type}</span>
-                      <span>{formatToIdr(variant.price)} / pc</span>
+                      <span className={`${selectedVariant === variant ? 'drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]' : ''} font-semibold`}>{variant.type}</span>
+                      <span className={`${selectedVariant === variant ? 'drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]' : ''}`}>{formatToIdr(variant.price)} / pc</span>
                     </div>
                   ))}
                 </div>
@@ -72,11 +74,43 @@ export default function AddToCartModal({ variants }: AddToCartModalProps) {
                 <Field name="note" placeholder="Catatan" className="px-2 py-1 border border-gray-300 rounded" />
               </div>
               <ErrorMessage name="note" component="p" className="text-red-500 text-sm" />
-              <button className="bg-secondary-100 text-white p-2 rounded-md" type="submit">Tambah ke Keranjang</button>
+              {/* <button className="bg-secondary-100 text-white p-2 rounded-md" type="submit">Tambah ke Keranjang</button> */}
+              <AddToCartButton />
             </Form>
           )}
         </Formik>
       </div>
     </Backdrop>
+  )
+}
+
+function AddToCartButton() {
+  const hoverVariant = {
+    default: { width: "10%", top: "50%", left: "80%", x: "-50%", y: "-50%", transition: { duration: 0.3 } },
+    hover: { width: "100%", top: "0%", left: "0%", x: "0%", y: "0%", transition: { duration: 0.3 } },
+  }
+
+  const floatingAnimation = {
+    // x: [10, -20, 10],
+    scaleX: [0.8, 1, 0.8], // slight scaling to make it "bounce"
+    transition: {
+      repeat: Infinity,
+      duration: 1.2,
+      ease: "easeInOut",
+    },
+  };
+
+  return (
+    <div className={`border-8 ${LighterBorderColors['bg-secondary-200']} p-2 flex flex-col gap-2 rounded-2xl`}>
+      <motion.button type="submit" className={`bg-secondary-100 grow text-white hover:text-black transition ease-in-out duration-300 rounded-xl h-12`}>
+        <motion.div className='relative z-50 flex h-full' initial="default" whileHover="hover">
+          <p className={`flex w-full justify-center items-center font-bold tracking-wide text-lg drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] hover:drop-shadow`}>
+            Tambah Ke Keranjang --/
+          </p>
+          <motion.div variants={hoverVariant} animate={floatingAnimation} className={`absolute w-10 bg-secondary-500 bottom-0 z-[-1] rounded-xl`}>
+          </motion.div>
+        </motion.div>
+      </motion.button >
+    </div>
   )
 }
