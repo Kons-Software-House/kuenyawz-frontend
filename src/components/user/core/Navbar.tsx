@@ -42,7 +42,11 @@ export default function Navbar() {
                 </div>
               </div>
             }
-            <Link to="/keranjang">
+            <Link to={isAuthenticated ? "/keranjang" : "#"} onClick={() => {
+              if (!isAuthenticated) {
+                modalContext.setShowLoginModal(true)
+              }
+            }}>
               <motion.img src={CartIcon} className="h-8" whileHover={{ scale: 1.1 }} />
             </Link>
           </div>
