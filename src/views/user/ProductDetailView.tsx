@@ -131,7 +131,7 @@ type AddToCartButtonProps = {
   onClick: () => void
 }
 
-function AddToCartButton({ color, product, onClick }: AddToCartButtonProps) {
+function AddToCartButton({ color, onClick }: AddToCartButtonProps) {
   const hoverVariant = {
     default: { width: "10%", top: "50%", left: "80%", x: "-50%", y: "-50%", transition: { duration: 0.3 } },
     hover: { width: "100%", top: "0%", left: "0%", x: "0%", y: "0%", transition: { duration: 0.3 } },
