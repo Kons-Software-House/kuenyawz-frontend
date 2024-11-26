@@ -20,9 +20,9 @@ export default function Navbar() {
             </Link>
           </div>
           <ul className="grow flex items-center mx-6">
-            <NavButton text="Produk Kami" href="/menu" />
+            <NavButton text="Produk" href="/menu" />
             <NavButton text="Kalender" href="/kalender" />
-            <NavButton text="Tentang Kami" href="/tentang-kami" />
+            <NavButton text="Tentang" href="/tentang-kami" />
           </ul>
           <div className="basis-3/12 flex items-center justify-end gap-4">
             {isAuthenticated ?
@@ -78,7 +78,7 @@ function NavButton(
   return (
     <li className="grow flex justify-center mt-4">
       <Link to={href}>
-        <motion.div className="lg:text-md flex items-end hover:items-start flex-col font-[900] tracking-[1.2px]" initial="default" whileHover="hover">
+        <motion.div className="lg:text-xl flex items-end hover:items-start flex-col font-bold tracking-[0.8px]" initial="default" whileHover="hover">
           <motion.p variants={textVariant}>
             {text}
           </motion.p>
