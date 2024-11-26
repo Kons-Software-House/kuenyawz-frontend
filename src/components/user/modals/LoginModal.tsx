@@ -1,11 +1,12 @@
+import { useEffect, useState } from "react";
 import { Formik, Form, Field, FieldProps, ErrorMessage } from "formik";
 import { motion } from "framer-motion";
-import { useModal } from "../../../contexts/ModalContext";
-import { useAuth } from "../../../contexts/AuthContext";
+
 import Backdrop from "../core/Backdrop";
-import { useEffect, useState } from "react";
-import Visible from "../../../assets/Forms/visible.svg";
+import { useAuth } from "../../../contexts/AuthContext";
+import { useModal } from "../../../contexts/ModalContext";
 import Hidden from "../../../assets/Forms/hidden.svg";
+import Visible from "../../../assets/Forms/visible.svg";
 
 interface LoginFormValues {
   phone: string;

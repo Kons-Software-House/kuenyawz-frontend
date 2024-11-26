@@ -1,9 +1,9 @@
-import Backdrop from "../core/Backdrop";
-
 import { Formik, Form, Field, FieldProps, ErrorMessage } from "formik";
 import { motion } from "framer-motion";
-import { useModal } from "../../../contexts/ModalContext";
+
+import Backdrop from "../core/Backdrop";
 import { useAuth } from "../../../contexts/AuthContext";
+import { useModal } from "../../../contexts/ModalContext";
 
 interface OtpFormValues {
   phone: string;

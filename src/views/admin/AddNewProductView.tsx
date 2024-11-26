@@ -1,13 +1,12 @@
-import 'react-image-crop/dist/ReactCrop.css'
-import Sidebar from "../../components/admin/views/AdminDashboardView/Sidebar";
-import ImageCropperModal from '../../components/admin/modals/ImageCropperModal';
-
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import { useModal } from '../../contexts/ModalContext';
 import { useRef, useState } from 'react';
-import { createProduct, uploadProductImages } from '../../services/ProducApiService';
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate } from 'react-router-dom';
 
+import 'react-image-crop/dist/ReactCrop.css'
+import { useModal } from '../../contexts/ModalContext';
+import { createProduct, uploadProductImages } from '../../services/ProducApiService';
+import ImageCropperModal from '../../components/admin/modals/ImageCropperModal';
+import Sidebar from "../../components/admin/views/AdminDashboardView/Sidebar";
 
 export default function AddNewProductView() {
   const { showImageCropperModal, setShowImageCropperModal } = useModal();

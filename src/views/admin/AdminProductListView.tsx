@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
-import { retrieveProducts, deleteVariant, deleteProduct } from "../../services/ProducApiService";
 import { useEffect, useState } from "react";
-import { Product, Variant } from "../../types/Product";
+import { Link } from "react-router-dom";
 
+import { Product, Variant } from "../../types/Product";
+import { retrieveProducts, deleteVariant, deleteProduct } from "../../services/ProducApiService";
 import Sidebar from "../../components/admin/views/AdminDashboardView/Sidebar"
 
 export default function AdminProductListView() {

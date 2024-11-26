@@ -1,9 +1,8 @@
-import Container from "../../components/user/core/Container";
-import UpperSection from "../../components/user/core/UpperSection";
-
 import PhoneIcon from "../../assets/AboutUs/PhoneIcon.png";
+import Container from "../../components/user/core/Container";
 import PinpointIcon from "../../assets/AboutUs/PinpointIcon.png";
 import InstagramIcon from "../../assets/AboutUs/InstagramIcon.png";
+import UpperSection from "../../components/user/core/UpperSection";
 
 export default function AboutUsView() {
   return (

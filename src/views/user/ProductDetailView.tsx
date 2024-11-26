@@ -1,16 +1,16 @@
-import { motion, useScroll, useTransform } from "framer-motion"
-import { LighterBorderColors, CategoryColors } from '../../components/user/core/Colors';
-import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion"
+import { useParams } from "react-router-dom";
+
 import { Product } from "../../types/Product";
-import { retrieveProductById, retrieveRecommendedProducts } from "../../services/ProducApiService";
 import { useModal } from "../../contexts/ModalContext";
+import { retrieveProductById, retrieveRecommendedProducts } from "../../services/ProducApiService";
+import { LighterBorderColors, CategoryColors } from '../../components/user/core/Colors';
 import Container from "../../components/user/core/Container"
-import UpperSection from "../../components/user/core/UpperSection"
 import ProductCard from "../../components/user/core/ProductCard";
 import LoadingLayer from "../../components/user/core/LoadingLayer";
+import UpperSection from "../../components/user/core/UpperSection"
 import AddToCartModal from "../../components/user/modals/AddToCartModal";
-
 
 export default function ProductDetailPage() {
   const { productId } = useParams<{ productId: string }>();

@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+
 import { CategoryColors, LighterBorderColors } from "./Colors";
-import { useTransitionColor } from "../../../contexts/TransitionColorContext";
 import { Product } from "../../../types/Product";
+import { useTransitionColor } from "../../../contexts/TransitionColorContext";
 
 type ProductCardProps = {
   product: Product

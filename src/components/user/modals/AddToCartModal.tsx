@@ -1,12 +1,13 @@
-import Backdrop from "../core/Backdrop";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import { useModal } from "../../../contexts/ModalContext";
 import { useEffect, useState } from "react";
-import { Variant } from "../../../types/Product";
-import { addToUserCart } from "../../../services/UserApiService";
-import { formatToIdr } from "../../../types/Formatter";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { motion } from "framer-motion";
+
 import { LighterBorderColors } from "../core/Colors";
+import Backdrop from "../core/Backdrop";
+import { Variant } from "../../../types/Product";
+import { formatToIdr } from "../../../types/Formatter";
+import { useModal } from "../../../contexts/ModalContext";
+import { addToUserCart } from "../../../services/UserApiService";
 
 type AddToCartModalProps = {
   variants: Variant[];
