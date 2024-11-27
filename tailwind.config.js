@@ -44,7 +44,7 @@ export default {
       clear: ['Poppins', 'sans-serif'],
       fancy: ['Pacifico', 'cursive'],
       semi: ['Merriweather', 'serif'],
-      nav: ['Montserrat', 'sans-serif'],
+      nav: ['Lato', 'sans-serif'],
     },
   },
   plugins: [
