@@ -35,20 +35,25 @@ function App() {
     "/kalender": "bg-secondary-200",
   };
 
-  useEffect(() => {
-    async function pathCheck(path: string) {
-      setCheckingAuth(true);
+  async function pathCheck(path: string) {
+    setCheckingAuth(true);
+    try {
+
       if (await checkAuth()) {
         navigate(path);
       } else {
         navigate("/not-found");
       }
+    } finally {
       setCheckingAuth(false);
     }
+  }
+
+  useEffect(() => {
     if (location.pathname.startsWith("/admin")) {
       pathCheck(location.pathname);
     }
-  }, [checkAuth]);
+  }, [location.pathname]);
 
   useEffect(() => {
     if (!location.pathname.startsWith("/produk")) {
