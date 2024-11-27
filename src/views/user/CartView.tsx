@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Field, Form, Formik } from "formik"
+import { motion } from "framer-motion"
 import { Link } from "react-router-dom"
 
 import { CartItem } from "../../types/CartItem"
@@ -76,9 +77,10 @@ export default function CartView() {
           </div>
           <div className="mt-4 flex flex-col gap-4">
             <CartSummary cartItems={cartItems} />
-            <button className="bg-secondary-500 rounded-md shadow-lg p-2">
+            {/* <button className="bg-secondary-500 rounded-md shadow-lg p-2">
               <Link to="/checkout" className="text-black text-lg font-semi">Lanjutkan ke Pembayaran</Link>
-            </button>
+            </button> */}
+            <CheckoutButton />
           </div>
         </div>
       </Container>
@@ -177,5 +179,24 @@ function CartSummary({ cartItems }: CartSummaryProps) {
         <span className="text-end">{formattedSubtotal}</span>
       </div>
     </div>
+  )
+}
+
+function CheckoutButton() {
+  const hoverVariant = {
+    default: { width: "0%" },
+    hover: { width: "100%" },
+  }
+
+  return (
+    <motion.button className='border bg-secondary-200 hover:text-white transition ease-in-out duration-300 rounded-lg mt-3 h-12' type="submit">
+      <motion.div className='relative z-50 flex h-12 justify-end hover:justify-start' initial="default" whileHover="hover">
+        <p className="flex w-full justify-center items-center font-extrabold font-semi tracking-wider text-xl hover:drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+          Lanjutkan Ke Pembayaran
+        </p>
+        <motion.div variants={hoverVariant} className='absolute bg-tetriary-500 w-10 top-0 bottom-0 z-[-1] rounded-lg'>
+        </motion.div>
+      </motion.div>
+    </motion.button >
   )
 }
