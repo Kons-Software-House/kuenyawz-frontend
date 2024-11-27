@@ -87,7 +87,7 @@ export default function ProductDetailPage() {
               </Column>
             </div>
           </Container>
-          <div className={`absolute left-0 right-0 -mt-[16rem] md:h-[6rem] -z-10 ${`a`}`} />
+          <div className={`absolute left-0 right-0 -mt-[16rem] md:h-[6rem] -z-10 ${CategoryColors[product.category as keyof typeof CategoryColors]}`} />
           <Container>
             <h4 className="w-full text-center text-3xl font-semi mt-4">Cocok ditambah dengan</h4>
             <div className="flex mt-6 w-full lg:w-5/6 p-8 gap-20 justify-between">
