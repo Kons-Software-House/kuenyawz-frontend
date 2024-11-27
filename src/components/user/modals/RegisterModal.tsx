@@ -1,9 +1,12 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { useEffect, useState } from "react";
+import { Formik, Form, Field, ErrorMessage, FieldProps } from "formik";
 import { motion } from "framer-motion";
-import { useModal } from "../../../contexts/ModalContext";
-import { useAuth } from "../../../contexts/AuthContext";
+
 import Backdrop from "../core/Backdrop";
-import { useEffect } from "react";
+import { useAuth } from "../../../contexts/AuthContext";
+import { useModal } from "../../../contexts/ModalContext";
+import Hidden from "../../../assets/Forms/hidden.svg";
+import Visible from "../../../assets/Forms/visible.svg";
 
 interface RegisterFormValues {
   fullName: string;
@@ -14,6 +17,9 @@ interface RegisterFormValues {
 export default function RegisterModal() {
   const { setShowRegisterModal } = useModal();
   const { handleRegister, isAuthenticated, phone } = useAuth();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -33,8 +39,8 @@ export default function RegisterModal() {
   }
 
   return (
-    <Backdrop onClose={() => { setShowRegisterModal(false) }}>
-      <div className="p-5">
+    <Backdrop onClose={() => { setShowRegisterModal(false) }} width="w-[25rem]">
+      <div className="p-5 font-clear">
         <h1 className="text-2xl font-clear font-bold text-center tracking-wide">Daftar</h1>
         <div className="flex">
           <div className="text-text-dark w-full flex items-center justify-center">
@@ -48,11 +54,49 @@ export default function RegisterModal() {
             <Form className="flex flex-col gap-4" autoComplete='on'>
               <Field name="fullName" placeholder="Nama Lengkap" className="p-2 border border-gray-300 rounded" />
               <ErrorMessage name="fullName" component="p" className="text-red-500 text-sm" />
-              <Field name="password" type="password" placeholder="Kata Sandi" className="p-2 border border-gray-300 rounded" autoComplete="off" />
+              <div className="relative">
+                <Field name="password">
+                  {({ field }: FieldProps<string, RegisterFormValues>) => (
+                    <input
+                      {...field}
+                      type={showPassword ? 'text' : 'password'}
+                      placeholder="Kata Sandi"
+                      className="p-2 border border-gray-300 rounded w-full"
+                      autoComplete="off"
+                    />
+                  )}
+                </Field>
+                <button
+                  type="button"
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  <img src={showPassword ? Visible : Hidden} alt="Show Password" className="w-4 h-4" />
+                </button>
+              </div>
               <ErrorMessage name="password" component="p" className="text-red-500 text-sm" />
-              <Field name="confirmPassword" type="password" placeholder="Konfirmasi Kata Sandi" className="p-2 border border-gray-300 rounded" autoComplete="off" />
+              <div className="relative">
+                <Field name="confirmPassword">
+                  {({ field }: FieldProps<string, RegisterFormValues>) => (
+                    <input
+                      {...field}
+                      type={showConfirmPassword ? 'text' : 'password'}
+                      placeholder="Konfirmasi Kata Sandi"
+                      className="p-2 border border-gray-300 rounded w-full"
+                      autoComplete="off"
+                    />
+                  )}
+                </Field>
+                <button
+                  type="button"
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                >
+                  <img src={showConfirmPassword ? Visible : Hidden} alt="Show Password" className="w-4 h-4" />
+                </button>
+              </div>
               <ErrorMessage name="confirmPassword" component="p" className="text-red-500 text-sm" />
-              <LoginButton />
+              <RegisterButton />
             </Form>
           </Formik>
         </div>
@@ -62,7 +106,7 @@ export default function RegisterModal() {
 }
 
 
-function LoginButton() {
+function RegisterButton() {
   const hoverVariant = {
     default: { width: "0%" },
     hover: { width: "100%" },

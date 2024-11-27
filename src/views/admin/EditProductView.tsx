@@ -1,12 +1,12 @@
-import 'react-image-crop/dist/ReactCrop.css'
-import Sidebar from "../../components/admin/views/AdminDashboardView/Sidebar";
-
-import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useEffect, useRef, useState } from 'react';
-import { editProduct } from '../../services/ProducApiService';
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate, useParams } from 'react-router-dom';
-import { retrieveProductById } from "../../services/ProducApiService";
+
+import 'react-image-crop/dist/ReactCrop.css'
 import { Product } from '../../types/Product';
+import { editProduct } from '../../services/ProducApiService';
+import { retrieveProductById } from "../../services/ProducApiService";
+import Sidebar from "../../components/admin/views/AdminDashboardView/Sidebar";
 
 export default function EditProductView() {
   const sixByNineRef = useRef<string>("");

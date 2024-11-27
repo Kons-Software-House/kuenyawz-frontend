@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+
 import { LighterBackgroundColors } from './Colors';
 import TransitionLayer from './TransitionLayer';
 
@@ -49,4 +50,3 @@ function Header({ title, background }: HeaderProps) {
     </motion.div>
   );
 }
-

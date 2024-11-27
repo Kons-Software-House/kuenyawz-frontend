@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
 import { Link } from 'react-router-dom';
-import { useModal } from "../../../contexts/ModalContext";
+
 import { useAuth } from "../../../contexts/AuthContext";
-import Main from "../../../assets/Navbar/Main.png"
+import { useModal } from "../../../contexts/ModalContext";
 import CartIcon from "../../../assets/Navbar/Cart.svg"
+import Main from "../../../assets/Navbar/Main.png"
 
 export default function Navbar() {
   const modalContext = useModal()
@@ -11,7 +12,7 @@ export default function Navbar() {
 
   return (
     <motion.div>
-      <nav className={`w-full text-base font-nav text-xl bg-black/10 absolute z-10 h-16 px-12 z-30`}>
+      <nav className={`w-full text-base font-nav bg-black/10 absolute z-10 h-16 px-12 z-30`}>
         <div className="h-full w-full flex gap-4">
           <div className={"basis-3/12 flex items-center justify-start"}>
             <Link to="/">
@@ -19,14 +20,14 @@ export default function Navbar() {
             </Link>
           </div>
           <ul className="grow flex items-center mx-6">
-            <NavButton text="Produk Kami" href="/menu" />
+            <NavButton text="Produk" href="/menu" />
             <NavButton text="Kalender" href="/kalender" />
-            <NavButton text="Tentang Kami" href="/tentang-kami" />
+            <NavButton text="Tentang" href="/tentang-kami" />
           </ul>
           <div className="basis-3/12 flex items-center justify-end gap-4">
             {isAuthenticated ?
               <div onClick={handleLogout}>
-                <div className="border-2 border-black rounded-lg">
+                <div className="border-2 border-black rounded-lg lg:text-xl text-sm">
                   <motion.button className="px-4 py-1 font-semibold" whileHover={{ scale: 1.1 }}>
                     Keluar
                   </motion.button>
@@ -34,14 +35,18 @@ export default function Navbar() {
               </div>
               :
               <div onClick={() => { modalContext.setShowLoginModal(true) }}>
-                <div className="border-2 border-black rounded-lg">
+                <div className="border-2 border-black rounded-lg lg:text-xl text-sm">
                   <motion.button className="px-4 py-1 font-semibold" whileHover={{ scale: 1.1 }}>
                     Masuk
                   </motion.button>
                 </div>
               </div>
             }
-            <Link to="/keranjang">
+            <Link to={isAuthenticated ? "/keranjang" : "#"} onClick={() => {
+              if (!isAuthenticated) {
+                modalContext.setShowLoginModal(true)
+              }
+            }}>
               <motion.img src={CartIcon} className="h-8" whileHover={{ scale: 1.1 }} />
             </Link>
           </div>
@@ -73,7 +78,7 @@ function NavButton(
   return (
     <li className="grow flex justify-center mt-4">
       <Link to={href}>
-        <motion.div className="lg:text-md flex items-end hover:items-start flex-col font-[900] tracking-[1.2px]" initial="default" whileHover="hover">
+        <motion.div className="lg:text-[1.4rem] text-md flex items-end hover:items-start flex-col font-extrabold tracking-[1.2px]" initial="default" whileHover="hover">
           <motion.p variants={textVariant}>
             {text}
           </motion.p>

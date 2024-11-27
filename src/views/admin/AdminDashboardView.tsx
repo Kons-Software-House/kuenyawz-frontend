@@ -1,5 +1,5 @@
-import Sidebar from "../../components/admin/views/AdminDashboardView/Sidebar"
 import { CategorySpreadChart } from "../../components/admin/views/AdminDashboardView/Charts"
+import Sidebar from "../../components/admin/views/AdminDashboardView/Sidebar"
 
 export default function AdminDashboardView() {
   return (

@@ -1,9 +1,12 @@
+import { useEffect, useState } from "react";
 import { Formik, Form, Field, FieldProps, ErrorMessage } from "formik";
 import { motion } from "framer-motion";
-import { useModal } from "../../../contexts/ModalContext";
-import { useAuth } from "../../../contexts/AuthContext";
+
 import Backdrop from "../core/Backdrop";
-import { useEffect } from "react";
+import { useAuth } from "../../../contexts/AuthContext";
+import { useModal } from "../../../contexts/ModalContext";
+import Hidden from "../../../assets/Forms/hidden.svg";
+import Visible from "../../../assets/Forms/visible.svg";
 
 interface LoginFormValues {
   phone: string;
@@ -13,6 +16,7 @@ interface LoginFormValues {
 export default function LoginModal() {
   const { setShowLoginModal, setShowOtpModal } = useModal();
   const { handleLogin, isAuthenticated } = useAuth();
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -29,15 +33,15 @@ export default function LoginModal() {
   }
 
   return (
-    <Backdrop onClose={() => { setShowLoginModal(false) }}>
-      <div className="p-5">
-        <h1 className="text-2xl font-clear font-bold text-center tracking-wide">Login</h1>
+    <Backdrop onClose={() => { setShowLoginModal(false) }} width="w-[25rem]">
+      <div className="p-5 font-clear">
+        <h1 className="text-2xl font-clear font-bold text-center tracking-wide">Masuk</h1>
         <div className="flex flex-col gap-4 px-8 py-4">
           <Formik initialValues={{ phone: '', password: '' }} onSubmit={(values) => { handleLogin(values.phone, values.password); }} validate={validateValues}>
             <Form className="flex flex-col gap-4" autoComplete='on'>
               <div className="flex">
-                <div className="text-text-dark bg-white w-12 flex items-center justify-center border border-gray-300 rounded">
-                  <p>
+                <div className="bg-gray-200 w-12 flex items-center justify-center border border-gray-300 rounded">
+                  <p className="font-semibold">
                     +62
                   </p>
                 </div>
@@ -71,14 +75,35 @@ export default function LoginModal() {
                 </Field>
               </div>
               <ErrorMessage name="phone" component="div" className="text-red-500" />
-              <Field name="password" type="password" placeholder="Kata Sandi" className="p-2 border border-gray-300 rounded" autoComplete="on" />
+              <div className="relative">
+                <Field name="password">
+                  {({ field }: FieldProps<string, LoginFormValues>) => (
+                    <input
+                      {...field}
+                      type={showPassword ? 'text' : 'password'}
+                      placeholder="Kata Sandi"
+                      className="p-2 border border-gray-300 rounded w-full"
+                      autoComplete="on"
+                    />
+                  )}
+                </Field>
+                <button
+                  type="button"
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <img src={Visible} alt="show password" className="w-4 h-4" /> : <img src={Hidden} alt="hide password" className="w-4 h-4" />}
+                </button>
+              </div>
               <div className="flex justify-end px-2  text-text-dark underline  underline-offset-2">
                 <a href="/resetpassword"> Lupa Kata Sandi?</a>
               </div>
               <LoginButton />
             </Form>
           </Formik>
-          <button className="text-center text-text-dark underline underline-offset-2" type="button" onClick={() => { setShowLoginModal(false); setShowOtpModal(true) }}>Belum punya akun? Daftar di sini</button>
+          <button className="text-center text-text-dark underline underline-offset-2" type="button" onClick={() => { setShowLoginModal(false); setShowOtpModal(true) }}>
+            Belum punya akun? Daftar di sini
+          </button>
         </div>
       </div>
     </Backdrop>

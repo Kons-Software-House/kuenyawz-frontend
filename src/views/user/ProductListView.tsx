@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+
 import { Product } from "../../types/Product";
 import { retrieveProducts } from "../../services/ProducApiService";
-import UpperSection from "../../components/user/core/UpperSection"
 import Container from "../../components/user/core/Container"
 import ProductCard from "../../components/user/core/ProductCard";
+import UpperSection from "../../components/user/core/UpperSection"
 
 export default function ProductListView() {
   const [isLoading, setIsLoading] = useState(true)
@@ -73,15 +74,15 @@ export default function ProductListView() {
               const newKeyword = e.target.value;
               setKeyword(newKeyword);
               fetchProducts(1, newKeyword, category);
-            }} />
-          <button className="bg-secondary-100 text-white px-8" onClick={() => { fetchProducts(1, keyword, category) }}>Cari</button>
+            }}
+          />
         </div>
 
         {/* Page Controls */}
         <div className="flex justify-between items-center my-4 gap-2">
           <p className="text-lg">Menampilkan {page} dari {totalPages} halaman</p>
           <div className="flex gap-2">
-            <button className="bg-secondary-100 text-white px-4"
+            <button className="bg-secondary-100 text-white px-4 rounded"
               onClick={() => {
                 if (page > 1) {
                   setPage(page - 1)
@@ -89,7 +90,7 @@ export default function ProductListView() {
                 }
               }}
             >Sebelumnya</button>
-            <button className="bg-secondary-100 text-white px-4"
+            <button className="bg-secondary-100 text-white px-4 rounded"
               onClick={() => {
                 if (page < totalPages) {
                   setPage(page + 1)
@@ -112,7 +113,7 @@ export default function ProductListView() {
         <div className="flex justify-between items-center my-4 gap-2">
           <p className="text-lg">Menampilkan {page} dari {totalPages} halaman</p>
           <div className="flex gap-2">
-            <button className="bg-secondary-100 text-white px-4"
+            <button className="bg-secondary-100 text-white px-4 rounded"
               onClick={() => {
                 if (page > 1) {
                   setPage(page - 1)
@@ -120,7 +121,7 @@ export default function ProductListView() {
                 }
               }}
             >Sebelumnya</button>
-            <button className="bg-secondary-100 text-white px-4"
+            <button className="bg-secondary-100 text-white px-4 rounded"
               onClick={() => {
                 if (page < totalPages) {
                   setPage(page + 1)

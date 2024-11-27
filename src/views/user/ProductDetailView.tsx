@@ -1,16 +1,16 @@
-import { motion, useScroll, useTransform } from "framer-motion"
-import { LighterBorderColors, CategoryColors } from '../../components/user/core/Colors';
-import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion"
+import { useParams } from "react-router-dom";
+
 import { Product } from "../../types/Product";
-import { retrieveProductById, retrieveRecommendedProducts } from "../../services/ProducApiService";
 import { useModal } from "../../contexts/ModalContext";
+import { retrieveProductById, retrieveRecommendedProducts } from "../../services/ProducApiService";
+import { LighterBorderColors, CategoryColors } from '../../components/user/core/Colors';
 import Container from "../../components/user/core/Container"
-import UpperSection from "../../components/user/core/UpperSection"
 import ProductCard from "../../components/user/core/ProductCard";
 import LoadingLayer from "../../components/user/core/LoadingLayer";
+import UpperSection from "../../components/user/core/UpperSection"
 import AddToCartModal from "../../components/user/modals/AddToCartModal";
-
 
 export default function ProductDetailPage() {
   const { productId } = useParams<{ productId: string }>();
@@ -87,7 +87,7 @@ export default function ProductDetailPage() {
               </Column>
             </div>
           </Container>
-          <div className={`absolute left-0 right-0 -mt-[16rem] md:h-[6rem] -z-10 ${`a`}`} />
+          <div className={`absolute left-0 right-0 -mt-[16rem] md:h-[6rem] -z-10 ${CategoryColors[product.category as keyof typeof CategoryColors]}`} />
           <Container>
             <h4 className="w-full text-center text-3xl font-semi mt-4">Cocok ditambah dengan</h4>
             <div className="flex mt-6 w-full lg:w-5/6 p-8 gap-20 justify-between">
@@ -127,11 +127,10 @@ function Column({ span2, children, moveRange }: ColumnProps) {
 
 type AddToCartButtonProps = {
   color: 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500'
-  product?: Product
   onClick: () => void
 }
 
-function AddToCartButton({ color, product, onClick }: AddToCartButtonProps) {
+function AddToCartButton({ color, onClick }: AddToCartButtonProps) {
   const hoverVariant = {
     default: { width: "10%", top: "50%", left: "80%", x: "-50%", y: "-50%", transition: { duration: 0.3 } },
     hover: { width: "100%", top: "0%", left: "0%", x: "0%", y: "0%", transition: { duration: 0.3 } },
@@ -151,7 +150,7 @@ function AddToCartButton({ color, product, onClick }: AddToCartButtonProps) {
     <div className={`border-8 ${LighterBorderColors[color]} p-2 flex flex-col gap-2 rounded-2xl`}>
       <motion.button className={`${color} grow text-white hover:text-black transition ease-in-out duration-300 rounded-xl h-12`} onClick={onClick}>
         <motion.div className='relative z-50 flex h-full' initial="default" whileHover="hover">
-          <p className={`flex w-full justify-center items-center font-bold tracking-wide text-lg`}>
+          <p className={`flex w-full justify-center items-center font-bold tracking-wide text-lg drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] hover:drop-shadow`}>
             Tambah Ke Keranjang --/
           </p>
           <motion.div variants={hoverVariant} animate={floatingAnimation} className={`absolute w-10 bg-secondary-500 bottom-0 z-[-1] rounded-xl`}>

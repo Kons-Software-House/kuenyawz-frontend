@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+
 import { LighterBackgroundColors } from './Colors';
 import { useTransitionColor } from '../../../contexts/TransitionColorContext';
 

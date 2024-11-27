@@ -1,8 +1,9 @@
 import { SyntheticEvent, useRef, useState } from "react";
 import ReactCrop, { centerCrop, convertToPixelCrop, makeAspectCrop, PercentCrop } from "react-image-crop";
+
 import Backdrop from "../../user/core/Backdrop";
-import { useModal } from "../../../contexts/ModalContext";
 import { setCanvasPreview } from "../core/SetCanvasPreview";
+import { useModal } from "../../../contexts/ModalContext";
 
 const START_DIMENSION = 100;
 
