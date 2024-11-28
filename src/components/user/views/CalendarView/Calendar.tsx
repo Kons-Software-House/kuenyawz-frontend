@@ -149,7 +149,7 @@ export default function ThreeDayDatePicker({ isSmall, selectable = false }: Cale
   };
 
   return (
-    <div className={`aspect-[18/17] grid grid-cols-7 gap-2 bg-secondary-500 p-4 lg:p-6 shadow-xl rounded-md w-full max-w-[46rem] ${isSmall ? 'text-sm lg:text-md' : 'text-lg lg:text-xl'}`}>
+    <div className={`grid grid-cols-7 gap-x-2 xl:gap-y-2 bg-secondary-500 p-4 lg:p-6 shadow-xl rounded-md w-full max-w-[46rem] ${isSmall ? 'text-sm lg:text-md' : 'text-lg lg:text-xl'}`}>
       <YearMonth
         year={selectedYear}
         month={selectedMonth}
@@ -184,12 +184,12 @@ function YearMonth({ year, month, onPrevMonth, onNextMonth }: YearMonthProps) {
   ];
 
   return (
-    <div className="col-span-7 bg-secondary-100 flex justify-between px-4 py-1 rounded shadow-md mb-3">
+    <div className="col-span-7 bg-secondary-100 flex justify-between px-4 py-2 rounded shadow-md mb-3">
       <div className="flex justify-between items-center gap-4">
-        <div className="text-4xl font-clear font-bold rounded">
+        <div className="text-2xl font-clear font-bold rounded">
           {months[month - 1]}
         </div>
-        <div className="text-4xl font-clear font-bold">
+        <div className="text-2xl font-clear font-bold">
           {year}
         </div>
       </div>
@@ -211,7 +211,7 @@ type WeekDayProps = {
 
 function WeekDay({ day }: WeekDayProps) {
   return (
-    <div className="bg-secondary-100 flex flex-col items-center justify-center font-clear rounded shadow-md font-semibold">
+    <div className="bg-secondary-100 flex flex-col items-center justify-center font-clear rounded shadow-md font-semibold py-1 text-sm lg:text-lg">
       {day}
     </div>
   )
@@ -236,9 +236,8 @@ function DateComponent({ date, thisMonth, eventType = 0, onClick }: DateProps) {
   return (
     <div
       onClick={onClick}
-      className={(thisMonth ? '' : 'text-gray-400') + " bg-gray-50 hover:brightness-[102%] flex flex-col items-center justify-center aspect-[1/1] rounded shadow-md transition ease-in-out duration-150"}
-    >
-      <p className={(eventType ? availability[eventType] : '') + " " + (eventType ? 'text-white' : '') + ' h-2/3 w-2/3 aspect-[1/1] rounded-full flex justify-center items-center font-semibold'} >
+      className={(thisMonth ? '' : 'text-gray-400') + " bg-gray-50 hover:brightness-[102%] flex flex-col items-center justify-center text-sm lg:text-xl aspect-[1/1] rounded shadow-md transition ease-in-out duration-150"}>
+      <p className={(eventType ? availability[eventType] : '') + " " + (eventType ? 'text-white' : '') + ' h-2/3 aspect-[1/1] rounded-full flex justify-center items-center font-semibold'} >
         {date}
       </p>
     </div>
