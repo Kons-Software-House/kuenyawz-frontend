@@ -149,14 +149,14 @@ export default function ThreeDayDatePicker({ isSmall, selectable = false }: Cale
   };
 
   return (
-    <div className={`grid grid-cols-7 gap-x-2 xl:gap-y-2 bg-secondary-500 p-4 lg:p-6 shadow-xl rounded-md w-full max-w-[46rem] ${isSmall ? 'text-sm lg:text-md' : 'text-lg lg:text-xl'}`}>
+    <div className={`grid grid-cols-7 gap-2 bg-secondary-500 p-4 lg:p-6 shadow-xl rounded-md w-full max-w-[46rem] ${isSmall ? 'text-sm lg:text-md' : 'text-lg lg:text-xl'}`}>
       <YearMonth
         year={selectedYear}
         month={selectedMonth}
         onPrevMonth={() => changeMonth(-1)}
         onNextMonth={() => changeMonth(1)}
       />
-      <div className="grid grid-cols-7 col-span-7 gap-x-2 mb-2 lg:mb-3">
+      <div className="grid grid-cols-7 col-span-7 gap-x-2 mb-1">
         <WeekDay day="Sun" />
         <WeekDay day="Mon" />
         <WeekDay day="Tue" />
@@ -184,7 +184,7 @@ function YearMonth({ year, month, onPrevMonth, onNextMonth }: YearMonthProps) {
   ];
 
   return (
-    <div className="col-span-7 bg-secondary-100 flex justify-between px-4 py-2 rounded shadow-md mb-3">
+    <div className="col-span-7 bg-secondary-100 flex justify-between px-4 py-2 rounded shadow-md mb-1">
       <div className="flex justify-between items-center gap-4">
         <div className="text-2xl font-clear font-bold rounded">
           {months[month - 1]}
