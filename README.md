@@ -3,8 +3,8 @@ Catering Service Website For Kuenya WZ Located in South Jakarta.
 
 [Main Repository](https://github.com/vianneynara/wz-snack-n-bites)
 ## Features
-- [ ] User Management (Register, Login)
-- [ ] Products Management
+- [x] User Management (Register, Login)
+- [x] Products Management
 - [ ] Recommender System with Apriori
 - [ ] Transaction Management
 
