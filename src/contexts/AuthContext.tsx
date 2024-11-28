@@ -84,11 +84,10 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
 
   const handleLogin = async (phone: string, password: string) => {
     try {
-      loginAccount(phone, password);
+      await loginAccount(phone, password);
       setIsAuthenticated(true);
       return true;
     } catch (error: any) {
-      alert("Failed to login: " + error.response.data.message);
       setIsAuthenticated(false);
       return false;
     }
@@ -106,7 +105,7 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
 
   const handleRegister = async (fullName: string, phone: string, password: string) => {
     try {
-      registerAccount(fullName, phone, password);
+      await registerAccount(fullName, phone, password);
       setIsAuthenticated(true);
       return true;
     } catch (error: any) {
