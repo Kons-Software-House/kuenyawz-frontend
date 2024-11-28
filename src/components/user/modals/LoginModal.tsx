@@ -17,6 +17,7 @@ export default function LoginModal() {
   const { setShowLoginModal, setShowOtpModal } = useModal();
   const { handleLogin, isAuthenticated } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -32,12 +33,20 @@ export default function LoginModal() {
     return errors;
   }
 
+  const handleSubmit = async (values: LoginFormValues) => {
+    const success = await handleLogin(values.phone, values.password);
+    if (!success) {
+      setErrorMessage('Nomor telepon atau kata sandi salah');
+    }
+  };
+
   return (
     <Backdrop onClose={() => { setShowLoginModal(false) }} width="w-[25rem]">
       <div className="p-5 font-clear">
         <h1 className="text-2xl font-clear font-bold text-center tracking-wide">Masuk</h1>
         <div className="flex flex-col gap-4 px-8 py-4">
-          <Formik initialValues={{ phone: '', password: '' }} onSubmit={(values) => { handleLogin(values.phone, values.password); }} validate={validateValues}>
+          {errorMessage && <div className="text-red-500 text-center">{errorMessage}</div>}
+          <Formik initialValues={{ phone: '', password: '' }} onSubmit={(values) => { handleSubmit(values); }} validate={validateValues}>
             <Form className="flex flex-col gap-4" autoComplete='on'>
               <div className="flex">
                 <div className="bg-gray-200 w-12 flex items-center justify-center border border-gray-300 rounded">
