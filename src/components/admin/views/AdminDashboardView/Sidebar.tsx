@@ -5,7 +5,7 @@ import Logo from "../../../../assets/Navbar/Main.png"
 
 export default function Sidebar() {
   return (
-    <motion.div className="flex flex-col w-48 h-screen bg-secondary-400 text-black overflow-hidden shadow-md">
+    <motion.div className="flex flex-col w-60 h-screen bg-secondary-400 text-black overflow-hidden shadow-md">
       <div className="flex items-center justify-center h-20 border-b border-secondary-100">
         <img src={Logo} alt="Logo" className="h-12" />
       </div>

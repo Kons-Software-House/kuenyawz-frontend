@@ -17,6 +17,7 @@ import ProductListView from "./views/user/ProductListView";
 import ProductDetailPage from "./views/user/ProductDetailView";
 import CartView from "./views/user/CartView";
 import AdminDashboardView from "./views/admin/AdminDashboardView";
+import AdminCalendarView from "./views/admin/AdminCalendarView";
 import AdminProductListView from "./views/admin/AdminProductListView";
 import AddNewProductView from "./views/admin/AddNewProductView";
 import EditProductView from "./views/admin/EditProductView";
@@ -35,20 +36,25 @@ function App() {
     "/kalender": "bg-secondary-200",
   };
 
-  useEffect(() => {
-    async function pathCheck(path: string) {
-      setCheckingAuth(true);
+  async function pathCheck(path: string) {
+    setCheckingAuth(true);
+    try {
+
       if (await checkAuth()) {
         navigate(path);
       } else {
         navigate("/not-found");
       }
+    } finally {
       setCheckingAuth(false);
     }
+  }
+
+  useEffect(() => {
     if (location.pathname.startsWith("/admin")) {
       pathCheck(location.pathname);
     }
-  }, [checkAuth]);
+  }, [location.pathname]);
 
   useEffect(() => {
     if (!location.pathname.startsWith("/produk")) {
@@ -75,6 +81,7 @@ function App() {
             <Route path="/keranjang" element={<CartView />} />
             <Route path="*" element={<NotFoundView />} />
             <Route path="admin/dashboard" element={<AdminDashboardView />} />
+            <Route path="admin/kalender" element={<AdminCalendarView />} />
             <Route path="admin/produk" element={<AdminProductListView />} />
             <Route path="admin/produk/tambah" element={<AddNewProductView />} />
             <Route path="admin/produk/edit/:productId" element={<EditProductView />} />
