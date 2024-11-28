@@ -68,8 +68,15 @@ export default function ThreeDayDatePicker({ isSmall, selectable = false }: Cale
     setSelectedDates(proposedDates);
   };
 
+  const formatDateString = (date: Date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
   const getEventType = (date: Date) => {
-    const dateString = date.toISOString().split('T')[0];
+    const dateString = formatDateString(new Date(date));
     const closedDate = closedDates.find(cd => cd.date === dateString);
 
     if (!closedDate) return 0;
