@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
 
 type BackdropProps = {
   children?: React.ReactNode;
@@ -8,6 +9,14 @@ type BackdropProps = {
 }
 
 export default function Backdrop({ children, onClose, width = 'w-10/12 sm:w-7/12 md:w-6/12 lg:w-4/12' }: BackdropProps) {
+  useEffect(() => {
+    document.body.classList.add('overflow-hidden');
+
+    return () => {
+      document.body.classList.remove('overflow-hidden');
+    };
+  }, []);
+
   return (
     <motion.div onClick={() => { onClose() }}
       initial={{ opacity: 0 }}
