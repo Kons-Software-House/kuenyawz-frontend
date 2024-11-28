@@ -21,3 +21,8 @@ export const createClosedDates = async (date: string, type: string, reason?: str
     const response = await apiClient.post('/closure', data);
     return response.data;
 };
+
+export const deleteClosedDates = async (date: string): Promise<any> => {
+    const response = await apiClient.delete('/closure', { params: { from: date, to: date } });
+    return response.data;
+};
