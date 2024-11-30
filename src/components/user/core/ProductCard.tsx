@@ -4,12 +4,13 @@ import { Link } from "react-router-dom";
 import { CategoryColors, LighterBorderColors } from "./Colors";
 import { Product } from "../../../types/Product";
 import { useTransitionColor } from "../../../contexts/TransitionColorContext";
+import React from "react";
 
 type ProductCardProps = {
   product: Product
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+export const ProductCard = React.memo(({ product }: ProductCardProps) => {
   const { setTransitionColor } = useTransitionColor();
   const background = CategoryColors[product.category] as "bg-tetriary-100" | "bg-tetriary-200" | "bg-tetriary-300" | "bg-tetriary-400" | "bg-tetriary-500";
   const beforeBackground = {
@@ -34,4 +35,4 @@ export default function ProductCard({ product }: ProductCardProps) {
       </motion.div>
     </Link>
   )
-}
+})

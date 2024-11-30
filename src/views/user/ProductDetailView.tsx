@@ -7,7 +7,7 @@ import { useModal } from "../../contexts/ModalContext";
 import { retrieveProductById, retrieveRecommendedProducts } from "../../services/ProducApiService";
 import { LighterBorderColors, CategoryColors } from '../../components/user/core/Colors';
 import Container from "../../components/user/core/Container"
-import ProductCard from "../../components/user/core/ProductCard";
+import { ProductCard } from "../../components/user/core/ProductCard";
 import LoadingLayer from "../../components/user/core/LoadingLayer";
 import UpperSection from "../../components/user/core/UpperSection"
 import AddToCartModal from "../../components/user/modals/AddToCartModal";
