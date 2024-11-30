@@ -30,7 +30,7 @@ export default function TransitionLayer() {
     >
       <motion.div className='flex' initial={{ justifyItems: 'start' }} exit={{ justifyContent: 'end' }}>
         <motion.div
-          className={`${transitionColor} h-[18rem] brightness-[95%]`}
+          className={`${transitionColor} h-[10rem] lg:h-[18rem] brightness-[95%]`}
           initial={{ width: '120%' }}
           animate={{ width: '0%' }}
           exit={{ width: '120%' }}
