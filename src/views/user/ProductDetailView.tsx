@@ -60,31 +60,38 @@ export default function ProductDetailPage() {
           {showAddToCartModal && <AddToCartModal variants={product.variants} />}
           <UpperSection title={product.name} background={CategoryColors[product.category] as 'bg-secondary-200' | 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500'} />
           <Container>
-            <div className="grid grid-cols-6 lg:grid-cols-11 gap-10 w-full mb-4 -mt-20">
+            <div className="grid grid-cols-6 lg:grid-cols-11 gap-2 lg:gap-10 w-full mb-4 lg:-mt-20">
               <Column span2={false} moveRange={40}>
-                <p className="font-semi text-xl md:text-2xl lg:text-3xl mb-4 object-cover font-semibold">
+                <p className="font-semi text-xl md:text-2xl lg:text-3xl mb-4 object-cover font-semibold order-last lg:order-first">
                   {product.tagline}
                 </p>
-                <div className={`overflow-hidden aspect-[3/4.5] bg-gray-100 w-full rounded-lg border-8 ${LighterBorderColors[CategoryColors[product.category as keyof typeof CategoryColors] as keyof typeof LighterBorderColors]} rounded-lg`}>
+                <div className={`overflow-hidden aspect-[3/4.5] bg-gray-100 w-full rounded-lg border-4 lg:border-8 ${LighterBorderColors[CategoryColors[product.category as keyof typeof CategoryColors] as keyof typeof LighterBorderColors]} rounded-lg`}>
                   <img className="aspect-[3/4.5] w-full object-cover rounded-lg shadow-md scale-105 hover:scale-110 transition ease-in-out duration-300" draggable="false" alt="Product" src={product.images[0]} />
                 </div>
                 <div className="lg:h-12 lg:w-full">
                 </div>
               </Column>
               <Column span2={false} moveRange={0}>
-                <p className="font-poppins sm:text-mds md:text-md lg:text-lg xl:text-xl mb-4 text-justify tracking-tight pb-2">
+                <p className="font-poppins sm:text-mds md:text-md lg:text-lg xl:text-xl mb-4 text-justify tracking-tight pb-2 order-last lg:order-first">
                   {product.description}
                 </p>
-                <div className={`overflow-hidden aspect-[1/1] bg-gray-100 w-full rounded-lg border-8 ${LighterBorderColors[CategoryColors[product.category as keyof typeof CategoryColors] as keyof typeof LighterBorderColors]} rounded-lg`}>
+                <div className="h-12 w-full order-last lg:hidden">
+                </div>
+                <div className={`overflow-hidden aspect-[1/1] bg-gray-100 w-full rounded-lg border-4 lg:border-8 ${LighterBorderColors[CategoryColors[product.category as keyof typeof CategoryColors] as keyof typeof LighterBorderColors]} rounded-lg`}>
                   <img className="aspect-[1/1] w-full object-cover rounded-lg shadow-md scale-105 hover:scale-110 transition ease-in-out duration-300" draggable="false" alt="Product" src={product.images[1]} />
                 </div>
               </Column>
               <Column span2={true} moveRange={20}>
-                <div className={`overflow-hidden aspect-[10/12] bg-gray-100 w-full rounded-lg border-8 ${LighterBorderColors[CategoryColors[product.category as keyof typeof CategoryColors] as keyof typeof LighterBorderColors]} rounded-lg`}>
+                <div className={`overflow-hidden aspect-[10/12] bg-gray-100 w-full rounded-lg border-4 lg:border-8  ${LighterBorderColors[CategoryColors[product.category as keyof typeof CategoryColors] as keyof typeof LighterBorderColors]} rounded-lg`}>
                   <img className="aspect-[10/12] w-full scale-105 hover:scale-110 transition ease-in-out duration-300" draggable="false" alt="Product" src={product.images[2]} />
                 </div>
-                <AddToCartButton color={CategoryColors[product.category] as 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500'} onClick={() => setShowAddToCartModal(true)} />
+                <div className="hidden lg:block">
+                  <AddToCartButton color={CategoryColors[product.category] as 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500'} onClick={() => setShowAddToCartModal(true)} />
+                </div>
               </Column>
+            </div>
+            <div className="block lg:hidden w-full">
+              <AddToCartButton color={CategoryColors[product.category] as 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500'} onClick={() => setShowAddToCartModal(true)} />
             </div>
           </Container>
           <div className={`absolute left-0 right-0 -mt-[16rem] md:h-[6rem] -z-10 ${CategoryColors[product.category as keyof typeof CategoryColors]}`} />
@@ -115,7 +122,7 @@ function Column({ span2, children, moveRange }: ColumnProps) {
   const y = useTransform(scrollYProgress, [0, 1], [0, -moveRange]);
 
   return (
-    <motion.div className={"" + (span2 ? "col-span-6 lg:col-span-5" : "col-span-3")} style={{ y }}>
+    <motion.div className={"" + (span2 ? "col-span-6 lg:col-span-5 order-first lg:order-last " : "col-span-3 ")} style={{ y }}>
       <div className="flex items-end justify-end flex h-full w-full">
         <div className="flex flex-col gap-2 w-full">
           {children}
