@@ -95,29 +95,10 @@ export default function ProductListView() {
         </div>
         :
         <Container>
-
-          {/* Page Controls */}
-          <div className="flex flex-col lg:flex-row justify-between items-center my-2 lg:my-4 gap-2">
-            <p className="text-sm lg:text-lg">Menampilkan {page} dari {totalPages} halaman</p>
-            <div className="flex gap-2">
-              <button className="bg-secondary-100 text-white text-sm md:text-md px-2 lg:px-4 rounded"
-                onClick={() => {
-                  if (page > 1) {
-                    setPage(page - 1)
-                    fetchProducts(page - 1, keyword, category)
-                  }
-                }}
-              >Sebelumnya</button>
-              <button className="bg-secondary-100 text-white text-sm md:text-md px-2 lg:px-4 rounded"
-                onClick={() => {
-                  if (page < totalPages) {
-                    setPage(page + 1)
-                    fetchProducts(page + 1, keyword, category)
-                  }
-                }}
-              >Selanjutnya</button>
-            </div>
-          </div>
+          <PaginationControls page={page} totalPages={totalPages} onPageChange={(newPage) => {
+            setPage(newPage);
+            fetchProducts(newPage, keyword, category);
+          }} />
 
           <div className='grid grid-cols-3 lg:grid-cols-4 p-4 w-full gap-4 lg:gap-8'>
             {products.map((product) => (
@@ -125,28 +106,36 @@ export default function ProductListView() {
             ))}
           </div >
 
-          {/* Page Controls */}
-          <div className="flex flex-col lg:flex-row justify-between items-center my-2 lg:my-4 gap-2">
-            <p className="text-sm lg:text-lg">Menampilkan {page} dari {totalPages} halaman</p>
-            <div className="flex gap-2">
-              <button className="bg-secondary-100 text-white text-sm md:text-md px-2 lg:px-4 rounded"
-                onClick={() => {
-                  if (page > 1) {
-                    setPage(page - 1)
-                  }
-                }}
-              >Sebelumnya</button>
-              <button className="bg-secondary-100 text-white text-sm md:text-md px-2 lg:px-4 rounded"
-                onClick={() => {
-                  if (page < totalPages) {
-                    setPage(page + 1)
-                  }
-                }}
-              >Selanjutnya</button>
-            </div>
-          </div>
+          <PaginationControls page={page} totalPages={totalPages} onPageChange={(newPage) => {
+            setPage(newPage);
+            fetchProducts(newPage, keyword, category);
+          }} />
         </Container>
       }
     </>
   )
+}
+
+function PaginationControls({ page, totalPages, onPageChange }: { page: number, totalPages: number, onPageChange: (newPage: number) => void }) {
+  return (
+    <div className="flex flex-col lg:flex-row justify-between items-center my-2 lg:my-4 gap-2">
+      <p className="text-sm lg:text-lg">Menampilkan {page} dari {totalPages} halaman</p>
+      <div className="flex gap-2">
+        <button
+          className="bg-secondary-100 text-white text-sm md:text-md px-2 lg:px-4 rounded"
+          disabled={page <= 1}
+          onClick={() => onPageChange(page - 1)}
+        >
+          Sebelumnya
+        </button>
+        <button
+          className="bg-secondary-100 text-white text-sm md:text-md px-2 lg:px-4 rounded"
+          disabled={page >= totalPages}
+          onClick={() => onPageChange(page + 1)}
+        >
+          Selanjutnya
+        </button>
+      </div>
+    </div>
+  );
 }
