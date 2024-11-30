@@ -9,18 +9,18 @@ export default function AboutUsView() {
     <>
       <UpperSection title="Tentang Kami" subtitle="Ciptakan Pertemuan Manis" />
       <Container>
-        <section className="lg:mx-10 flex flex-col h-[60dvh] md:p-20">
-          <h3 className="font-clear text-lg mb-8">
+        <section className="lg:mx-10 flex flex-col md:p-20">
+          <h3 className="font-clear text-sm mt-4 lg:mt-0 lg:text-lg mb-8">
             Kuenya WZ siap membantu Anda! Hubungi kami untuk pemesanan kue, pastry, camilan, atau pertanyaan seputar layanan catering kami. Kami senang bisa menjadi bagian dari momen spesial Anda.
           </h3>
           <div className="flex gap-4 mb-2">
             <div className="">
-              <img className="h-12 md:h-14" src={PinpointIcon} alt="" />
+              <img className="w-14 md:h-14" src={PinpointIcon} alt="" />
             </div>
             <div className="grid grid-rows-2">
               <h3 className="font-clear text-text-dark text-lg md:text-xl tracking-tight">Kuenya WZ
               </h3>
-              <p className="font-clear text-text-light text-md md:text-lg">
+              <p className="font-clear text-text-light text-sm md:text-lg">
                 Jl. Belimbing No. 9F, Jagakarsa, Jakarta Selatan, 12620
               </p>
             </div>
@@ -32,7 +32,7 @@ export default function AboutUsView() {
             <div className="grid grid-rows-2">
               <h3 className="font-clear text-text-dark text-lg md:text-xl tracking-tight">Telepon & WhatsApp
               </h3>
-              <p className="font-clear text-text-light text-md md:text-lg">
+              <p className="font-clear text-text-light text-sm md:text-lg">
                 0812-3456-7890
               </p>
             </div>
@@ -44,7 +44,7 @@ export default function AboutUsView() {
             <div className="grid grid-rows-2">
               <h3 className="font-clear text-text-dark text-lg md:text-xl tracking-tight">Instagram
               </h3>
-              <p className="font-clear text-text-light text-md md:text-lg">
+              <p className="font-clear text-text-light text-sm md:text-lg">
                 @kuenyawz
               </p>
             </div>
