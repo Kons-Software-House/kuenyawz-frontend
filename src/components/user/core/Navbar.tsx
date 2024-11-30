@@ -20,7 +20,7 @@ export default function Navbar() {
     <motion.div>
       <nav className={`w-full text-base font-nav bg-black/10 fixed z-30 h-16 px-4 md:px-12 lg:text-xl flex items-center`}>
         <div className="h-full w-full flex items-center justify-between">
-          <div className={"basis-1/3 flex items-center justify-start"}>
+          <div className={"lg:basis-1/3 flex items-center justify-start"}>
             <Link to="/">
               <motion.img src={Main} className="h-10 md:h-12 mt-1 object-cover" />
             </Link>
@@ -79,9 +79,9 @@ export default function Navbar() {
               className="md:hidden z-50 relative"
               onClick={toggleMenu}
             >
-              <div className={`w-6 h-0.5 bg-black transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></div>
-              <div className={`w-6 h-0.5 bg-black my-1 transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></div>
-              <div className={`w-6 h-0.5 bg-black transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></div>
+              <div className={`w-6 h-0.5 bg-black`} />
+              <div className={`w-6 h-0.5 bg-black my-1 `} />
+              <div className={`w-6 h-0.5 bg-black`} />
             </button>
           </div>
         </div>
@@ -105,22 +105,27 @@ export default function Navbar() {
                 animate={{ x: 0 }}
                 exit={{ x: "100%" }}
                 transition={{ type: "tween" }}
-                className="fixed top-0 right-0 w-36 h-full bg-secondary-500 z-50 shadow-lg"
+                className="fixed top-0 right-0 w-40 h-full bg-secondary-500 z-50 shadow-lg"
               >
-                <div className="flex flex-col p-6 space-y-6 mt-10 items-center">
-                  <ul className='font-nav tracking-wider font-bold text-lg'>
+                <Link to="/" onClick={() => { setIsMenuOpen(false) }} className='w-full flex items-center justify-center mt-2'>
+                  <motion.img src={Main} className="h-8 mt-1 object-cover" />
+                </Link>
+                <div className="flex flex-col py-6 items-center w-full">
+                  <ul className='font-nav tracking-wider font-bold text-lg w-full px-5'>
                     <NavButtonSmall text="Produk" href="/menu" setIsMenuOpen={setIsMenuOpen} />
                     <NavButtonSmall text="Kalender" href="/kalender" setIsMenuOpen={setIsMenuOpen} />
                     <NavButtonSmall text="Tentang" href="/tentang-kami" setIsMenuOpen={setIsMenuOpen} />
-                    {isAuthenticated ? (
-                      <li>
-                        <button onClick={handleLogout}>Keluar</button>
-                      </li>
-                    ) : (
-                      <li>
-                        <button onClick={() => { modalContext.setShowLoginModal(true) }}>Masuk</button>
-                      </li>
-                    )}
+                    <li>
+                      <button className='flex justify-between w-full' onClick={() => { isAuthenticated ? handleLogout() : modalContext.setShowLoginModal(true) }}>
+                        <p className="text-lg font-bold tracking-[1.2px] text-black">
+                          {isAuthenticated ? "Keluar" : "Masuk"}
+                        </p>
+                        <div>
+                          [ ]
+                        </div>
+                      </button>
+                      <hr className='bg-black mb-4' />
+                    </li>
                   </ul>
                 </div>
               </motion.div>
@@ -128,7 +133,7 @@ export default function Navbar() {
           )}
         </AnimatePresence>
       </nav>
-    </motion.div>
+    </motion.div >
   )
 }
 
@@ -144,9 +149,15 @@ function NavButtonSmall(
   return (
     <li>
       <Link to={href} onClick={() => setIsMenuOpen(false)}>
-        <p className="text-lg font-bold tracking-[1.2px] text-black mb-1">
-          {text}
-        </p>
+        <div className='flex justify-between w-full'>
+          <p className="text-lg font-bold tracking-[1.2px] text-black">
+            {text}
+          </p>
+          <div>
+            [ ]
+          </div>
+        </div>
+        <hr className='bg-black mb-4' />
       </Link>
     </li>
   )
