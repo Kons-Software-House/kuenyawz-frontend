@@ -161,7 +161,7 @@ export default function Calendar({ isSmall, selectedDates, selectable = false, s
   };
 
   return (
-    <div className={`grid grid-cols-7 gap-2 bg-secondary-500 p-4 lg:p-6 shadow-xl rounded-md w-full max-w-[46rem] ${isSmall ? 'text-sm lg:text-md' : 'text-lg lg:text-xl'}`}>
+    <div className={`grid grid-cols-7 gap-1 lg:gap-2 bg-secondary-500 p-4 lg:p-6 shadow-xl rounded-md w-full max-w-[46rem] ${isSmall ? 'text-sm lg:text-md' : 'text-lg lg:text-xl'}`}>
       <YearMonth
         year={selectedYear}
         month={selectedMonth}
@@ -223,7 +223,7 @@ type WeekDayProps = {
 
 function WeekDay({ day }: WeekDayProps) {
   return (
-    <div className="bg-secondary-100 flex flex-col items-center justify-center font-clear rounded shadow-md font-semibold py-1 text-sm lg:text-lg">
+    <div className="bg-secondary-100 flex flex-col items-center justify-center font-clear rounded shadow-md lg:font-semibold py-1 text-sm lg:text-lg">
       {day}
     </div>
   )
