@@ -20,10 +20,10 @@ export default function UpperSection({ title, subtitle, background = 'bg-seconda
       <TransitionLayer />
       <Header title={title} background={background} />
       <motion.div
-        className={`${LighterBackgroundColors[background]} h-[6rem]`}>
+        className={`${LighterBackgroundColors[background]} h-[2rem] lg:h-[6rem]`}>
         {subtitle && (
           <motion.h2
-            className="text-center font-semi text-3xl mb-4 truncate"
+            className="text-center font-semi text-xl lg:text-3xl mb-4 truncate"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7, duration: 0.5, ease: 'easeInOut' }}
@@ -39,9 +39,9 @@ export default function UpperSection({ title, subtitle, background = 'bg-seconda
 function Header({ title, background }: HeaderProps) {
   return (
     <motion.div
-      className={`${background} h-[18rem] flex items-center justify-center pt-[4rem]`}>
+      className={`${background} h-[8rem] lg:h-[18rem] flex items-center justify-center pt-[2rem] lg:pt-[4rem]`}>
       <motion.h1
-        className="font-fancy tracking-tighter text-6xl md:text-8xl lg:text-8xl xl:text-9xl text-white text-shadow-[4]"
+        className="font-fancy tracking-tighter text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-white text-shadow-[4]"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.6, duration: 0.4, ease: 'easeInOut' }}>
