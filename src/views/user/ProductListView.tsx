@@ -24,9 +24,9 @@ export default function ProductListView() {
   async function fetchProducts(newPage?: number, newKeyword?: string, newCategory?: string) {
     setIsLoading(true);
 
-    const currentKeyword = newKeyword !== undefined ? newKeyword : keyword;
-    const currentCategory = newCategory !== undefined ? newCategory : category;
-    const currentPage = newPage !== undefined ? newPage : page;
+    const currentKeyword = newKeyword ?? keyword;
+    const currentCategory = newCategory ?? category;
+    const currentPage = newPage ?? page;
 
     try {
       const params = {
@@ -34,7 +34,7 @@ export default function ProductListView() {
         page: currentPage,
         category: currentCategory,
         pageSize: 12,
-        available: true
+        available: true,
       };
 
       const response = await retrieveProducts(params);
@@ -46,11 +46,12 @@ export default function ProductListView() {
       setKeyword(currentKeyword);
       setCategory(currentCategory);
     } catch (error) {
-      console.error(error);
+      console.error("Failed to fetch products:", error);
     } finally {
       setIsLoading(false);
     }
   }
+
 
   useEffect(() => {
     fetchProducts();
