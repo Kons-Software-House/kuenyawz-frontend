@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { Product } from "../../types/Product";
 import { retrieveProducts } from "../../services/ProducApiService";
@@ -13,6 +13,13 @@ export default function ProductListView() {
   const [totalPages, setTotalPages] = useState(0);
   const [keyword, setKeyword] = useState("");
   const [category, setCategory] = useState("");
+
+  const debounceTimeout = useRef<NodeJS.Timeout | null>(null);
+
+  const handleSearchChange = () => {
+    if (debounceTimeout.current) clearTimeout(debounceTimeout.current);
+    debounceTimeout.current = setTimeout(() => fetchProducts(1), 500);
+  };
 
   async function fetchProducts(newPage?: number, newKeyword?: string, newCategory?: string) {
     setIsLoading(true);
@@ -71,9 +78,13 @@ export default function ProductListView() {
           </div>
           <input type="text" placeholder="Cari produk" className="flex-1 px-4"
             onChange={(e) => {
+              if (e.target.value === "") {
+                fetchProducts(1, "", category);
+                return;
+              }
               const newKeyword = e.target.value;
               setKeyword(newKeyword);
-              fetchProducts(1, newKeyword, category);
+              handleSearchChange();
             }}
           />
         </div>
