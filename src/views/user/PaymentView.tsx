@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Field, Form, Formik } from "formik";
+import { useNavigate } from "react-router-dom";
 
 import { CartItem } from "../../types/CartItem";
 import { formatToIdr } from "../../types/Formatter";
@@ -27,6 +28,7 @@ export default function PaymentView() {
   const [selectedLocation, setSelectedLocation] = useState<Location>(INITIAL_LOCATION);
   const [routeDistance, setRouteDistance] = useState<number | null>(null);
   const [selectedDates, setSelectedDates] = useState<Date[]>([]);
+  const navigate = useNavigate();
 
   const retrieveCartItems = async () => {
     try {
@@ -66,8 +68,8 @@ export default function PaymentView() {
     })
     try {
       const response = await createOrder(fullAddress, lat, lon, eventDate, paymentType, deliveryOption, purchaseItems)
-      window.location.href = response.transactions[0].paymentUrl;
-      console.log(response)
+      window.open(response.transactions[0].paymentUrl, '_blank');
+      navigate('/')
     } catch (error) {
       console.error(error)
     }
@@ -93,7 +95,7 @@ export default function PaymentView() {
                 <AvailabilityTable />
               </div>
             </div>
-            <button type="submit" className="w-full bg-red-500 p-2 rounded-md mt-4">Pesan Sekarang</button>
+            <button type="submit" className="w-full p-2 rounded-md mt-4">Pesan Sekarang</button>
           </Form>
         </Formik>
       </Container>
