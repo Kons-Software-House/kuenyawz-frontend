@@ -111,13 +111,13 @@ export default function Navbar() {
                   <motion.img src={Main} className="h-8 mt-1 object-cover" />
                 </Link>
                 <div className="flex flex-col py-6 items-center w-full">
-                  <ul className='font-nav tracking-wider font-bold text-lg w-full px-5'>
+                  <ul className='w-full px-6'>
                     <NavButtonSmall text="Produk" href="/menu" setIsMenuOpen={setIsMenuOpen} />
                     <NavButtonSmall text="Kalender" href="/kalender" setIsMenuOpen={setIsMenuOpen} />
                     <NavButtonSmall text="Tentang" href="/tentang-kami" setIsMenuOpen={setIsMenuOpen} />
                     <li>
                       <button className='flex justify-between w-full' onClick={() => { isAuthenticated ? handleLogout() : modalContext.setShowLoginModal(true) }}>
-                        <p className="text-lg font-bold tracking-[1.2px] text-black">
+                        <p className="text-sm font-bold tracking-[1.2px] text-black">
                           {isAuthenticated ? "Keluar" : "Masuk"}
                         </p>
                         <div>
@@ -150,7 +150,7 @@ function NavButtonSmall(
     <li>
       <Link to={href} onClick={() => setIsMenuOpen(false)}>
         <div className='flex justify-between w-full'>
-          <p className="text-lg font-bold tracking-[1.2px] text-black">
+          <p className="text-sm font-bold tracking-[1.2px] text-black">
             {text}
           </p>
           <div>
