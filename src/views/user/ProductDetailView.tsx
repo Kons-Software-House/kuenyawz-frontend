@@ -95,16 +95,16 @@ export default function ProductDetailPage() {
             </div>
           </Container>
           <div className={`absolute left-0 right-0 -mt-[16rem] md:h-[6rem] -z-10 ${CategoryColors[product.category as keyof typeof CategoryColors]}`} />
-          <Container>
-            <h4 className="w-full text-center text-3xl font-semi mt-4">Cocok ditambah dengan</h4>
-            <div className="flex mt-6 w-full lg:w-5/6 p-8 gap-20 justify-between">
+          <h4 className="w-full text-center text-3xl font-semi mt-4">Cocok ditambah dengan</h4>
+          <div className="px-4">
+            <div className="flex mt-6 w-full lg:w-5/6 lg:p-8 lg:gap-20 justify-between mb-4">
               {isRecommendedLoading ? <div>Loading</div> : recommendedProducts.map((product, index) => (
                 <div key={`product-${productId}-${product.productId.toString()}-${index}`} className="bg-gray-100 aspect-[1/1] w-1/4">
                   <ProductCard product={product} />
                 </div>
               ))}
             </div>
-          </Container>
+          </div>
         </>
       }
     </>
