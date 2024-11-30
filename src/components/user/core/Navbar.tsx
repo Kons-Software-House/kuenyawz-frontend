@@ -18,11 +18,11 @@ export default function Navbar() {
 
   return (
     <motion.div>
-      <nav className={`w-full text-base font-nav bg-black/10 fixed z-30 h-16 px-4 md:px-12 lg:text-xl flex items-center`}>
+      <nav className={`w-full text-base font-nav bg-black/10 fixed z-30 h-10 lg:h-16 px-4 md:px-12 lg:text-xl flex items-center`}>
         <div className="h-full w-full flex items-center justify-between">
           <div className={"lg:basis-1/3 flex items-center justify-start"}>
             <Link to="/">
-              <motion.img src={Main} className="h-10 md:h-12 mt-1 object-cover" />
+              <motion.img src={Main} className="h-8 lg:h-10 md:h-12 mt-1 object-cover" />
             </Link>
           </div>
 
@@ -69,7 +69,7 @@ export default function Navbar() {
             >
               <motion.img
                 src={CartIcon}
-                className="h-6 md:h-8"
+                className="h-6 lg:h-8"
                 whileHover={{ scale: 1.1 }}
               />
             </Link>
@@ -179,7 +179,7 @@ function NavButton(
 
   const textVariant = {
     default: { color: "#000000" },
-    hover: { color: "#888888" },
+    hover: { color: "#FFFFFF" },
   }
 
   return (
@@ -193,7 +193,7 @@ function NavButton(
           <motion.p variants={textVariant}>
             {text}
           </motion.p>
-          <motion.div className="h-1 bg-black" variants={textUnderlineVariant} />
+          <motion.div className="h-1 bg-white" variants={textUnderlineVariant} />
         </motion.div>
       </Link>
     </li>
