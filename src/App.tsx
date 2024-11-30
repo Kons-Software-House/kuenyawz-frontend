@@ -16,6 +16,7 @@ import CalendarView from "./views/user/CalendarView";
 import ProductListView from "./views/user/ProductListView";
 import ProductDetailPage from "./views/user/ProductDetailView";
 import CartView from "./views/user/CartView";
+import PaymentView from "./views/user/PaymentView";
 import AdminDashboardView from "./views/admin/AdminDashboardView";
 import AdminCalendarView from "./views/admin/AdminCalendarView";
 import AdminProductListView from "./views/admin/AdminProductListView";
@@ -79,6 +80,7 @@ function App() {
             <Route path="/menu" element={<ProductListView />} />
             <Route path="/produk/:productId" element={<ProductDetailPage />} />
             <Route path="/keranjang" element={<CartView />} />
+            <Route path="/keranjang/pengiriman" element={<PaymentView />} />
             <Route path="*" element={<NotFoundView />} />
             <Route path="admin/dashboard" element={<AdminDashboardView />} />
             <Route path="admin/kalender" element={<AdminCalendarView />} />
