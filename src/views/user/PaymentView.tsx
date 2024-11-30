@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
+import { Field, Form, Formik } from "formik";
 
 import { CartItem } from "../../types/CartItem";
+import { formatToIdr } from "../../types/Formatter";
 import { retrieveUserCart } from "../../services/UserApiService";
+import { createOrder } from "../../services/OrderApiService";
 import Container from "../../components/user/core/Container";
 import UpperSection from "../../components/user/core/UpperSection";
+import Calendar from "../../components/user/views/CalendarView/Calendar";
 import LocationPicker from "../../components/user/views/PaymentVIew/LocationPicker";
-import { formatToIdr } from "../../types/Formatter";
+import AvailabilityTable from "../../components/user/views/CalendarView/AvailabilityTable";
 
 interface Location {
   lat: number;
@@ -22,6 +26,7 @@ export default function PaymentView() {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
   const [selectedLocation, setSelectedLocation] = useState<Location>(INITIAL_LOCATION);
   const [routeDistance, setRouteDistance] = useState<number | null>(null);
+  const [selectedDates, setSelectedDates] = useState<Date[]>([]);
 
   const retrieveCartItems = async () => {
     try {
@@ -45,15 +50,52 @@ export default function PaymentView() {
     }
   }, [selectedLocation, routeDistance])
 
+  const handleSubmit = async (values: any) => {
+    const { fullAddress } = values
+    const lat = selectedLocation.lat
+    const lon = selectedLocation.lon
+    const eventDate = selectedDates[2].toISOString().split('T')[0]
+    const paymentType = 'FULL_PAYMENT'
+    const deliveryOption = 'DELIVERY'
+    const purchaseItems = cartItems.map(cartItem => {
+      return {
+        note: cartItem.note,
+        quantity: cartItem.quantity,
+        variantId: cartItem.selectedVariantId,
+      }
+    })
+    try {
+      const response = await createOrder(fullAddress, lat, lon, eventDate, paymentType, deliveryOption, purchaseItems)
+      window.location.href = response.transactions[0].paymentUrl;
+      console.log(response)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
     <>
       <UpperSection title="Pembayaran" />
       <Container>
-        <h1 className="text-2xl font-bold font-semi mb-2">Pilih Lokasi Pengiriman</h1>
-        <div className="w-full mb-4">
-          <LocationPicker selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} routeDistance={routeDistance} setRouteDistance={setRouteDistance} />
-        </div>
-        <CartSummary cartItems={cartItems} routeDistance={routeDistance} />
+        <Formik initialValues={{ fullAddress: '' }} onSubmit={(values) => { handleSubmit(values) }}>
+          <Form className="w-full">
+            <h2 className="text-2xl font-bold font-semi mb-2 text-center">Lokasi Pengiriman</h2>
+            <Field type="text" name="fullAddress" className="w-full p-2 rounded-md border border-gray-300 mb-4" placeholder="Alamat Lengkap" />
+            <label className="text-md">Pilih lokasi pengiriman pada peta</label>
+            <div className="w-full mb-4">
+              <LocationPicker selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} routeDistance={routeDistance} setRouteDistance={setRouteDistance} />
+            </div>
+            <CartSummary cartItems={cartItems} routeDistance={routeDistance} selectedDates={selectedDates} />
+            <h2 className="text-2xl font-bold font-semi mb-2 mt-4 text-center">Pilih Tanggal Pengiriman</h2>
+            <div className="flex bg-red-200 w-full">
+              <div className="flex gap-2">
+                <Calendar selectable={true} selectedDates={selectedDates} setSelectedDates={setSelectedDates} />
+                <AvailabilityTable />
+              </div>
+            </div>
+            <button type="submit" className="w-full bg-red-500 p-2 rounded-md mt-4">Pesan Sekarang</button>
+          </Form>
+        </Formik>
       </Container>
     </>
   );
@@ -62,6 +104,7 @@ export default function PaymentView() {
 type CartSummaryProps = {
   cartItems: CartItem[]
   routeDistance: number | null
+  selectedDates: Date[]
 }
 function CartSummary({ cartItems, routeDistance }: CartSummaryProps) {
   const subtotal = cartItems.reduce((acc, cartItem) => {
@@ -77,6 +120,9 @@ function CartSummary({ cartItems, routeDistance }: CartSummaryProps) {
   const formattedTotal = formatToIdr(total)
   return (
     <div className="bg-secondary-500 w-full p-6 rounded-md shadow-xl">
+      <span className="text-xl font-semibold">Tanggal Pengiriman</span>
+
+      <hr className="bg-black my-2 border-black" />
       <span className="text-xl font-semibold">Rincian Belanja</span>
       <hr className="bg-black my-2 border-black" />
       <span className="text-lg font-semibold">Total Belanja</span>
