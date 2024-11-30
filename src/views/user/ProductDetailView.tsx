@@ -94,7 +94,7 @@ export default function ProductDetailPage() {
               <AddToCartButton color={CategoryColors[product.category] as 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500'} onClick={() => setShowAddToCartModal(true)} />
             </div>
           </Container>
-          <div className={`absolute left-0 right-0 -mt-[16rem] md:h-[6rem] -z-10 ${CategoryColors[product.category as keyof typeof CategoryColors]}`} />
+          <div className={`hidden lg:block absolute left-0 right-0 -mt-[40rem] md:h-[6rem] -z-10 ${CategoryColors[product.category as keyof typeof CategoryColors]}`} />
           <h4 className="w-full text-center text-xl lg:text-3xl font-semi mt-4">Cocok ditambah dengan</h4>
           <div className="px-4">
             <div className="flex mt-6 w-full lg:w-5/6 lg:p-8 lg:gap-20 justify-between mb-4">
