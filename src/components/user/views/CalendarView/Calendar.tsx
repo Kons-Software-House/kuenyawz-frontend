@@ -1,4 +1,7 @@
 import { useState, useEffect } from 'react';
+import { ChevronLeft } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
+
 import { retrieveClosedDates } from "../../../../services/CalendarApiService";
 
 type CalendarProps = {
@@ -202,12 +205,12 @@ function YearMonth({ year, month, onPrevMonth, onNextMonth }: YearMonthProps) {
           {year}
         </div>
       </div>
-      <div className="flex items-center gap-4">
-        <div onClick={onPrevMonth} className="cursor-pointer">
-          Left
+      <div className="flex items-center lg:gap-4">
+        <div onClick={onPrevMonth}>
+          <ChevronLeft size={26} />
         </div>
-        <div onClick={onNextMonth} className="cursor-pointer">
-          right
+        <div onClick={onNextMonth}>
+          <ChevronRight size={26} />
         </div>
       </div>
     </div>
