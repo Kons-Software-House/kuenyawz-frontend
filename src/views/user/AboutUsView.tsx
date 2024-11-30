@@ -7,7 +7,7 @@ import UpperSection from "../../components/user/core/UpperSection";
 export default function AboutUsView() {
   return (
     <>
-      <UpperSection title="Kontak Kami" subtitle="Ciptakan Pertemuan Manis" />
+      <UpperSection title="Tentang Kami" subtitle="Ciptakan Pertemuan Manis" />
       <Container>
         <section className="lg:mx-10 flex flex-col h-[60dvh] md:p-20">
           <h3 className="font-clear text-lg mb-8">
