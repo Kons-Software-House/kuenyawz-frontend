@@ -93,18 +93,18 @@ export default function ProductDetailPage() {
             <div className="block lg:hidden w-full">
               <AddToCartButton color={CategoryColors[product.category] as 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500'} onClick={() => setShowAddToCartModal(true)} />
             </div>
+            <h4 className="w-full text-center text-xl lg:text-3xl font-semi mt-4">Cocok ditambah dengan</h4>
+            <div className="w-full flex justify-center">
+              <div className="flex mt-6 w-full lg:p-8 lg:gap-20 justify-between mb-4">
+                {isRecommendedLoading ? <div>Loading</div> : recommendedProducts.map((product, index) => (
+                  <div key={`product-${productId}-${product.productId.toString()}-${index}`} className="bg-gray-100 aspect-[1/1] w-1/4">
+                    <ProductCard product={product} />
+                  </div>
+                ))}
+              </div>
+            </div>
           </Container>
           <div className={`hidden lg:block absolute left-0 right-0 -mt-[40rem] md:h-[6rem] -z-10 ${CategoryColors[product.category as keyof typeof CategoryColors]}`} />
-          <h4 className="w-full text-center text-xl lg:text-3xl font-semi mt-4">Cocok ditambah dengan</h4>
-          <div className="px-4">
-            <div className="flex mt-6 w-full lg:w-5/6 lg:p-8 lg:gap-20 justify-between mb-4">
-              {isRecommendedLoading ? <div>Loading</div> : recommendedProducts.map((product, index) => (
-                <div key={`product-${productId}-${product.productId.toString()}-${index}`} className="bg-gray-100 aspect-[1/1] w-1/4">
-                  <ProductCard product={product} />
-                </div>
-              ))}
-            </div>
-          </div>
         </>
       }
     </>
