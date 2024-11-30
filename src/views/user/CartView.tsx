@@ -58,7 +58,7 @@ export default function CartView() {
 
   return (
     <>
-      <UpperSection title="Keranjang" subtitle="Daftar Kreasi Pilihan Anda" />
+      <UpperSection title="Keranjang" />
       <Container>
         <div className="grid grid-cols-1 w-full font-clear">
           <div className="col-span-2">
@@ -189,14 +189,14 @@ function CheckoutButton() {
   }
 
   return (
-    <motion.button className='border bg-secondary-200 hover:text-white transition ease-in-out duration-300 rounded-lg mt-3 h-12' type="submit">
+    <Link className='border bg-secondary-200 hover:text-white transition ease-in-out duration-300 rounded-lg mt-3 h-12' to="pengiriman">
       <motion.div className='relative z-50 flex h-12 justify-end hover:justify-start' initial="default" whileHover="hover">
         <p className="flex w-full justify-center items-center font-extrabold font-semi tracking-wider text-xl hover:drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
-          Lanjutkan Ke Pembayaran
+          Lanjutkan Pembelian
         </p>
         <motion.div variants={hoverVariant} className='absolute bg-tetriary-500 w-10 top-0 bottom-0 z-[-1] rounded-lg'>
         </motion.div>
       </motion.div>
-    </motion.button >
+    </Link >
   )
 }

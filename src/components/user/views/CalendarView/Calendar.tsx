@@ -3,14 +3,15 @@ import { retrieveClosedDates } from "../../../../services/CalendarApiService";
 
 type CalendarProps = {
   isSmall?: boolean;
+  selectedDates?: Date[];
   selectable?: boolean;
   onChange?: (dates: Date[]) => void;
+  setSelectedDates?: (dates: Date[]) => void;
 };
 
-export default function ThreeDayDatePicker({ isSmall, selectable = false }: CalendarProps) {
+export default function Calendar({ isSmall, selectedDates, selectable = false, setSelectedDates }: CalendarProps) {
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
-  const [selectedDates, setSelectedDates] = useState<Date[]>([]);
   const [closedDates, setClosedDates] = useState<any[]>([]);
 
   const retrieveDates = async () => {
@@ -59,6 +60,7 @@ export default function ThreeDayDatePicker({ isSmall, selectable = false }: Cale
     }
 
     // If clicked date is already in selection, remove it
+    if (!selectedDates || !setSelectedDates) return;
     if (selectedDates.some(date => date.toDateString() === clickedDate.toDateString())) {
       const updatedDates = selectedDates.filter(date => date.toDateString() !== clickedDate.toDateString());
       setSelectedDates(updatedDates);
@@ -110,7 +112,7 @@ export default function ThreeDayDatePicker({ isSmall, selectable = false }: Cale
     // Current month's days
     for (let day = 1; day <= lastDate; day++) {
       const currentDate = new Date(selectedYear, selectedMonth - 1, day);
-      const isSelected = selectedDates.some(date => date.toDateString() === currentDate.toDateString());
+      const isSelected = selectedDates ? selectedDates.some(date => date.toDateString() === currentDate.toDateString()) : false;
 
       days.push(
         <DateComponent
