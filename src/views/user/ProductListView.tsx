@@ -47,16 +47,16 @@ export default function ProductListView() {
 
   useEffect(() => {
     fetchProducts();
-  }, [])
+  }, [page])
 
   return (
     <>
       <UpperSection title="Produk Kami" subtitle="Kelezatan Dalam Setiap Kreasi" />
-      <Container>
-        <div className="border-2 border-secondary-100 w-full flex">
+      <div className="w-full flex justify-center p-2 -mb-2 lg:mb-0">
+        <div className="border-2 border-secondary-100 w-full flex lg:w-3/4">
           {/* Filters */}
           <div className="border-r-2 border-secondary-100 px-1">
-            <select name="category" id="category" className="p-2" onChange={(e) => {
+            <select name="category" id="category" className="p-1 lg:p-2 text-sm lg:text-md" onChange={(e) => {
               const newCategory = e.target.value;
               setCategory(newCategory);
               fetchProducts(1, keyword, newCategory);
@@ -77,61 +77,65 @@ export default function ProductListView() {
             }}
           />
         </div>
-
-        {/* Page Controls */}
-        <div className="flex justify-between items-center my-4 gap-2">
-          <p className="text-lg">Menampilkan {page} dari {totalPages} halaman</p>
-          <div className="flex gap-2">
-            <button className="bg-secondary-100 text-white px-4 rounded"
-              onClick={() => {
-                if (page > 1) {
-                  setPage(page - 1)
-                  fetchProducts(page - 1, keyword, category)
-                }
-              }}
-            >Sebelumnya</button>
-            <button className="bg-secondary-100 text-white px-4 rounded"
-              onClick={() => {
-                if (page < totalPages) {
-                  setPage(page + 1)
-                  fetchProducts(page + 1, keyword, category)
-                }
-              }}
-            >Selanjutnya</button>
-          </div>
+      </div>
+      {isLoading ?
+        <div className="flex justify-center items-center h-96 min-h-screen">
+          <p className="text-2xl">Memuat produk...</p>
         </div>
+        :
+        <Container>
 
-        {isLoading && <p>Memuat...</p>}
-        <div className='grid grid-cols-3 lg:grid-cols-4 p-8 w-full gap-8 lg:gap-14'>
-          {products.map((product) => (
-            <ProductCard key={product.productId} product={product} />
-          ))}
-
-        </div >
-
-        {/* Page Controls */}
-        <div className="flex justify-between items-center my-4 gap-2">
-          <p className="text-lg">Menampilkan {page} dari {totalPages} halaman</p>
-          <div className="flex gap-2">
-            <button className="bg-secondary-100 text-white px-4 rounded"
-              onClick={() => {
-                if (page > 1) {
-                  setPage(page - 1)
-                  fetchProducts(page - 1, keyword, category)
-                }
-              }}
-            >Sebelumnya</button>
-            <button className="bg-secondary-100 text-white px-4 rounded"
-              onClick={() => {
-                if (page < totalPages) {
-                  setPage(page + 1)
-                  fetchProducts(page + 1, keyword, category)
-                }
-              }}
-            >Selanjutnya</button>
+          {/* Page Controls */}
+          <div className="flex flex-col lg:flex-row justify-between items-center my-2 lg:my-4 gap-2">
+            <p className="text-sm lg:text-lg">Menampilkan {page} dari {totalPages} halaman</p>
+            <div className="flex gap-2">
+              <button className="bg-secondary-100 text-white text-sm md:text-md px-2 lg:px-4 rounded"
+                onClick={() => {
+                  if (page > 1) {
+                    setPage(page - 1)
+                    fetchProducts(page - 1, keyword, category)
+                  }
+                }}
+              >Sebelumnya</button>
+              <button className="bg-secondary-100 text-white text-sm md:text-md px-2 lg:px-4 rounded"
+                onClick={() => {
+                  if (page < totalPages) {
+                    setPage(page + 1)
+                    fetchProducts(page + 1, keyword, category)
+                  }
+                }}
+              >Selanjutnya</button>
+            </div>
           </div>
-        </div>
-      </Container>
+
+          <div className='grid grid-cols-3 lg:grid-cols-4 p-4 w-full gap-4 lg:gap-8'>
+            {products.map((product) => (
+              <ProductCard key={product.productId} product={product} />
+            ))}
+          </div >
+
+          {/* Page Controls */}
+          <div className="flex flex-col lg:flex-row justify-between items-center my-2 lg:my-4 gap-2">
+            <p className="text-sm lg:text-lg">Menampilkan {page} dari {totalPages} halaman</p>
+            <div className="flex gap-2">
+              <button className="bg-secondary-100 text-white text-sm md:text-md px-2 lg:px-4 rounded"
+                onClick={() => {
+                  if (page > 1) {
+                    setPage(page - 1)
+                  }
+                }}
+              >Sebelumnya</button>
+              <button className="bg-secondary-100 text-white text-sm md:text-md px-2 lg:px-4 rounded"
+                onClick={() => {
+                  if (page < totalPages) {
+                    setPage(page + 1)
+                  }
+                }}
+              >Selanjutnya</button>
+            </div>
+          </div>
+        </Container>
+      }
     </>
   )
 }
