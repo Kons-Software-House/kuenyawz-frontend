@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react";
 
 import { Product } from "../../types/Product";
 import { retrieveProducts } from "../../services/ProducApiService";
-import Container from "../../components/user/core/Container"
 import { ProductCard } from "../../components/user/core/ProductCard";
+import Container from "../../components/user/core/Container"
 import UpperSection from "../../components/user/core/UpperSection"
 
 export default function ProductListView() {
