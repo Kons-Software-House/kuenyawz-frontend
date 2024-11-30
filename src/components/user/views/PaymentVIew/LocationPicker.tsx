@@ -41,16 +41,17 @@ const MapClickHandler: React.FC<{
 
 type LocationPickerProps = {
   selectedLocation: Location;
+  routeDistance: number | null;
   setSelectedLocation: (location: Location) => void;
+  setRouteDistance: (distance: number | null) => void;
 };
 
-export default function LocationPicker({ selectedLocation, setSelectedLocation }: LocationPickerProps) {
+export default function LocationPicker({ selectedLocation, routeDistance, setSelectedLocation, setRouteDistance }: LocationPickerProps) {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [locations, setLocations] = useState<Location[]>([]);
   const [isSearching, setIsSearching] = useState<boolean>(false);
   const [mapKey, setMapKey] = useState(0);
   const [routeGeometry, setRouteGeometry] = useState<[number, number][]>([]);
-  const [routeDistance, setRouteDistance] = useState<number | null>(null);
 
   const VENDOR_LOCATION: Location = {
     lat: -6.175402,
