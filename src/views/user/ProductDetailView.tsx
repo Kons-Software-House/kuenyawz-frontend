@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useParams } from "react-router-dom";
+import { Forward } from "lucide-react";
 
 import { Product } from "../../types/Product";
 import { useModal } from "../../contexts/ModalContext";
 import { retrieveProductById, retrieveRecommendedProducts } from "../../services/ProducApiService";
-import { LighterBorderColors, CategoryColors } from '../../components/user/core/Colors';
+import { LighterBorderColors, CategoryColors, LighterBackgroundColors } from '../../components/user/core/Colors';
 import { ProductCard } from "../../components/user/core/ProductCard";
 import Container from "../../components/user/core/Container"
 import LoadingLayer from "../../components/user/core/LoadingLayer";
@@ -104,7 +105,7 @@ export default function ProductDetailPage() {
               </div>
             </div>
           </Container>
-          <div className={`hidden lg:block absolute left-0 right-0 -mt-[40rem] md:h-[6rem] -z-10 ${CategoryColors[product.category as keyof typeof CategoryColors]}`} />
+          <div className={`hidden lg:block absolute left-0 right-0 -mt-[50rem] md:h-[6rem] -z-10 ${LighterBackgroundColors[CategoryColors[product.category as keyof typeof CategoryColors] as keyof typeof LighterBackgroundColors]}`} />
         </>
       }
     </>
@@ -139,7 +140,7 @@ type AddToCartButtonProps = {
 
 function AddToCartButton({ color, onClick }: AddToCartButtonProps) {
   const hoverVariant = {
-    default: { width: "10%", top: "50%", left: "80%", x: "-50%", y: "-50%", transition: { duration: 0.3 } },
+    default: { width: "10%", top: "50%", left: "82%", x: "-50%", y: "-50%", transition: { duration: 0.3 } },
     hover: { width: "100%", top: "0%", left: "0%", x: "0%", y: "0%", transition: { duration: 0.3 } },
   }
 
@@ -157,9 +158,10 @@ function AddToCartButton({ color, onClick }: AddToCartButtonProps) {
     <div className={`border-8 ${LighterBorderColors[color]} p-2 flex flex-col gap-2 rounded-2xl`}>
       <motion.button className={`${color} grow text-white hover:text-black transition ease-in-out duration-300 rounded-xl h-12`} onClick={onClick}>
         <motion.div className='relative z-50 flex h-full' initial="default" whileHover="hover">
-          <p className={`flex w-full justify-center items-center font-bold tracking-wide text-lg drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] hover:drop-shadow`}>
-            Tambah Ke Keranjang --/
-          </p>
+          <div className={`flex w-full justify-center items-center font-bold tracking-wide text-lg drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] hover:drop-shadow`}>
+            Tambah Ke Keranjang
+            <Forward size={24} className="ml-1 mb-1" />
+          </div>
           <motion.div variants={hoverVariant} animate={floatingAnimation} className={`absolute w-10 bg-secondary-500 bottom-0 z-[-1] rounded-xl`}>
           </motion.div>
         </motion.div>
