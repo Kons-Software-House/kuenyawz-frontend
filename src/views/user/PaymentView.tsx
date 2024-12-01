@@ -162,7 +162,7 @@ function PaymentButton() {
   }
 
   return (
-    <button type="submit" className='border bg-secondary-200 hover:text-white transition ease-in-out duration-300 rounded-lg h-12 w-full mt-2'>
+    <button type="submit" className='border bg-secondary-200 hover:text-white transition ease-in-out duration-300 rounded-lg h-12 w-full mt-4'>
       <motion.div className='relative z-10 flex h-12 justify-end hover:justify-start' initial="default" whileHover="hover">
         <p className="flex w-full justify-center items-center font-extrabold font-semi tracking-wider text-xl hover:drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
           Lanjutkan Pembelian
