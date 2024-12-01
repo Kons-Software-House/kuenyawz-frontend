@@ -10,7 +10,7 @@ import Main from "../../../assets/Navbar/Main.png"
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const modalContext = useModal()
-  const { isAuthenticated, handleLogout } = useAuth()
+  const { isAuthenticated, cartCount, handleLogout } = useAuth()
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -59,7 +59,7 @@ export default function Navbar() {
               )}
             </div>
 
-            <Link
+            <Link className='relative'
               to={isAuthenticated ? "/keranjang" : "#"}
               onClick={() => {
                 if (!isAuthenticated) {
@@ -72,6 +72,11 @@ export default function Navbar() {
                 className="h-6 lg:h-8"
                 whileHover={{ scale: 1.1 }}
               />
+              {isAuthenticated && cartCount > 0 && (
+                <div className="absolute -top-2 -right-2 bg-red-400 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                  {cartCount}
+                </div>
+              )}
             </Link>
 
             {/* Mobile Hamburger Menu */}
