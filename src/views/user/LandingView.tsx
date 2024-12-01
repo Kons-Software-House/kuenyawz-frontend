@@ -11,15 +11,15 @@ export default function LandingView() {
       </div>
       <HorizontalScroller />
       <div className='h-[28rem] grid grid-cols-3'>
-        <Column background='bg-secondary-300' header='Produk Kami' description='Kelezatan Dalam Setiap Kreasi' href='/menu'>
+        <Column background='bg-secondary-300' header='Produk Kami' description='Kelezatan Dalam Setiap Kreasi' href='/products'>
           <div className='bg-white h-1/2 w-11/12 shadow-lg'>
           </div>
         </Column>
-        <Column background='bg-secondary-200' header='Kalender' description='Perayaan Anda, Kreasi Kami' href='/kalender'>
+        <Column background='bg-secondary-200' header='Kalender' description='Perayaan Anda, Kreasi Kami' href='/calenar'>
           <div className='bg-white h-1/2 w-11/12 shadow-lg'>
           </div>
         </Column>
-        <Column background='bg-secondary-100' header='Tentang Kami' description='Ciptakan Pertemuan Manis' href='/tentang-kami'>
+        <Column background='bg-secondary-100' header='Tentang Kami' description='Ciptakan Pertemuan Manis' href='/about'>
           <div className='bg-white h-1/2 w-11/12 shadow-lg'>
           </div>
         </Column>

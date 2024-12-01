@@ -83,7 +83,7 @@ export default function AdminProductListView() {
                   <option value="other">Lainnya</option>
                 </select>
               </div>
-              <Link className="p-2 px-4 bg-secondary-300 border-2 border-secondary-100 rounded-lg" to={"/admin/produk/tambah"}>Buat Produk Baru</Link>
+              <Link className="p-2 px-4 bg-secondary-300 border-2 border-secondary-100 rounded-lg" to={"/admin/products/add"}>Buat Produk Baru</Link>
             </div>
             {/* table */}
             <table className="w-full bg-secondary-250">
@@ -170,7 +170,7 @@ function VariantItem({ product, variant, fetchProducts }: VariantItemProps) {
       <td className="p-2 text-center">{product.available ? "Tersedia" : "Tidak Tersedia"}</td>
       <td className="p-2 text-center">
         <div className="flex justify-center gap-4">
-          <Link className="rounded-lg border-secondary-100 border-2 w-20" to={`/admin/produk/edit/${product.productId}`}>Ubah</Link>
+          <Link className="rounded-lg border-secondary-100 border-2 w-20" to={`/admin/products/edit/${product.productId}`}>Ubah</Link>
           <button className="rounded-lg border-secondary-100 border-2 w-20" onClick={() => {
             alertDelete();
           }}>Hapus</button>

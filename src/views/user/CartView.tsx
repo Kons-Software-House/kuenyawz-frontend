@@ -63,7 +63,7 @@ export default function CartView() {
         {cartItems.length === 0 ? (
           <div className="flex flex-col justify-center items-center h-96">
             <span className="text-2xl font-semibold">Keranjang Anda Kosong</span>
-            <Link to="/menu" className="text-lg text-primary-500 font-semibold ml-2 underline underline-offset-2">Mulai Belanja</Link>
+            <Link to="/products" className="text-lg text-primary-500 font-semibold ml-2 underline underline-offset-2">Mulai Belanja</Link>
           </div>
         ) : (
           <div className="grid grid-cols-1 w-full font-clear">
@@ -108,11 +108,11 @@ function CartItemComponent({ cartItem, handleDeleteCartItem, handleUpdateCartIte
       <div className="flex md:pl-10 pr-2 p-1 bg-white lg:rounded-md shadow-md gap-2 items-center text-sm lg:text-md">
         <div className="grow">
           <div className="flex gap-4 grow">
-            <Link to={`/produk/${cartItem.product.productId}`}>
+            <Link to={`/product/${cartItem.product.productId}`}>
               <img src={cartItem.product.images ? cartItem.product.images[0] : ''} alt={cartItem.product.name} className="aspect-[6/9] w-12 object-cover rounded-md bg-gray-100 border border-gray-400 rounded" />
             </Link>
             <div className="flex flex-col gap-2 justify-center">
-              <Link to={`/produk/${cartItem.product.productId}`}>
+              <Link to={`/product/${cartItem.product.productId}`}>
                 <span className="font-semibold">{cartItem.product.name}</span>
               </Link>
               <Formik initialValues={{ selectedVariantId: cartItem.selectedVariantId }} onSubmit={(values) => { handleUpdateCartItem(cartItem.cartItemId.toString(), cartItem.quantity, values.selectedVariantId.toString()) }}>
@@ -196,7 +196,7 @@ function CheckoutButton() {
   }
 
   return (
-    <Link className='border bg-secondary-200 hover:text-white transition ease-in-out duration-300 rounded-lg h-12' to="pengiriman">
+    <Link className='border bg-secondary-200 hover:text-white transition ease-in-out duration-300 rounded-lg h-12' to="shipment">
       <motion.div className='relative z-10 flex h-12 justify-end hover:justify-start' initial="default" whileHover="hover">
         <p className="flex w-full justify-center items-center font-extrabold font-semi tracking-wider text-xl hover:drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
           Lanjutkan Pembelian

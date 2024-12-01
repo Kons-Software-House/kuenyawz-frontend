@@ -27,9 +27,9 @@ export default function Navbar() {
           </div>
 
           <ul className="hidden md:flex grow items-center justify-between mx-6 space-x-6">
-            <NavButton text="Produk" href="/menu" />
-            <NavButton text="Kalender" href="/kalender" />
-            <NavButton text="Tentang" href="/tentang-kami" />
+            <NavButton text="Produk" href="/products" />
+            <NavButton text="Kalender" href="/calendar" />
+            <NavButton text="Tentang" href="/about" />
           </ul>
 
           <div className="basis-1/3 flex items-center justify-end gap-4">
@@ -60,7 +60,7 @@ export default function Navbar() {
             </div>
 
             <Link className='relative'
-              to={isAuthenticated ? "/keranjang" : "#"}
+              to={isAuthenticated ? "/cart" : "#"}
               onClick={() => {
                 if (!isAuthenticated) {
                   modalContext.setShowLoginModal(true)
@@ -117,9 +117,9 @@ export default function Navbar() {
                 </Link>
                 <div className="flex flex-col py-6 items-center w-full">
                   <ul className='w-full px-6'>
-                    <NavButtonSmall text="Produk" href="/menu" setIsMenuOpen={setIsMenuOpen} />
-                    <NavButtonSmall text="Kalender" href="/kalender" setIsMenuOpen={setIsMenuOpen} />
-                    <NavButtonSmall text="Tentang" href="/tentang-kami" setIsMenuOpen={setIsMenuOpen} />
+                    <NavButtonSmall text="Produk" href="/products" setIsMenuOpen={setIsMenuOpen} />
+                    <NavButtonSmall text="Kalender" href="/calendar" setIsMenuOpen={setIsMenuOpen} />
+                    <NavButtonSmall text="Tentang" href="/about" setIsMenuOpen={setIsMenuOpen} />
                     <li>
                       <button className='flex justify-between w-full' onClick={() => { isAuthenticated ? handleLogout() : modalContext.setShowLoginModal(true) }}>
                         <p className="text-sm font-bold tracking-[1.2px] text-black">

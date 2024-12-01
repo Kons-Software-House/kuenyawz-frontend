@@ -66,7 +66,7 @@ export default function EditProductView() {
       alert(error.response.data.message);
       console.error(error);
     } finally {
-      navigate("/admin/produk");
+      navigate("/admin/products");
     }
   }
 
