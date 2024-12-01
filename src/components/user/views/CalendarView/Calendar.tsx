@@ -64,9 +64,8 @@ export default function Calendar({ isSmall, selectedDates, selectable = false, s
 
     // If clicked date is already in selection, remove it
     if (!selectedDates || !setSelectedDates) return;
-    if (selectedDates.some(date => date.toDateString() === clickedDate.toDateString())) {
-      const updatedDates = selectedDates.filter(date => date.toDateString() !== clickedDate.toDateString());
-      setSelectedDates(updatedDates);
+    if (selectedDates[2]?.toISOString() == clickedDate.toISOString()) {
+      setSelectedDates([]);
       return;
     }
 
