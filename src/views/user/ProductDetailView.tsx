@@ -8,6 +8,7 @@ import { useModal } from "../../contexts/ModalContext";
 import { retrieveProductById, retrieveRecommendedProducts } from "../../services/ProducApiService";
 import { LighterBorderColors, CategoryColors, LighterBackgroundColors } from '../../components/user/core/Colors';
 import { ProductCard } from "../../components/user/core/ProductCard";
+import { useAuth } from "../../contexts/AuthContext";
 import Container from "../../components/user/core/Container"
 import LoadingLayer from "../../components/user/core/LoadingLayer";
 import UpperSection from "../../components/user/core/UpperSection"
@@ -19,7 +20,8 @@ export default function ProductDetailPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [isRecommendedLoading, setIsRecommendedLoading] = useState(true);
   const [recommendedProducts, setRecommendedProducts] = useState<Product[]>([]);
-  const { setShowAddToCartModal, showAddToCartModal } = useModal();
+  const { setShowAddToCartModal, showAddToCartModal, setShowLoginModal } = useModal();
+  const { isAuthenticated } = useAuth();
 
   const fetchProduct = async () => {
     if (productId) {
@@ -46,6 +48,14 @@ export default function ProductDetailPage() {
       console.error(error)
     } finally {
       setIsRecommendedLoading(false)
+    }
+  }
+
+  const handleAddToCart = () => {
+    if (isAuthenticated) {
+      setShowAddToCartModal(true)
+    } else {
+      setShowLoginModal(true)
     }
   }
 
@@ -87,12 +97,12 @@ export default function ProductDetailPage() {
                   <img className="aspect-[10/12] w-full scale-105 hover:scale-110 transition ease-in-out duration-300" draggable="false" alt="Product" src={product.images[2]} />
                 </div>
                 <div className="hidden sm:block">
-                  <AddToCartButton color={CategoryColors[product.category] as 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500'} onClick={() => setShowAddToCartModal(true)} />
+                  <AddToCartButton color={CategoryColors[product.category] as 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500'} onClick={handleAddToCart} />
                 </div>
               </Column>
             </div>
             <div className="block sm:hidden w-full">
-              <AddToCartButton color={CategoryColors[product.category] as 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500'} onClick={() => setShowAddToCartModal(true)} />
+              <AddToCartButton color={CategoryColors[product.category] as 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500'} onClick={handleAddToCart} />
             </div>
             <h4 className="w-full text-center text-xl sm:text-3xl font-semi mt-4">Cocok ditambah dengan</h4>
             <div className="w-full flex justify-center">
