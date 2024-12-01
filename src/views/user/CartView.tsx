@@ -63,7 +63,7 @@ export default function CartView() {
         <div className="grid grid-cols-1 w-full font-clear">
           <div className="col-span-2">
             <div className="grid grid-cols-1 bg-secondary-500 w-full lg:p-8 rounded-md shadow-lg lg:gap-2">
-              <div className="flex lg:pl-10 pr-2 p-2 font-bold bg-secondary-100 rounded-t-md shadow-md gap-2">
+              <div className="flex lg:pl-10 pr-2 p-2 font-semibold lg:font-bold bg-secondary-100 rounded-t-md shadow-md gap-2">
                 <span className="grow">Produk</span>
                 <span className="w-24 lg:w-28 text-center">Harga</span>
                 <span className="w-14 text-center">Jumlah</span>
