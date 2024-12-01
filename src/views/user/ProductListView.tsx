@@ -101,7 +101,7 @@ export default function ProductListView() {
             fetchProducts(newPage, keyword, category);
           }} />
 
-          <div className='grid grid-cols-3 lg:grid-cols-4 p-4 w-full gap-4 lg:gap-8'>
+          <div className='grid grid-cols-3 lg:grid-cols-4 p-4 w-full gap-4 md:gap-8'>
             {products.map((product) => (
               <ProductCard key={product.productId} product={product} />
             ))}
