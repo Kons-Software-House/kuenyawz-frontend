@@ -65,9 +65,9 @@ export default function CartView() {
             <div className="grid grid-cols-1 bg-secondary-500 w-full lg:p-8 rounded-md shadow-lg lg:gap-2">
               <div className="flex lg:pl-10 pr-2 p-2 font-bold bg-secondary-100 rounded-t-md shadow-md gap-2">
                 <span className="grow">Produk</span>
-                <span className="w-28 text-center">Harga</span>
+                <span className="w-24 lg:w-28 text-center">Harga</span>
                 <span className="w-14 text-center">Jumlah</span>
-                <span className="w-28 text-center">Total</span>
+                <span className="w-28 text-center hidden lg:block">Total</span>
                 <span className="w-6"></span>
               </div>
               {cartItems.map((cartItem, index) => (
@@ -77,9 +77,6 @@ export default function CartView() {
           </div>
           <div className="mt-4 flex flex-col gap-4">
             <CartSummary cartItems={cartItems} />
-            <button className="bg-secondary-500 rounded-md shadow-lg p-2">
-              <Link to="/checkout" className="text-black text-lg font-semi">Lanjutkan ke Pembayaran</Link>
-            </button>
             <CheckoutButton />
           </div>
         </div>
@@ -101,7 +98,7 @@ function CartItemComponent({ cartItem, handleDeleteCartItem, handleUpdateCartIte
 
   return (
     <>
-      <div className="flex lg:pl-10 pr-2 p-1 bg-white lg:rounded-md shadow-md gap-2 items-center">
+      <div className="flex lg:pl-10 pr-2 p-1 bg-white lg:rounded-md shadow-md gap-2 items-center text-sm lg:text-md">
         <div className="grow">
           <div className="flex gap-4 grow">
             <Link to={`/produk/${cartItem.product.productId}`}>
@@ -112,9 +109,12 @@ function CartItemComponent({ cartItem, handleDeleteCartItem, handleUpdateCartIte
                 <span className="font-semibold">{cartItem.product.name}</span>
               </Link>
               <Formik initialValues={{ selectedVariantId: cartItem.selectedVariantId }} onSubmit={(values) => { handleUpdateCartItem(cartItem.cartItemId.toString(), cartItem.quantity, values.selectedVariantId.toString()) }}>
-                {({ submitForm }) => (
-                  <Form className="w-28">
-                    <Field as="select" name='selectedVariantId' className="w-full border border-gray-400 rounded" onBlur={submitForm}>
+                {({ submitForm, setFieldValue }) => (
+                  <Form className="w-20 lg:w-28">
+                    <Field as="select" name='selectedVariantId' className="w-full border border-gray-400 rounded text-sm lg:text-md" onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                      setFieldValue('selectedVariantId', e.target.value);
+                      submitForm();
+                    }}>
                       {cartItem.product.variants.map((variant, index) => (
                         <option key={index} value={variant.variantId.toString()}>{variant.type}</option>
                       ))}
@@ -125,7 +125,7 @@ function CartItemComponent({ cartItem, handleDeleteCartItem, handleUpdateCartIte
             </div>
           </div>
         </div>
-        <span className="w-28 text-center">{formatToIdr(variant?.price ?? 0)}</span>
+        <span className="min-w-24 lg:w-28 text-center">{formatToIdr(variant?.price ?? 0)}</span>
         <Formik initialValues={{ quantity: cartItem.quantity }} onSubmit={(values) => { handleUpdateCartItem(cartItem.cartItemId.toString(), values.quantity) }}>
           {({ submitForm, setFieldValue }) => (
             <Form className="w-14 flex justify-center">
@@ -148,7 +148,7 @@ function CartItemComponent({ cartItem, handleDeleteCartItem, handleUpdateCartIte
             </Form>
           )}
         </Formik>
-        <span className="w-28 text-center">{formatToIdr((variant?.price ?? 0) * cartItem.quantity)}</span>
+        <span className="w-24 lg:w-28 hidden lg:block text-center">{formatToIdr((variant?.price ?? 0) * cartItem.quantity)}</span>
         <button className="w-6 text-red-900 font-bold font-clear text-sm" onClick={() => handleDeleteCartItem(cartItem.cartItemId.toString())}>[X]</button>
       </div>
     </>
@@ -189,7 +189,7 @@ function CheckoutButton() {
   }
 
   return (
-    <Link className='border bg-secondary-200 hover:text-white transition ease-in-out duration-300 rounded-lg mt-3 h-12' to="pengiriman">
+    <Link className='border bg-secondary-200 hover:text-white transition ease-in-out duration-300 rounded-lg h-12' to="pengiriman">
       <motion.div className='relative z-50 flex h-12 justify-end hover:justify-start' initial="default" whileHover="hover">
         <p className="flex w-full justify-center items-center font-extrabold font-semi tracking-wider text-xl hover:drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
           Lanjutkan Pembelian
