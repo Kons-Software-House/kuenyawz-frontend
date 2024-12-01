@@ -39,7 +39,7 @@ export default function UpperSection({ title, subtitle, background = 'bg-seconda
 function Header({ title, background }: HeaderProps) {
   return (
     <motion.div
-      className={`${background} h-[8rem] lg:h-[18rem] flex items-center justify-center pt-[2rem] lg:pt-[4rem]`}>
+      className={`${background} h-[8rem] lg:h-[18rem] flex items-center justify-center pt-[3.5rem] lg:pt-[4rem]`}>
       <motion.h1
         className="text-center font-fancy tracking-tighter text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-white text-shadow-[4]"
         initial={{ opacity: 0 }}
