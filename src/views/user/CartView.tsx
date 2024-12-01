@@ -60,26 +60,33 @@ export default function CartView() {
     <>
       <UpperSection title="Keranjang" />
       <Container>
-        <div className="grid grid-cols-1 w-full font-clear">
-          <div className="col-span-2">
-            <div className="grid grid-cols-1 bg-secondary-500 w-full lg:p-8 rounded-md shadow-lg lg:gap-2">
-              <div className="flex lg:pl-10 pr-2 p-2 font-semibold lg:font-bold bg-secondary-100 rounded-t-md shadow-md gap-2">
-                <span className="grow">Produk</span>
-                <span className="w-24 lg:w-28 text-center">Harga</span>
-                <span className="w-14 text-center">Jumlah</span>
-                <span className="w-24 lg:w-28 text-center hidden md:block">Total</span>
-                <span className="w-6"></span>
+        {cartItems.length === 0 ? (
+          <div className="flex flex-col justify-center items-center h-96">
+            <span className="text-2xl font-semibold">Keranjang Anda Kosong</span>
+            <Link to="/menu" className="text-lg text-primary-500 font-semibold ml-2 underline underline-offset-2">Mulai Belanja</Link>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 w-full font-clear">
+            <div className="col-span-2">
+              <div className="grid grid-cols-1 bg-secondary-500 w-full lg:p-8 rounded-md shadow-lg lg:gap-2">
+                <div className="flex md:pl-10 pr-2 p-2 font-semibold lg:font-bold bg-secondary-100 rounded-t-md shadow-md gap-2">
+                  <span className="grow">Produk</span>
+                  <span className="w-24 lg:w-28 text-center">Harga</span>
+                  <span className="w-14 text-center">Jumlah</span>
+                  <span className="w-24 lg:w-28 text-center hidden md:block">Total</span>
+                  <span className="w-6"></span>
+                </div>
+                {cartItems.map((cartItem, index) => (
+                  <CartItemComponent key={index} cartItem={cartItem} handleDeleteCartItem={handleDeleteCartItem} handleUpdateCartItem={handleUpdateCartItem} />
+                ))}
               </div>
-              {cartItems.map((cartItem, index) => (
-                <CartItemComponent key={index} cartItem={cartItem} handleDeleteCartItem={handleDeleteCartItem} handleUpdateCartItem={handleUpdateCartItem} />
-              ))}
+            </div>
+            <div className="mt-4 flex flex-col gap-4">
+              <CartSummary cartItems={cartItems} />
+              <CheckoutButton />
             </div>
           </div>
-          <div className="mt-4 flex flex-col gap-4">
-            <CartSummary cartItems={cartItems} />
-            <CheckoutButton />
-          </div>
-        </div>
+        )}
       </Container>
     </>
   )
@@ -98,7 +105,7 @@ function CartItemComponent({ cartItem, handleDeleteCartItem, handleUpdateCartIte
 
   return (
     <>
-      <div className="flex lg:pl-10 pr-2 p-1 bg-white lg:rounded-md shadow-md gap-2 items-center text-sm lg:text-md">
+      <div className="flex md:pl-10 pr-2 p-1 bg-white lg:rounded-md shadow-md gap-2 items-center text-sm lg:text-md">
         <div className="grow">
           <div className="flex gap-4 grow">
             <Link to={`/produk/${cartItem.product.productId}`}>
