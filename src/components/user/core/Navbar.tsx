@@ -26,7 +26,7 @@ export default function Navbar() {
             </Link>
           </div>
 
-          <ul className="hidden md:flex grow items-center justify-center mx-6 space-x-6">
+          <ul className="hidden md:flex grow items-center justify-between mx-6 space-x-6">
             <NavButton text="Produk" href="/menu" />
             <NavButton text="Kalender" href="/kalender" />
             <NavButton text="Tentang" href="/tentang-kami" />
