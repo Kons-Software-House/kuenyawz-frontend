@@ -38,6 +38,13 @@ export default function Calendar({ isSmall, selectedDates, selectable = false, s
     return new Date(year, month, 0).getDate();
   };
 
+  const formatDateString = (date: Date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
   const handleDateClick = (day: number) => {
     if (!selectable) return;
 
@@ -51,8 +58,10 @@ export default function Calendar({ isSmall, selectedDates, selectable = false, s
     ];
 
     const isAnyDateUnavailable = proposedDates.some(date => {
-      const dateString = date.toISOString().split('T')[0];
+      const dateString = formatDateString(date);
+      console.log(dateString);
       const closedDate = closedDates.find(cd => cd.date === dateString);
+      console.log(closedDate);
       return closedDate && (closedDate.type === 'CLOSED' || closedDate.type === 'RESERVED');
     });
 
@@ -70,13 +79,6 @@ export default function Calendar({ isSmall, selectedDates, selectable = false, s
     }
 
     setSelectedDates(proposedDates);
-  };
-
-  const formatDateString = (date: Date) => {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
   };
 
   const getEventType = (date: Date) => {
