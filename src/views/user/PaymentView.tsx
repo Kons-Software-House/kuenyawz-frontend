@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ErrorMessage, Field, Form, Formik } from "formik";
+import { Field, Form, Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -104,7 +104,6 @@ export default function PaymentView() {
           <Form className="w-full">
             <h2 className="text-2xl font-bold font-semi mb-2 text-center">Lokasi Pengiriman</h2>
             <Field type="text" name="fullAddress" className="w-full p-2 rounded-md border border-gray-300 mb-4" placeholder="Alamat Lengkap" />
-            <ErrorMessage name="fullAddress" component="div" className="text-red-500" />
             <label className="text-md">Pilih lokasi pengiriman pada peta</label>
             <div className="w-full mb-4">
               <LocationPicker selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} routeDistance={routeDistance} setRouteDistance={setRouteDistance} />
