@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Field, Form, Formik } from "formik";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 import { CartItem } from "../../types/CartItem";
 import { formatToIdr } from "../../types/Formatter";
@@ -89,13 +90,13 @@ export default function PaymentView() {
             </div>
             <CartSummary cartItems={cartItems} routeDistance={routeDistance} selectedDates={selectedDates} />
             <h2 className="text-2xl font-bold font-semi mb-2 mt-4 text-center">Pilih Tanggal Pengiriman</h2>
-            <div className="flex bg-red-200 w-full">
-              <div className="flex gap-2">
+            <div className="flex w-full">
+              <div className="flex flex-col sm:flex-row gap-2 w-full">
                 <Calendar selectable={true} selectedDates={selectedDates} setSelectedDates={setSelectedDates} />
                 <AvailabilityTable />
               </div>
             </div>
-            <button type="submit" className="w-full p-2 rounded-md mt-4">Pesan Sekarang</button>
+            <PaymentButton />
           </Form>
         </Formik>
       </Container>
@@ -152,4 +153,23 @@ function CartSummary({ cartItems, routeDistance }: CartSummaryProps) {
 
 function calculateDeliveryFee(distance: number) {
   return Math.round(distance / 1000) * 3500
+}
+
+function PaymentButton() {
+  const hoverVariant = {
+    default: { width: "0%" },
+    hover: { width: "100%" },
+  }
+
+  return (
+    <button type="submit" className='border bg-secondary-200 hover:text-white transition ease-in-out duration-300 rounded-lg h-12 w-full mt-2'>
+      <motion.div className='relative z-10 flex h-12 justify-end hover:justify-start' initial="default" whileHover="hover">
+        <p className="flex w-full justify-center items-center font-extrabold font-semi tracking-wider text-xl hover:drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
+          Lanjutkan Pembelian
+        </p>
+        <motion.div variants={hoverVariant} className='absolute bg-tetriary-500 w-10 top-0 bottom-0 z-[-1] rounded-lg'>
+        </motion.div>
+      </motion.div>
+    </button >
+  )
 }
