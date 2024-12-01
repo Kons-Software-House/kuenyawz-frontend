@@ -41,7 +41,7 @@ function Header({ title, background }: HeaderProps) {
     <motion.div
       className={`${background} h-[8rem] lg:h-[18rem] flex items-center justify-center pt-[2rem] lg:pt-[4rem]`}>
       <motion.h1
-        className="font-fancy tracking-tighter text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-white text-shadow-[4]"
+        className="text-center font-fancy tracking-tighter text-5xl md:text-7xl lg:text-8xl xl:text-9xl text-white text-shadow-[4]"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.6, duration: 0.4, ease: 'easeInOut' }}>
