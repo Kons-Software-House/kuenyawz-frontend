@@ -7,20 +7,20 @@ export default function LandingView() {
   return (
     <>
       <TransitionLayer />
-      <div className='h-16 bg-secondary-100'>
+      <div className='h-10 lg:h-16 bg-secondary-100'>
       </div>
       <HorizontalScroller />
-      <div className='h-[28rem] grid grid-cols-3'>
+      <div className='lg:h-[28rem] grid md:grid-cols-3 lg:grid-rows-3'>
         <Column background='bg-secondary-300' header='Produk Kami' description='Kelezatan Dalam Setiap Kreasi' href='/products'>
-          <div className='bg-white h-1/2 w-11/12 shadow-lg'>
+          <div className='bg-white h-4/6 w-11/12 aspect-[1/1] shadow-lg hidden md:block'>
           </div>
         </Column>
         <Column background='bg-secondary-200' header='Kalender' description='Perayaan Anda, Kreasi Kami' href='/calenar'>
-          <div className='bg-white h-1/2 w-11/12 shadow-lg'>
+          <div className='bg-white h-4/6 w-11/12 aspect-[1/1] shadow-lg hidden md:block'>
           </div>
         </Column>
         <Column background='bg-secondary-100' header='Tentang Kami' description='Ciptakan Pertemuan Manis' href='/about'>
-          <div className='bg-white h-1/2 w-11/12 shadow-lg'>
+          <div className='bg-white h-4/6 w-11/12 aspect-[1/1] shadow-lg hidden md:block'>
           </div>
         </Column>
       </div >
@@ -40,11 +40,13 @@ function Column(
   { children, background, header, description, href }: ColumnProps
 ) {
   return (
-    <Link to={href} className={`${background}` + ' grow flex justify-center items-center px-[20%] py-[6%] hover:bg-secondary-400 transition ease-in-out duration-300'}>
-      <div className='h-full w-full flex flex-col gap-4 items-center justify-center'>
+    <Link to={href} className={`${background}` + ' grow flex justify-center items-center px-[20%] pt-10 pb-10  md:pt-20 md:pb-20 hover:bg-secondary-400 transition ease-in-out duration-300 md:h-[28rem]'}>
+      <div className='h-full w-full flex flex-col items-center gap-4 justify-between'>
         {children}
-        <h2 className='font-fancy text-4xl text-center font-bold tracking-wide'>{header}</h2>
-        <p className='font-semi text-xl text-center'>{description}</p>
+        <div className="lg:h-2/6">
+          <h2 className='font-fancy text-4xl text-center font-bold tracking-wide'>{header}</h2>
+          <p className='font-semi text-xl text-center'>{description}</p>
+        </div>
       </div>
     </Link>
   );
