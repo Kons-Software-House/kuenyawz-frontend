@@ -14,7 +14,7 @@ type CalendarProps = {
 };
 
 export default function Calendar({ isSmall, selectedDates, selectable = false, setSelectedDates }: CalendarProps) {
-  const THIS_MONTH = new Date().getMonth();
+  const TODAY = new Date();
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [closedDates, setClosedDates] = useState<any[]>([]);
@@ -150,7 +150,7 @@ export default function Calendar({ isSmall, selectedDates, selectable = false, s
       newYear++;
     }
 
-    if (newMonth < THIS_MONTH && newYear == selectedYear) return;
+    if (newMonth < TODAY.getMonth() && newYear == TODAY.getFullYear()) return;
 
     setSelectedMonth(newMonth);
     setSelectedYear(newYear);
