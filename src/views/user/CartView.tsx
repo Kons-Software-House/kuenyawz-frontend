@@ -62,8 +62,8 @@ export default function CartView() {
       <Container>
         <div className="grid grid-cols-1 w-full font-clear">
           <div className="col-span-2">
-            <div className="grid grid-cols-1 bg-secondary-500 w-full p-8 rounded-md shadow-lg gap-2">
-              <div className="flex pl-10 pr-2 p-2 font-bold bg-secondary-100 rounded-md shadow-md gap-2">
+            <div className="grid grid-cols-1 bg-secondary-500 w-full lg:p-8 rounded-md shadow-lg lg:gap-2">
+              <div className="flex lg:pl-10 pr-2 p-2 font-bold bg-secondary-100 rounded-t-md shadow-md gap-2">
                 <span className="grow">Produk</span>
                 <span className="w-28 text-center">Harga</span>
                 <span className="w-14 text-center">Jumlah</span>
@@ -77,9 +77,9 @@ export default function CartView() {
           </div>
           <div className="mt-4 flex flex-col gap-4">
             <CartSummary cartItems={cartItems} />
-            {/* <button className="bg-secondary-500 rounded-md shadow-lg p-2">
+            <button className="bg-secondary-500 rounded-md shadow-lg p-2">
               <Link to="/checkout" className="text-black text-lg font-semi">Lanjutkan ke Pembayaran</Link>
-            </button> */}
+            </button>
             <CheckoutButton />
           </div>
         </div>
@@ -101,7 +101,7 @@ function CartItemComponent({ cartItem, handleDeleteCartItem, handleUpdateCartIte
 
   return (
     <>
-      <div className="flex pl-10 pr-2 p-1 bg-white rounded-md shadow-md gap-2 items-center">
+      <div className="flex lg:pl-10 pr-2 p-1 bg-white lg:rounded-md shadow-md gap-2 items-center">
         <div className="grow">
           <div className="flex gap-4 grow">
             <Link to={`/produk/${cartItem.product.productId}`}>
@@ -172,11 +172,11 @@ function CartSummary({ cartItems }: CartSummaryProps) {
 
   return (
     <div className="bg-secondary-500 w-full p-8 rounded-md shadow-lg">
-      <span className="text-xl font-semibold">Rincian</span>
+      <span className="lg:text-xl font-semibold">Rincian</span>
       <hr className="bg-black my-2 border-black" />
       <div className="grid grid-cols-2">
         <span>Subtotal</span>
-        <span className="text-end">{formattedSubtotal}</span>
+        <span className="text-end text-sm lg:text-md">{formattedSubtotal}</span>
       </div>
     </div>
   )
