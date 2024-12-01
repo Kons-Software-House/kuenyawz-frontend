@@ -67,7 +67,7 @@ export default function CartView() {
                 <span className="grow">Produk</span>
                 <span className="w-24 lg:w-28 text-center">Harga</span>
                 <span className="w-14 text-center">Jumlah</span>
-                <span className="w-28 text-center hidden lg:block">Total</span>
+                <span className="w-24 lg:w-28 text-center hidden md:block">Total</span>
                 <span className="w-6"></span>
               </div>
               {cartItems.map((cartItem, index) => (
@@ -148,7 +148,7 @@ function CartItemComponent({ cartItem, handleDeleteCartItem, handleUpdateCartIte
             </Form>
           )}
         </Formik>
-        <span className="w-24 lg:w-28 hidden lg:block text-center">{formatToIdr((variant?.price ?? 0) * cartItem.quantity)}</span>
+        <span className="w-24 lg:w-28 hidden md:block text-center">{formatToIdr((variant?.price ?? 0) * cartItem.quantity)}</span>
         <button className="w-6 text-red-900 font-bold font-clear text-sm" onClick={() => handleDeleteCartItem(cartItem.cartItemId.toString())}>[X]</button>
       </div>
     </>
