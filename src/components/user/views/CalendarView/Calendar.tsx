@@ -13,6 +13,7 @@ type CalendarProps = {
 };
 
 export default function Calendar({ isSmall, selectedDates, selectable = false, setSelectedDates }: CalendarProps) {
+  const THIS_MONTH = new Date().getMonth();
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [closedDates, setClosedDates] = useState<any[]>([]);
@@ -59,9 +60,7 @@ export default function Calendar({ isSmall, selectedDates, selectable = false, s
 
     const isAnyDateUnavailable = proposedDates.some(date => {
       const dateString = formatDateString(date);
-      console.log(dateString);
       const closedDate = closedDates.find(cd => cd.date === dateString);
-      console.log(closedDate);
       return closedDate && (closedDate.type === 'CLOSED' || closedDate.type === 'RESERVED');
     });
 
@@ -156,6 +155,8 @@ export default function Calendar({ isSmall, selectedDates, selectable = false, s
       newMonth = 1;
       newYear++;
     }
+
+    if (newMonth < THIS_MONTH && newYear === selectedYear) return;
 
     setSelectedMonth(newMonth);
     setSelectedYear(newYear);
