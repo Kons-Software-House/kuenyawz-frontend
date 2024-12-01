@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 import { CartItem } from "../../types/CartItem";
-import { formatToIdr } from "../../types/Formatter";
+import { formatToIdr, formatDateString } from "../../types/Formatter";
 import { retrieveUserCart } from "../../services/UserApiService";
 import { createOrder } from "../../services/OrderApiService";
 import Container from "../../components/user/core/Container";
@@ -57,7 +57,7 @@ export default function PaymentView() {
     const { fullAddress } = values
     const lat = selectedLocation.lat
     const lon = selectedLocation.lon
-    const eventDate = selectedDates[2].toISOString().split('T')[0]
+    const eventDate = formatDateString(selectedDates[2]);
     const paymentType = 'FULL_PAYMENT'
     const deliveryOption = 'DELIVERY'
     const purchaseItems = cartItems.map(cartItem => {
