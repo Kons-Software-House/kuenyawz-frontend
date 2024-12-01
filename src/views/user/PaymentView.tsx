@@ -69,6 +69,11 @@ export default function PaymentView() {
       return
     }
 
+    if (values.fullAddress.length < 10) {
+      alert('Alamat lengkap harus diisi')
+      return
+    }
+
     const { fullAddress } = values
     const lat = selectedLocation.lat
     const lon = selectedLocation.lon
@@ -91,28 +96,11 @@ export default function PaymentView() {
     }
   }
 
-  const validateValues = (values: any) => {
-    const errors: any = {}
-    if (!values.fullAddress) {
-      errors.fullAddress = 'Alamat lengkap harus diisi'
-    }
-    // if (!selectedDates || selectedDates.length < 3) {
-    //   errors.selectedDates = 'Tanggal pengiriman harus dipilih'
-    // }
-    // if (!selectedLocation || selectedLocation.lat === INITIAL_LOCATION.lat || selectedLocation.lon === INITIAL_LOCATION.lon) {
-    //   errors.selectedLocation = 'Lokasi pengiriman harus dipilih'
-    // }
-    // if (routeDistance && routeDistance > 30000) {
-    //   errors.routeDistance = 'Jarak pengiriman tidak boleh melebihi 30 km'
-    // }
-    // return errors;
-  }
-
   return (
     <>
       <UpperSection title="Pembayaran" />
       <Container>
-        <Formik initialValues={{ fullAddress: '' }} onSubmit={(values) => { handleSubmit(values) }} validate={validateValues}>
+        <Formik initialValues={{ fullAddress: '' }} onSubmit={(values) => { handleSubmit(values) }}>
           <Form className="w-full">
             <h2 className="text-2xl font-bold font-semi mb-2 text-center">Lokasi Pengiriman</h2>
             <Field type="text" name="fullAddress" className="w-full p-2 rounded-md border border-gray-300 mb-4" placeholder="Alamat Lengkap" />
