@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { motion } from "framer-motion";
+import { ShoppingBag } from "lucide-react";
 
 import { LighterBorderColors } from "../core/Colors";
 import Backdrop from "../core/Backdrop";
@@ -53,7 +54,7 @@ export default function AddToCartModal({ variants }: AddToCartModalProps) {
                   {variants.map((variant, index) => (
                     <div
                       key={index}
-                      className={`flex flex-col grow items-center justify-center p-1 rounded-md cursor-pointer ${selectedVariant === variant ? 'bg-secondary-100 text-white' : 'bg-white'}`}
+                      className={`flex flex-col grow items-center justify-center p-1 rounded-md cursor-pointer rounded-xl border-double border-secondary-300 border-8 ${selectedVariant === variant ? 'bg-secondary-100 text-white' : 'bg-white'}`}
                       onClick={() => {
                         setSelectedVariant(variant);
                         setFieldValue('quantity', variant.minQuantity);
@@ -102,12 +103,13 @@ function AddToCartButton() {
   };
 
   return (
-    <div className={`border-8 ${LighterBorderColors['bg-secondary-200']} p-2 flex flex-col gap-2 rounded-2xl`}>
+    <div className={`border-8 border-secondary-200 border-double flex flex-col gap-2 rounded-2xl`}>
       <motion.button type="submit" className={`bg-secondary-100 grow text-white hover:text-black transition ease-in-out duration-300 rounded-xl h-12`}>
         <motion.div className='relative z-50 flex h-full' initial="default" whileHover="hover">
-          <p className={`flex w-full justify-center items-center font-bold tracking-wide text-lg drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] hover:drop-shadow`}>
-            Tambah Ke Keranjang --/
-          </p>
+          <div className={`flex w-full justify-center items-center font-bold tracking-wide text-md drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)] hover:drop-shadow`}>
+            Tambah Ke Keranjang
+            <ShoppingBag size={24} className="ml-2 mb-1" />
+          </div>
           <motion.div variants={hoverVariant} animate={floatingAnimation} className={`absolute w-10 bg-secondary-500 bottom-0 z-[-1] rounded-xl`}>
           </motion.div>
         </motion.div>

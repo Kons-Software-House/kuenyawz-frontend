@@ -33,8 +33,8 @@ function App() {
 
   const routeColors: { [key: string]: "bg-secondary-200" | "bg-tetriary-100" | "bg-tetriary-300" | "bg-tetriary-500" } = {
     "/": "bg-secondary-200",
-    "/tentang-kami": "bg-secondary-200",
-    "/kalender": "bg-secondary-200",
+    "/about": "bg-secondary-200",
+    "/calendar": "bg-secondary-200",
   };
 
   async function pathCheck(path: string) {
@@ -58,7 +58,7 @@ function App() {
   }, [location.pathname]);
 
   useEffect(() => {
-    if (!location.pathname.startsWith("/produk")) {
+    if (!location.pathname.startsWith("/product")) {
       setTransitionColor(routeColors[location.pathname] ?? "bg-secondary-200");
     }
     window.scrollTo(0, 0);
@@ -75,18 +75,18 @@ function App() {
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<LandingView />} />
-            <Route path="/tentang-kami" element={<AboutUsView />} />
-            <Route path="/kalender" element={<CalendarView />} />
-            <Route path="/menu" element={<ProductListView />} />
-            <Route path="/produk/:productId" element={<ProductDetailPage />} />
-            <Route path="/keranjang" element={<CartView />} />
-            <Route path="/keranjang/pengiriman" element={<PaymentView />} />
+            <Route path="/about" element={<AboutUsView />} />
+            <Route path="/calendar" element={<CalendarView />} />
+            <Route path="/products" element={<ProductListView />} />
+            <Route path="/product/:productId" element={<ProductDetailPage />} />
+            <Route path="/cart" element={<CartView />} />
+            <Route path="/cart/shipment" element={<PaymentView />} />
             <Route path="*" element={<NotFoundView />} />
-            <Route path="admin/dashboard" element={<AdminDashboardView />} />
-            <Route path="admin/kalender" element={<AdminCalendarView />} />
-            <Route path="admin/produk" element={<AdminProductListView />} />
-            <Route path="admin/produk/tambah" element={<AddNewProductView />} />
-            <Route path="admin/produk/edit/:productId" element={<EditProductView />} />
+            <Route path="admin" element={<AdminDashboardView />} />
+            <Route path="admin/calendar" element={<AdminCalendarView />} />
+            <Route path="admin/products" element={<AdminProductListView />} />
+            <Route path="admin/product/add" element={<AddNewProductView />} />
+            <Route path="admin/product/edit/:productId" element={<EditProductView />} />
           </Routes>
         </AnimatePresence>
       }

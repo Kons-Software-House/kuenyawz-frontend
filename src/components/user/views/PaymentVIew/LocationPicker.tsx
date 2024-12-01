@@ -229,7 +229,7 @@ export default function LocationPicker({ selectedLocation, routeDistance, setSel
       </div>
 
       {/* Rest of the component remains the same */}
-      <div className="h-96 w-full relative">
+      <div className="h-48 md:h-64 lg:h-96 w-full relative">
         <MapContainer
           key={mapKey}
           center={[selectedLocation.lat, selectedLocation.lon]}

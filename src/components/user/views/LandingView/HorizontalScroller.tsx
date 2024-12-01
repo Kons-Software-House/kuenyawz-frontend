@@ -34,7 +34,7 @@ export default function HorizontalScroller() {
               Kuenya WZ
             </h1>
           </div>
-          <div className="-ml-[10rem] flex w-max scroller gap-2 h-[40rem]" ref={scrollerRef}>
+          <div className="-ml-[10rem] flex w-max scroller gap-2 h-[20rem] sm:h-[30rem] lg:h-[40rem]" ref={scrollerRef}>
             <img src={placeholder1} alt="placeholder1" className="h-full aspect-[3/6] object-cover rounded" draggable="false" />
             <img src={placeholder2} alt="placeholder2" className="h-full aspect-[3/6] object-cover rounded" draggable="false" />
             <img src={placeholder3} alt="placeholder3" className="h-full aspect-[3/6] object-cover rounded" draggable="false" />

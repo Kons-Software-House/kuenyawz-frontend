@@ -16,19 +16,19 @@ export default function Sidebar() {
           </span>
           Dashboard
         </Link>
-        <Link to="/admin/produk" className="flex items-center py-2 pl-4 pr-6 hover:bg-secondary-100 w-full">
+        <Link to="/admin/products" className="flex items-center py-2 pl-4 pr-6 hover:bg-secondary-100 w-full">
           <span className="mr-2">
             [ ]
           </span>
           Produk
         </Link>
-        <Link to="/admin/pesanan" className="flex items-center py-2 pl-4 pr-6 hover:bg-secondary-100 w-full">
+        <Link to="/admin/orders" className="flex items-center py-2 pl-4 pr-6 hover:bg-secondary-100 w-full">
           <span className="mr-2">
             [ ]
           </span>
           Pesanan
         </Link>
-        <Link to="/admin/kalender" className="flex items-center py-2 pl-4 pr-6 hover:bg-secondary-100 w-full">
+        <Link to="/admin/calendar" className="flex items-center py-2 pl-4 pr-6 hover:bg-secondary-100 w-full">
           <span className="mr-2">
             [ ]
           </span>

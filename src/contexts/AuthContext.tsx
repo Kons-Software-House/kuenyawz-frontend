@@ -1,12 +1,15 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
-import { loginAccount, checkAuthentication, refreshAuthentication, logoutAccount, registerAccount, requestOtp, verifyOtp } from "../services/AuthApiService";
 import { useNavigate } from "react-router-dom";
+
+import { loginAccount, checkAuthentication, refreshAuthentication, logoutAccount, registerAccount, requestOtp, verifyOtp } from "../services/AuthApiService";
+import { retrieveUserCart } from "../services/UserApiService";
 
 type AuthContextType = {
   isAuthenticated: boolean;
   otpCountdown: number;
   fullName: string;
   phone: string;
+  cartCount: number;
   checkAuth: () => Promise<boolean>;
   handleLogin: (phone: string, password: string) => Promise<boolean>;
   handleLogout: () => void;
@@ -30,6 +33,7 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
   const [otpCountdown, setOtpCountdown] = useState(0);
   const [fullName, setFullName] = useState('');
   const [phone, setPhone] = useState('');
+  const [cartCount, setCartCount] = useState(0);
   const isInitialMount = useRef(true);
   const navigate = useNavigate();
 
@@ -56,6 +60,21 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
       return () => clearInterval(interval);
     }
   }, [otpCountdown]);
+
+  useEffect(() => {
+    const fetchCartCount = async () => {
+      try {
+        const response = await retrieveUserCart();
+        setCartCount(response.length);
+      } catch (error: any) {
+        alert("Failed to fetch cart: " + error.response.data.message);
+      }
+    }
+
+    if (isAuthenticated) {
+      fetchCartCount();
+    }
+  }, [isAuthenticated]);
 
   const checkAuth = async () => {
     try {
@@ -139,7 +158,7 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
   }
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, otpCountdown, fullName, phone, checkAuth, handleLogin, handleLogout, handleRegister, handleSendOtp, handleVerifyOtp }}>
+    <AuthContext.Provider value={{ isAuthenticated, otpCountdown, fullName, phone, cartCount, checkAuth, handleLogin, handleLogout, handleRegister, handleSendOtp, handleVerifyOtp }}>
       {children}
     </AuthContext.Provider>
   );

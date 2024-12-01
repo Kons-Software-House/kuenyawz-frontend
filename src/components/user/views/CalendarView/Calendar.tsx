@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react';
+import { ChevronLeft } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
+
 import { retrieveClosedDates } from "../../../../services/CalendarApiService";
+import { formatDateString } from '../../../../types/Formatter';
 
 type CalendarProps = {
   isSmall?: boolean;
@@ -10,6 +14,7 @@ type CalendarProps = {
 };
 
 export default function Calendar({ isSmall, selectedDates, selectable = false, setSelectedDates }: CalendarProps) {
+  const TODAY = new Date();
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [closedDates, setClosedDates] = useState<any[]>([]);
@@ -48,7 +53,7 @@ export default function Calendar({ isSmall, selectedDates, selectable = false, s
     ];
 
     const isAnyDateUnavailable = proposedDates.some(date => {
-      const dateString = date.toISOString().split('T')[0];
+      const dateString = formatDateString(date);
       const closedDate = closedDates.find(cd => cd.date === dateString);
       return closedDate && (closedDate.type === 'CLOSED' || closedDate.type === 'RESERVED');
     });
@@ -61,20 +66,12 @@ export default function Calendar({ isSmall, selectedDates, selectable = false, s
 
     // If clicked date is already in selection, remove it
     if (!selectedDates || !setSelectedDates) return;
-    if (selectedDates.some(date => date.toDateString() === clickedDate.toDateString())) {
-      const updatedDates = selectedDates.filter(date => date.toDateString() !== clickedDate.toDateString());
-      setSelectedDates(updatedDates);
+    if (selectedDates[2]?.toISOString() == clickedDate.toISOString()) {
+      setSelectedDates([]);
       return;
     }
 
     setSelectedDates(proposedDates);
-  };
-
-  const formatDateString = (date: Date) => {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
   };
 
   const getEventType = (date: Date) => {
@@ -153,12 +150,14 @@ export default function Calendar({ isSmall, selectedDates, selectable = false, s
       newYear++;
     }
 
+    if (newMonth < TODAY.getMonth() && newYear == TODAY.getFullYear()) return;
+
     setSelectedMonth(newMonth);
     setSelectedYear(newYear);
   };
 
   return (
-    <div className={`grid grid-cols-7 gap-2 bg-secondary-500 p-4 lg:p-6 shadow-xl rounded-md w-full max-w-[46rem] ${isSmall ? 'text-sm lg:text-md' : 'text-lg lg:text-xl'}`}>
+    <div className={`grid grid-cols-7 gap-1 lg:gap-2 bg-secondary-500 p-4 lg:p-6 shadow-xl rounded-md w-full max-w-[46rem] ${isSmall ? 'text-sm lg:text-md' : 'text-lg lg:text-xl'}`}>
       <YearMonth
         year={selectedYear}
         month={selectedMonth}
@@ -202,12 +201,12 @@ function YearMonth({ year, month, onPrevMonth, onNextMonth }: YearMonthProps) {
           {year}
         </div>
       </div>
-      <div className="flex items-center gap-4">
-        <div onClick={onPrevMonth} className="cursor-pointer">
-          Left
+      <div className="flex items-center lg:gap-4 select-none">
+        <div onClick={onPrevMonth}>
+          <ChevronLeft size={26} />
         </div>
-        <div onClick={onNextMonth} className="cursor-pointer">
-          right
+        <div onClick={onNextMonth}>
+          <ChevronRight size={26} />
         </div>
       </div>
     </div>
@@ -220,7 +219,7 @@ type WeekDayProps = {
 
 function WeekDay({ day }: WeekDayProps) {
   return (
-    <div className="bg-secondary-100 flex flex-col items-center justify-center font-clear rounded shadow-md font-semibold py-1 text-sm lg:text-lg">
+    <div className="bg-secondary-100 flex flex-col items-center justify-center font-clear rounded shadow-md lg:font-semibold py-1 text-sm lg:text-lg">
       {day}
     </div>
   )

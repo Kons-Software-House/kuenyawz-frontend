@@ -66,15 +66,12 @@ export default function EditProductView() {
       alert(error.response.data.message);
       console.error(error);
     } finally {
-      navigate("/admin/produk");
+      navigate("/admin/products");
     }
   }
 
   const validateInput = (values: any) => {
     const errors: any = {};
-    if (!sixByNineRef.current) errors.sixByNine = "Foto 6/9 tidak boleh kosong";
-    if (!oneByOneRef.current) errors.oneByOne = "Foto 1/1 tidak boleh kosong";
-    if (!fiveBySixRef.current) errors.fiveBySix = "Foto 5/6 tidak boleh kosong";
     if (!values.name) errors.name = "Nama produk tidak boleh kosong";
     if (!values.tagline) errors.tagline = "Tagline tidak boleh kosong";
     if (!values.description) errors.description = "Deskripsi produk tidak boleh kosong";

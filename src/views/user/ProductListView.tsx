@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { Product } from "../../types/Product";
 import { retrieveProducts } from "../../services/ProducApiService";
+import { ProductCard } from "../../components/user/core/ProductCard";
 import Container from "../../components/user/core/Container"
-import ProductCard from "../../components/user/core/ProductCard";
 import UpperSection from "../../components/user/core/UpperSection"
 
 export default function ProductListView() {
@@ -14,12 +14,19 @@ export default function ProductListView() {
   const [keyword, setKeyword] = useState("");
   const [category, setCategory] = useState("");
 
+  const debounceTimeout = useRef<NodeJS.Timeout | null>(null);
+
+  const handleSearchChange = () => {
+    if (debounceTimeout.current) clearTimeout(debounceTimeout.current);
+    debounceTimeout.current = setTimeout(() => fetchProducts(1), 500);
+  };
+
   async function fetchProducts(newPage?: number, newKeyword?: string, newCategory?: string) {
     setIsLoading(true);
 
-    const currentKeyword = newKeyword !== undefined ? newKeyword : keyword;
-    const currentCategory = newCategory !== undefined ? newCategory : category;
-    const currentPage = newPage !== undefined ? newPage : page;
+    const currentKeyword = newKeyword ?? keyword;
+    const currentCategory = newCategory ?? category;
+    const currentPage = newPage ?? page;
 
     try {
       const params = {
@@ -27,7 +34,7 @@ export default function ProductListView() {
         page: currentPage,
         category: currentCategory,
         pageSize: 12,
-        available: true
+        available: true,
       };
 
       const response = await retrieveProducts(params);
@@ -39,24 +46,25 @@ export default function ProductListView() {
       setKeyword(currentKeyword);
       setCategory(currentCategory);
     } catch (error) {
-      console.error(error);
+      console.error("Failed to fetch products:", error);
     } finally {
       setIsLoading(false);
     }
   }
 
+
   useEffect(() => {
     fetchProducts();
-  }, [])
+  }, [page])
 
   return (
     <>
       <UpperSection title="Produk Kami" subtitle="Kelezatan Dalam Setiap Kreasi" />
-      <Container>
-        <div className="border-2 border-secondary-100 w-full flex">
+      <div className="w-full flex justify-center p-2 -mb-2 lg:mb-0">
+        <div className="border-2 border-secondary-100 w-full flex lg:w-3/4">
           {/* Filters */}
           <div className="border-r-2 border-secondary-100 px-1">
-            <select name="category" id="category" className="p-2" onChange={(e) => {
+            <select name="category" id="category" className="p-1 lg:p-2 text-sm lg:text-md" onChange={(e) => {
               const newCategory = e.target.value;
               setCategory(newCategory);
               fetchProducts(1, keyword, newCategory);
@@ -71,67 +79,64 @@ export default function ProductListView() {
           </div>
           <input type="text" placeholder="Cari produk" className="flex-1 px-4"
             onChange={(e) => {
+              if (e.target.value === "") {
+                fetchProducts(1, "", category);
+                return;
+              }
               const newKeyword = e.target.value;
               setKeyword(newKeyword);
-              fetchProducts(1, newKeyword, category);
+              handleSearchChange();
             }}
           />
         </div>
-
-        {/* Page Controls */}
-        <div className="flex justify-between items-center my-4 gap-2">
-          <p className="text-lg">Menampilkan {page} dari {totalPages} halaman</p>
-          <div className="flex gap-2">
-            <button className="bg-secondary-100 text-white px-4 rounded"
-              onClick={() => {
-                if (page > 1) {
-                  setPage(page - 1)
-                  fetchProducts(page - 1, keyword, category)
-                }
-              }}
-            >Sebelumnya</button>
-            <button className="bg-secondary-100 text-white px-4 rounded"
-              onClick={() => {
-                if (page < totalPages) {
-                  setPage(page + 1)
-                  fetchProducts(page + 1, keyword, category)
-                }
-              }}
-            >Selanjutnya</button>
-          </div>
+      </div>
+      {isLoading ?
+        <div className="flex justify-center items-center h-96 min-h-screen">
+          <p className="text-2xl">Memuat produk...</p>
         </div>
+        :
+        <Container>
+          <PaginationControls page={page} totalPages={totalPages} onPageChange={(newPage) => {
+            setPage(newPage);
+            fetchProducts(newPage, keyword, category);
+          }} />
 
-        {isLoading && <p>Memuat...</p>}
-        <div className='grid grid-cols-3 lg:grid-cols-4 p-8 w-full gap-8 lg:gap-14'>
-          {products.map((product) => (
-            <ProductCard key={product.productId} product={product} />
-          ))}
+          <div className='grid grid-cols-3 lg:grid-cols-4 p-4 w-full gap-4 md:gap-8'>
+            {products.map((product) => (
+              <ProductCard key={product.productId} product={product} />
+            ))}
+          </div >
 
-        </div >
-
-        {/* Page Controls */}
-        <div className="flex justify-between items-center my-4 gap-2">
-          <p className="text-lg">Menampilkan {page} dari {totalPages} halaman</p>
-          <div className="flex gap-2">
-            <button className="bg-secondary-100 text-white px-4 rounded"
-              onClick={() => {
-                if (page > 1) {
-                  setPage(page - 1)
-                  fetchProducts(page - 1, keyword, category)
-                }
-              }}
-            >Sebelumnya</button>
-            <button className="bg-secondary-100 text-white px-4 rounded"
-              onClick={() => {
-                if (page < totalPages) {
-                  setPage(page + 1)
-                  fetchProducts(page + 1, keyword, category)
-                }
-              }}
-            >Selanjutnya</button>
-          </div>
-        </div>
-      </Container>
+          <PaginationControls page={page} totalPages={totalPages} onPageChange={(newPage) => {
+            setPage(newPage);
+            fetchProducts(newPage, keyword, category);
+          }} />
+        </Container>
+      }
     </>
   )
+}
+
+function PaginationControls({ page, totalPages, onPageChange }: { page: number, totalPages: number, onPageChange: (newPage: number) => void }) {
+  return (
+    <div className="flex flex-col lg:flex-row justify-between items-center my-2 lg:my-4 gap-2">
+      <p className="text-sm lg:text-lg">Menampilkan {page} dari {totalPages} halaman</p>
+      <div className="flex gap-2">
+        <button
+          className="bg-secondary-100 text-white text-sm md:text-md px-2 lg:px-4 rounded"
+          disabled={page <= 1}
+          onClick={() => onPageChange(page - 1)}
+        >
+          Sebelumnya
+        </button>
+        <button
+          className="bg-secondary-100 text-white text-sm md:text-md px-2 lg:px-4 rounded"
+          disabled={page >= totalPages}
+          onClick={() => onPageChange(page + 1)}
+        >
+          Selanjutnya
+        </button>
+      </div>
+    </div>
+  );
 }
