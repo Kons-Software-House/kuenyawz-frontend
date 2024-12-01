@@ -26,12 +26,15 @@ export const ProductCard = React.memo(({ product }: ProductCardProps) => {
   }
   return (
     <Link to={`/produk/${product.productId}`} onClick={() => { setTransitionColor(background) }}>
-      <motion.div className={`aspect-[2/3] relative flex justify-center items-center ${LighterBorderColors[background]} border-4
+      <motion.div className={`relative aspect-[2/3] relative flex justify-center items-center ${LighterBorderColors[background]} border-4
        before:absolute before:-inset-0 before:rotate-6 ${beforeBackground[background]} hover:before:rotate-12 before:-z-10 before:transition-transform before:duration-300`} initial='default' whileHover='hover'>
-        <motion.p className="absolute font-fancy text-2xl lg:text-3xl text-white text-shadow-sm overflow-hidden text-center" variants={hoverVariant}>
+        <motion.p className="absolute font-fancy text-lg sm:text-2xl xl:text-3xl text-white text-shadow-sm overflow-hidden text-center" variants={hoverVariant}>
           {product.name}
         </motion.p>
         <img src={(product.images ? product.images[0] : '')} alt="" className="w-full h-full object-cover" />
+        <div className={`absolute bottom-0 left-0 right-0 text-[0.4rem] sm:text-xs text-center block lg:hidden bg-white`}>
+          {product.name}
+        </div>
       </motion.div>
     </Link>
   )
