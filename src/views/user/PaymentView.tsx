@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Field, Form, Formik } from "formik";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -54,6 +54,21 @@ export default function PaymentView() {
   }, [selectedLocation, routeDistance])
 
   const handleSubmit = async (values: any) => {
+    if (!selectedDates || selectedDates.length < 3) {
+      alert('Tanggal pengiriman harus dipilih')
+      return
+    }
+
+    if (!selectedLocation || selectedLocation.lat === INITIAL_LOCATION.lat || selectedLocation.lon === INITIAL_LOCATION.lon) {
+      alert('Lokasi pengiriman harus dipilih')
+      return
+    }
+
+    if (routeDistance && routeDistance > 30000) {
+      alert('Jarak pengiriman tidak boleh melebihi 30 km')
+      return
+    }
+
     const { fullAddress } = values
     const lat = selectedLocation.lat
     const lon = selectedLocation.lon
@@ -76,14 +91,32 @@ export default function PaymentView() {
     }
   }
 
+  const validateValues = (values: any) => {
+    const errors: any = {}
+    if (!values.fullAddress) {
+      errors.fullAddress = 'Alamat lengkap harus diisi'
+    }
+    // if (!selectedDates || selectedDates.length < 3) {
+    //   errors.selectedDates = 'Tanggal pengiriman harus dipilih'
+    // }
+    // if (!selectedLocation || selectedLocation.lat === INITIAL_LOCATION.lat || selectedLocation.lon === INITIAL_LOCATION.lon) {
+    //   errors.selectedLocation = 'Lokasi pengiriman harus dipilih'
+    // }
+    // if (routeDistance && routeDistance > 30000) {
+    //   errors.routeDistance = 'Jarak pengiriman tidak boleh melebihi 30 km'
+    // }
+    // return errors;
+  }
+
   return (
     <>
       <UpperSection title="Pembayaran" />
       <Container>
-        <Formik initialValues={{ fullAddress: '' }} onSubmit={(values) => { handleSubmit(values) }}>
+        <Formik initialValues={{ fullAddress: '' }} onSubmit={(values) => { handleSubmit(values) }} validate={validateValues}>
           <Form className="w-full">
             <h2 className="text-2xl font-bold font-semi mb-2 text-center">Lokasi Pengiriman</h2>
             <Field type="text" name="fullAddress" className="w-full p-2 rounded-md border border-gray-300 mb-4" placeholder="Alamat Lengkap" />
+            <ErrorMessage name="fullAddress" component="div" className="text-red-500" />
             <label className="text-md">Pilih lokasi pengiriman pada peta</label>
             <div className="w-full mb-4">
               <LocationPicker selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} routeDistance={routeDistance} setRouteDistance={setRouteDistance} />
