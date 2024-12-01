@@ -3,6 +3,7 @@ import { ChevronLeft } from 'lucide-react';
 import { ChevronRight } from 'lucide-react';
 
 import { retrieveClosedDates } from "../../../../services/CalendarApiService";
+import { formatDateString } from '../../../../types/Formatter';
 
 type CalendarProps = {
   isSmall?: boolean;
@@ -37,13 +38,6 @@ export default function Calendar({ isSmall, selectedDates, selectable = false, s
 
   const getLastDateOfMonth = (year: number, month: number) => {
     return new Date(year, month, 0).getDate();
-  };
-
-  const formatDateString = (date: Date) => {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
   };
 
   const handleDateClick = (day: number) => {
@@ -156,7 +150,7 @@ export default function Calendar({ isSmall, selectedDates, selectable = false, s
       newYear++;
     }
 
-    if (newMonth < THIS_MONTH && newYear === selectedYear) return;
+    if (newMonth < THIS_MONTH && newYear == selectedYear) return;
 
     setSelectedMonth(newMonth);
     setSelectedYear(newYear);
@@ -207,7 +201,7 @@ function YearMonth({ year, month, onPrevMonth, onNextMonth }: YearMonthProps) {
           {year}
         </div>
       </div>
-      <div className="flex items-center lg:gap-4">
+      <div className="flex items-center lg:gap-4 select-none">
         <div onClick={onPrevMonth}>
           <ChevronLeft size={26} />
         </div>
