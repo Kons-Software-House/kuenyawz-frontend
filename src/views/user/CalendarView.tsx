@@ -8,7 +8,7 @@ export default function CalendarView() {
     <>
       <UpperSection title="Kalender" subtitle="Jadwalkan Pesanan Anda" />
       <Container>
-        <div className="flex flex-col lg:flex-row gap-4 justify-center w-full">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center w-full">
           <Calendar />
           <AvailabilityTable />
         </div>
