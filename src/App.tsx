@@ -22,6 +22,7 @@ import AdminCalendarView from "./views/admin/AdminCalendarView";
 import AdminProductListView from "./views/admin/AdminProductListView";
 import AddNewProductView from "./views/admin/AddNewProductView";
 import EditProductView from "./views/admin/EditProductView";
+import AdminOrderListView from "./views/admin/AdminOrderListView";
 
 function App() {
   const location = useLocation();
@@ -87,6 +88,7 @@ function App() {
             <Route path="admin/products" element={<AdminProductListView />} />
             <Route path="admin/product/add" element={<AddNewProductView />} />
             <Route path="admin/product/edit/:productId" element={<EditProductView />} />
+            <Route path="admin/orders" element={<AdminOrderListView />} />
           </Routes>
         </AnimatePresence>
       }
