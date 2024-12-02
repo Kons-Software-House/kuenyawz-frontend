@@ -27,7 +27,6 @@ export default function AdminOrderListView() {
 
       const response = await retrieveOrders(params);
       setOrders(response.content);
-      console.log(page);
       setPage(response.page.number);
       setTotalPages(response.page.totalPages);
     } catch (error) {
