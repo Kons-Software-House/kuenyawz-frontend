@@ -28,3 +28,8 @@ export const retrieveOrder = async (purchaseId: string): Promise<any> => {
     const response = await apiClient.get(`/orders/${purchaseId}/transaction`);
     return response.data;
 }
+
+export const confirmOrder = async (purchaseId: string): Promise<any> => {
+    const response = await apiClient.post(`/orders/${purchaseId}/confirm`);
+    return response.data;
+}
