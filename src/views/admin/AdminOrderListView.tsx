@@ -2,6 +2,7 @@ import Sidebar from "../../components/admin/views/AdminDashboardView/Sidebar";
 import { useEffect, useState } from "react";
 import { retrieveOrders } from "../../services/OrderApiService";
 import { Order } from "../../types/Orders";
+import { Link } from "react-router-dom";
 
 
 export default function AdminOrderListView() {
@@ -67,7 +68,9 @@ export default function AdminOrderListView() {
                       <td className="p-2">{order.eventDate}</td>
                       <td className="text-center p-2">{order.status}</td>
                       <td className="flex justify-center p-2">
-                        <button className="border-2 border-secondary-100 text-black px-4 py-1 rounded-md p-2">Detail</button>
+                        <Link to={`/admin/orders/${order.purchaseId}`}>
+                          <button className="border-2 border-secondary-100 text-black px-4 py-1 rounded-md p-2">Detail</button>
+                        </Link>
                       </td>
                     </tr>
                   ))}
