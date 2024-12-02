@@ -74,7 +74,7 @@ export default function AdminOrderDetailView() {
                 </tbody>
               </table>
               {/* Confirm or cancel */}
-              {order.status === 'PENDING' ? (
+              {order.status === 'CONFIRMING' ? (
                 <div className="mt-4">
                   <button
                     onClick={() => { confirmOrder(order.purchaseId); window.location.reload() }}
