@@ -46,7 +46,7 @@ export default function AdminOrderListView() {
       <Sidebar />
       <div className="w-full p-6">
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold">Orders</h1>
+          <h1 className="text-2xl font-bold">Daftar Pesanan</h1>
         </div>
         {loading ? <p>Loading...</p> : <>
           <div className="mt-4 text-sm">
@@ -69,7 +69,7 @@ export default function AdminOrderListView() {
                       <td className="text-center p-2">{order.status}</td>
                       <td className="flex justify-center p-2">
                         <Link to={`/admin/orders/${order.purchaseId}`}>
-                          <button className="border-2 border-secondary-100 text-black px-4 py-1 rounded-md p-2">Detail</button>
+                          <button className="border-2 border-secondary-100 text-black px-4 py-1 rounded-md p-2">Detil</button>
                         </Link>
                       </td>
                     </tr>
@@ -78,8 +78,8 @@ export default function AdminOrderListView() {
             </table>
           </div>
           <div className="mt-4 flex justify-between items-center">
-            <button className="bg-secondary-100 text-black px-4 py-2 rounded-md" onClick={() => fetchOrders(page - 1)} disabled={page === 0}>Previous</button>
-            <button className="bg-secondary-100 text-black px-4 py-2 rounded-md" onClick={() => fetchOrders(page + 1)} disabled={page === totalPages - 1}>Next</button>
+            <button className="bg-secondary-100 text-black px-4 py-2 rounded-md" onClick={() => fetchOrders(page - 1)} disabled={page === 0}>Sebelumnya</button>
+            <button className="bg-secondary-100 text-black px-4 py-2 rounded-md" onClick={() => fetchOrders(page + 1)} disabled={page === totalPages - 1}>Selanjutnya</button>
           </div>
         </>}
       </div>
