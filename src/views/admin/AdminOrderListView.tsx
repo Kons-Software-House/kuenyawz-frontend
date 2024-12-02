@@ -60,16 +60,18 @@ export default function AdminOrderListView() {
                 </tr>
               </thead>
               <tbody>
-                {orders.map(order => (
-                  <tr key={order.purchaseId} className="border-b border-gray-200 odd:bg-[#ffffe8] even:bg-[#fefed0]">
-                    <td className="p-2">{order.fullAddress}</td>
-                    <td className="p-2">{order.eventDate}</td>
-                    <td className="text-center p-2">{order.status}</td>
-                    <td className="flex justify-center p-2">
-                      <button className="border-2 border-secondary-100 text-black px-4 py-1 rounded-md p-2">Detail</button>
-                    </td>
-                  </tr>
-                ))}
+                {orders
+                  .sort((a, b) => new Date(a.eventDate).getTime() - new Date(b.eventDate).getTime())
+                  .map(order => (
+                    <tr key={order.purchaseId} className="border-b border-gray-200 odd:bg-[#ffffe8] even:bg-[#fefed0]">
+                      <td className="p-2">{order.fullAddress}</td>
+                      <td className="p-2">{order.eventDate}</td>
+                      <td className="text-center p-2">{order.status}</td>
+                      <td className="flex justify-center p-2">
+                        <button className="border-2 border-secondary-100 text-black px-4 py-1 rounded-md p-2">Detail</button>
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </div>
