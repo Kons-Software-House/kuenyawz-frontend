@@ -42,11 +42,10 @@ function App() {
   async function pathCheck(path: string) {
     setCheckingAuth(true);
     try {
-
       if (await checkAuth()) {
-        navigate(path);
+        navigate(path, { replace: true });
       } else {
-        navigate("/not-found");
+        navigate("/not-found", { replace: true });
       }
     } finally {
       setCheckingAuth(false);
