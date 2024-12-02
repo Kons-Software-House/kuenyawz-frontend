@@ -58,7 +58,7 @@ export default function AdminOrderDetailView() {
                 </thead>
                 <tbody>
                   {order.purchaseItems.map((item) => (
-                    <tr key={item.purchaseItemId} className="border-b">
+                    <tr key={item.variant.variantId} className="border-b">
                       <td className="p-2">{item.product.name}</td>
                       <td className="p-2">{item.variant.type}</td>
                       <td className="p-2 text-center">{item.quantity}</td>
@@ -67,7 +67,9 @@ export default function AdminOrderDetailView() {
                   ))}
                   <tr className="border-t">
                     <td colSpan={3} className="p-2 text-right">Total:</td>
-                    <td className="p-2 text-right">{order.transactions[0].amount}</td>
+                    <td className="p-2 text-right">{
+                      order.purchaseItems.reduce((acc, item) => acc + item.boughtPrice * item.quantity, 0)
+                    }</td>
                   </tr>
                 </tbody>
               </table>
@@ -75,13 +77,13 @@ export default function AdminOrderDetailView() {
               {order.status === 'PENDING' ? (
                 <div className="mt-4">
                   <button
-                    onClick={() => confirmOrder(order.purchaseId)}
+                    onClick={() => { confirmOrder(order.purchaseId); window.location.reload() }}
                     className="p-2 bg-green-500 text-white rounded-lg mr-4"
                   >
                     Konfirmasi Pesanan
                   </button>
                   <button className="p-2 bg-red-500 text-white rounded-lg"
-                    onClick={() => cancelOrder(order.purchaseId)}
+                    onClick={() => { cancelOrder(order.purchaseId); window.location.reload() }}
                   >
                     Batalkan Pesanan
                   </button>
