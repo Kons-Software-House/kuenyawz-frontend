@@ -46,7 +46,7 @@ export default function AdminOrderListView() {
       <Sidebar />
       <div className="w-full p-6">
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold">Daftar Pesanan</h1>
+          <h1 className="text-2xl font-bold font-semi">Daftar Pesanan</h1>
         </div>
         {loading ? <p>Loading...</p> : <>
           <div className="mt-4 text-sm">

@@ -31,7 +31,7 @@ export default function AdminOrderDetailView() {
     <div className="flex">
       <Sidebar />
       <div className="w-full p-6">
-        <h1 className="text-2xl font-bold p-4">Detil Pesanan</h1>
+        <h1 className="text-2xl font-bold py-4 font-semi">Detil Pesanan</h1>
         {loading ? <p>Loading...</p> : order ? (
           <div className="bg-secondary-300 p-4">
             <div className="flex justify-between">
