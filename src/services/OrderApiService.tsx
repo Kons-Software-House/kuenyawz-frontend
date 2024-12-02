@@ -18,3 +18,8 @@ export const createOrder = async (fullAddress: string, latitude: number, longitu
     const response = await apiClient.post('/orders', data);
     return response.data;
 }
+
+export const retrieveOrders = async (params?: any): Promise<any> => {
+    const response = await apiClient.get('/orders', { params });
+    return response.data;
+}
