@@ -1,7 +1,7 @@
 import Sidebar from "../../components/admin/views/AdminDashboardView/Sidebar"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
-import { retrieveOrder } from "../../services/OrderApiService"
+import { retrieveOrder, confirmOrder, cancelOrder } from "../../services/OrderApiService"
 import { Order } from "../../types/Orders"
 
 export default function AdminOrderDetailView() {
@@ -31,17 +31,17 @@ export default function AdminOrderDetailView() {
     <div className="flex">
       <Sidebar />
       <div className="w-full p-6">
-        <h1 className="text-2xl font-bold p-4">Order Detail</h1>
+        <h1 className="text-2xl font-bold p-4">Detil Pesanan</h1>
         {loading ? <p>Loading...</p> : order ? (
           <div className="bg-secondary-300 p-4">
             <div className="flex justify-between">
               <div>
                 <h2 className="font-bold">Order ID: {order.purchaseId}</h2>
-                <p>Order Date: {new Date(order.eventDate).toLocaleDateString()}</p>
-                <p>Order Status: {order.status}</p>
+                <p>Tanggal Pemesanan: {new Date(order.eventDate).toLocaleDateString()}</p>
+                <p>Status: {order.status}</p>
               </div>
               <div className="w-1/2">
-                <h2 className="font-bold">Shipping Address</h2>
+                <h2 className="font-bold">Alamat KIrim</h2>
                 <p>{order.fullAddress}</p>
               </div>
             </div>
@@ -50,10 +50,10 @@ export default function AdminOrderDetailView() {
               <table className="w-full bg-secondary-250">
                 <thead>
                   <tr className="border-b bg-secondary-100">
-                    <th className="text-left p-2">Product Name</th>
-                    <th className="text-left p-2">Variant</th>
-                    <th className="text-center p-2">Quantity</th>
-                    <th className="text-right p-2">Price</th>
+                    <th className="text-left p-2">Nama Produk</th>
+                    <th className="text-left p-2">Varian</th>
+                    <th className="text-center p-2">Jumlah</th>
+                    <th className="text-right p-2">Harga</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -72,6 +72,21 @@ export default function AdminOrderDetailView() {
                 </tbody>
               </table>
               {/* Confirm or cancel */}
+              {order.status === 'PENDING' ? (
+                <div className="mt-4">
+                  <button
+                    onClick={() => confirmOrder(order.purchaseId)}
+                    className="p-2 bg-green-500 text-white rounded-lg mr-4"
+                  >
+                    Konfirmasi Pesanan
+                  </button>
+                  <button className="p-2 bg-red-500 text-white rounded-lg"
+                    onClick={() => cancelOrder(order.purchaseId)}
+                  >
+                    Batalkan Pesanan
+                  </button>
+                </div>
+              ) : null}
             </div>
           </div>
         ) : <p>Order not found</p>}
