@@ -29,7 +29,7 @@ function App() {
   const location = useLocation();
   const { showLoginModal, showOtpModal, showRegisterModal } = useModal();
   const { checkAuth } = useAuth();
-  const [checkingAuth, setCheckingAuth] = useState(false);
+  const [checkingAuth, setCheckingAuth] = useState(true);
   const { setTransitionColor } = useTransitionColor();
   const navigate = useNavigate();
 
@@ -55,6 +55,8 @@ function App() {
   useEffect(() => {
     if (location.pathname.startsWith("/admin")) {
       pathCheck(location.pathname);
+    } else {
+      setCheckingAuth(false);
     }
   }, [location.pathname]);
 
