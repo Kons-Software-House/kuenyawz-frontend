@@ -23,7 +23,8 @@ export default function AdminOrderListView() {
     try {
       const params = {
         page: newPage,
-        pageSize: 5
+        pageSize: 15,
+        // status: "CONFIRMING",
       };
 
       const response = await retrieveOrders(params);
