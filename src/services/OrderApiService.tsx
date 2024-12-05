@@ -25,7 +25,7 @@ export const retrieveOrders = async (params?: any): Promise<any> => {
 }
 
 export const retrieveOrder = async (purchaseId: string): Promise<any> => {
-    const response = await apiClient.get(`/orders/${purchaseId}/transaction`);
+    const response = await apiClient.get(`/orders/${purchaseId}`);
     return response.data;
 }
 
