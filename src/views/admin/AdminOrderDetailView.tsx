@@ -1,8 +1,11 @@
-import Sidebar from "../../components/admin/views/AdminDashboardView/Sidebar"
-import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
-import { retrieveOrder, confirmOrder, cancelOrder } from "../../services/OrderApiService"
-import { Order } from "../../types/Orders"
+import { useParams } from "react-router-dom"
+
+import { Order } from "../../types/Order"
+import { formatToIdr } from "../../types/Formatter"
+import { LocalizedOrderStatus } from "../../types/OrderStatus"
+import { retrieveOrder, confirmOrder, refundOrder } from "../../services/OrderApiService"
+import Sidebar from "../../components/admin/views/AdminDashboardView/Sidebar"
 
 export default function AdminOrderDetailView() {
   const { purchaseId } = useParams<{ purchaseId: string }>()
@@ -27,6 +30,26 @@ export default function AdminOrderDetailView() {
     fetchOrder()
   }, [purchaseId])
 
+  const handleConfirmOrder = async (purchaseId: string) => {
+    try {
+      await confirmOrder(purchaseId)
+      window.location.reload()
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const handleRefundOrder = async (purchaseId: string) => {
+    try {
+      await refundOrder(purchaseId)
+      window.location.reload()
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+
+
   return (
     <div className="flex">
       <Sidebar />
@@ -38,7 +61,7 @@ export default function AdminOrderDetailView() {
               <div>
                 <h2 className="font-bold">Order ID: {order.purchaseId}</h2>
                 <p>Tanggal Pemesanan: {new Date(order.eventDate).toLocaleDateString()}</p>
-                <p>Status: {order.status}</p>
+                <p>Status: {LocalizedOrderStatus[order.status as keyof typeof LocalizedOrderStatus]}</p>
               </div>
               <div className="w-1/2">
                 <h2 className="font-bold">Alamat KIrim</h2>
@@ -53,6 +76,7 @@ export default function AdminOrderDetailView() {
                     <th className="text-left p-2">Nama Produk</th>
                     <th className="text-left p-2">Varian</th>
                     <th className="text-center p-2">Jumlah</th>
+                    <th className="text-center p-2">Catatan</th>
                     <th className="text-right p-2">Harga</th>
                   </tr>
                 </thead>
@@ -62,13 +86,17 @@ export default function AdminOrderDetailView() {
                       <td className="p-2">{item.product.name}</td>
                       <td className="p-2">{item.variant.type}</td>
                       <td className="p-2 text-center">{item.quantity}</td>
-                      <td className="p-2 text-right">{item.boughtPrice}</td>
+                      <td className="p-2 text-center">{item.note ? item.note : '-'}</td>
+                      <td className="p-2 text-right">{formatToIdr(item.boughtPrice)}</td>
                     </tr>
                   ))}
                   <tr className="border-t">
-                    <td colSpan={3} className="p-2 text-right">Total:</td>
+                    <td colSpan={3} className="p-2 text-left"></td>
+                    <td className="p-2 text-center">Total:</td>
                     <td className="p-2 text-right">{
-                      order.purchaseItems.reduce((acc, item) => acc + item.boughtPrice * item.quantity, 0)
+                      formatToIdr(
+                        order.purchaseItems.reduce((acc, item) => acc + item.boughtPrice * item.quantity, 0)
+                      )
                     }</td>
                   </tr>
                 </tbody>
@@ -76,15 +104,10 @@ export default function AdminOrderDetailView() {
               {/* Confirm or cancel */}
               {order.status === 'CONFIRMING' ? (
                 <div className="mt-4">
-                  <button
-                    onClick={() => { confirmOrder(order.purchaseId); window.location.reload() }}
-                    className="p-2 bg-green-500 text-white rounded-lg mr-4"
-                  >
+                  <button className="p-2 bg-green-500 text-white rounded-lg mr-4 border border-green-800" onClick={() => handleConfirmOrder(order.purchaseId)}>
                     Konfirmasi Pesanan
                   </button>
-                  <button className="p-2 bg-red-500 text-white rounded-lg"
-                    onClick={() => { cancelOrder(order.purchaseId); window.location.reload() }}
-                  >
+                  <button className="p-2 bg-red-500 text-white rounded-lg mr-4 border border-red-800" onClick={() => handleRefundOrder(order.purchaseId)}>
                     Batalkan Pesanan
                   </button>
                 </div>
