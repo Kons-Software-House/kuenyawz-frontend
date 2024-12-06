@@ -56,7 +56,20 @@ export default function AdminOrderListView() {
       <Sidebar />
       <div className="w-full p-6">
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold font-semi">Daftar Pesanan</h1>
+          <h1 className="text-2xl font-bold font-semi mb-6">Daftar Pesanan</h1>
+        </div>
+        <h2 className="text-xl font-semibold font-clear">
+          Pesanan Aktif
+        </h2>
+        <div className="w-48 px-1 border border-secondary-100">
+          <select name="category" id="category" className="p-1 text-sm lg:text-md" onChange={(e) => {
+            fetchOrders(1, e.target.value);
+          }} >
+            <option value="">Semua Status</option>
+            <option value="CONFIRMING">Menunggu Konfirmasi</option>
+            <option value="CONFIRMED">Dikonfirmasi</option>
+            <option value="PROCESSING">Sedang Diproses</option>
+          </select>
         </div>
         {loading ? <p>Loading...</p> : <>
           <div className="mt-4 text-sm">
