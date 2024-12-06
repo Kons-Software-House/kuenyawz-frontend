@@ -28,7 +28,7 @@ export default function CartView() {
   const fetchOrders = async () => {
     try {
       const response = await retrieveOrders();
-      setOrders(response.content.filter((order: Order) => order.status !== "DELIVERED"));
+      setOrders(response.content.filter((order: Order) => order.status !== "DELIVERED" && order.status !== "CANCELLED"));
     } catch (error) {
       console.error(error);
     }
