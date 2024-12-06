@@ -38,3 +38,8 @@ export const cancelOrder = async (purchaseId: string): Promise<any> => {
     const response = await apiClient.post(`/orders/${purchaseId}/cancel`);
     return response.data;
 }
+
+export const refundOrder = async (purchaseId: string): Promise<any> => {
+    const response = await apiClient.post(`/orders/${purchaseId}/refund`);
+    return response.data;
+}
