@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom"
 import { Order } from "../../types/Order"
 import { formatToIdr } from "../../types/Formatter"
 import { LocalizedOrderStatus } from "../../types/OrderStatus"
-import { retrieveOrder, confirmOrder, refundOrder } from "../../services/OrderApiService"
+import { retrieveOrder, confirmOrder, refundOrder, updateOrderStatus } from "../../services/OrderApiService"
 import Sidebar from "../../components/admin/views/AdminDashboardView/Sidebar"
 
 export default function AdminOrderDetailView() {
@@ -48,6 +48,14 @@ export default function AdminOrderDetailView() {
     }
   }
 
+  const handleUpdateStatus = async (purchaseId: string) => {
+    try {
+      await updateOrderStatus(purchaseId)
+      window.location.reload()
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
 
   return (
@@ -109,6 +117,20 @@ export default function AdminOrderDetailView() {
                   </button>
                   <button className="p-2 bg-red-500 text-white rounded-lg mr-4 border border-red-800" onClick={() => handleRefundOrder(order.purchaseId)}>
                     Batalkan Pesanan
+                  </button>
+                </div>
+              ) : null}
+              {order.status === 'CONFIRMED' ? (
+                <div className="mt-4">
+                  <button className="p-2 bg-green-500 text-white rounded-lg mr-4 border border-green-800" onClick={() => handleUpdateStatus(order.purchaseId)}>
+                    Proses Pesanan
+                  </button>
+                </div>
+              ) : null}
+              {order.status === 'PROCESSING' ? (
+                <div className="mt-4">
+                  <button className="p-2 bg-green-500 text-white rounded-lg mr-4 border border-green-800" onClick={() => handleUpdateStatus(order.purchaseId)}>
+                    Pesanan Dikirim
                   </button>
                 </div>
               ) : null}
