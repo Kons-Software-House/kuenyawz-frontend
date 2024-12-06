@@ -22,6 +22,7 @@ export default function ActiveOrderView() {
       }
     } catch (error) {
       console.error(error)
+      navigate('/')
     }
   }
 
@@ -100,13 +101,20 @@ export default function ActiveOrderView() {
                 </tbody>
               </table>
             </div>
+            {order.status === "PENDING" &&
+              <>
+                <button className="p-2 mt-4 bg-red-500 text-white rounded-lg mr-4 border border-red-800" onClick={() => handleCancelOrder()}>
+                  Batalkan Pesanan
+                </button>
+                <button className="p-2 mt-4 bg-green-500 text-white rounded-lg mr-4 border border-green-800" onClick={() => {
+                  window.open(order.transactions[0].paymentUrl, '_blank');
+                }}>
+                  Halaman Pembayaran
+                </button>
+              </>
+            }
           </div>
         ) : <p>Loading...</p>}
-        {order && order.status === "PENDING" &&
-          <button className="p-2 bg-red-500 text-white rounded-lg mr-4 border border-red-800" onClick={() => handleCancelOrder()}>
-            Batalkan Pesanan
-          </button>
-        }
       </Container>
     </>
   )
