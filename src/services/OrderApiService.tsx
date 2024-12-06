@@ -43,3 +43,8 @@ export const refundOrder = async (purchaseId: string): Promise<any> => {
     const response = await apiClient.post(`/orders/${purchaseId}/refund`);
     return response.data;
 }
+
+export const updateOrderStatus = async (purchaseId: string): Promise<any> => {
+    const response = await apiClient.post(`/orders/${purchaseId}/status/next`);
+    return response.data;
+}
