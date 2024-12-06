@@ -24,6 +24,7 @@ import AddNewProductView from "./views/admin/AddNewProductView";
 import EditProductView from "./views/admin/EditProductView";
 import AdminOrderListView from "./views/admin/AdminOrderListView";
 import AdminOrderDetailView from "./views/admin/AdminOrderDetailView";
+import AdminHistoryListView from "./views/admin/AdminHistoryListView";
 
 function App() {
   const location = useLocation();
@@ -88,6 +89,7 @@ function App() {
             <Route path="admin" element={<AdminDashboardView />} />
             <Route path="admin/calendar" element={<AdminCalendarView />} />
             <Route path="admin/products" element={<AdminProductListView />} />
+            <Route path="admin/histories" element={<AdminHistoryListView />} />
             <Route path="admin/product/add" element={<AddNewProductView />} />
             <Route path="admin/product/edit/:productId" element={<EditProductView />} />
             <Route path="admin/orders" element={<AdminOrderListView />} />
