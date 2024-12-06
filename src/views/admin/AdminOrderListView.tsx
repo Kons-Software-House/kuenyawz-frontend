@@ -83,7 +83,8 @@ export default function AdminOrderListView() {
                 </tr>
               </thead>
               <tbody>
-                {orders
+                {activeOrders.length == 0 ? <tr><td colSpan={4} className="text-center h-14">Belum ada pesanan</td></tr> : null}
+                {activeOrders
                   .sort((a, b) => new Date(a.eventDate).getTime() - new Date(b.eventDate).getTime())
                   .map(order => (
                     <tr key={order.purchaseId} className="border-b border-gray-200 odd:bg-[#ffffe8] even:bg-[#fefed0]">
