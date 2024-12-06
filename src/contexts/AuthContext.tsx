@@ -105,6 +105,7 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
     try {
       await loginAccount(phone, password);
       setIsAuthenticated(true);
+      window.location.reload();
       return true;
     } catch (error: any) {
       setIsAuthenticated(false);
