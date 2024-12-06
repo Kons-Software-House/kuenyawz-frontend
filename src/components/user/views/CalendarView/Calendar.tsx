@@ -82,6 +82,7 @@ export default function Calendar({ isSmall, selectedDates, selectable = false, s
 
     switch (closedDate.type) {
       case 'CLOSED': return 2;
+      case 'PREP': return 1;
       case 'RESERVED': return 3;
       default: return 0;
     }
@@ -116,7 +117,7 @@ export default function Calendar({ isSmall, selectedDates, selectable = false, s
           key={day}
           date={`${day}`}
           thisMonth={true}
-          eventType={isSelected ? 1 : getEventType(currentDate)}
+          eventType={isSelected ? 4 : getEventType(currentDate)}
           onClick={() => handleDateClick(day)}
         />
       );
@@ -245,7 +246,7 @@ function DateComponent({ date, thisMonth, eventType = 0, onClick }: DateProps) {
     <div
       onClick={onClick}
       className={(thisMonth ? '' : 'text-gray-400') + " bg-gray-50 hover:brightness-[102%] flex flex-col items-center justify-center text-sm lg:text-xl aspect-[1/1] rounded shadow-md transition ease-in-out duration-150"}>
-      <p className={(eventType ? availability[eventType] : '') + " " + (eventType ? 'text-white' : '') + ' h-2/3 aspect-[1/1] rounded-full flex justify-center items-center font-semibold'} >
+      <p className={(eventType ? availability[eventType] : '') + " " + (eventType ? 'text-white text-shadow' : '') + ' h-2/3 aspect-[1/1] rounded-full flex justify-center items-center font-semibold'} >
         {date}
       </p>
     </div>

@@ -22,12 +22,15 @@ import AdminCalendarView from "./views/admin/AdminCalendarView";
 import AdminProductListView from "./views/admin/AdminProductListView";
 import AddNewProductView from "./views/admin/AddNewProductView";
 import EditProductView from "./views/admin/EditProductView";
+import AdminOrderListView from "./views/admin/AdminOrderListView";
+import AdminOrderDetailView from "./views/admin/AdminOrderDetailView";
+import AdminHistoryListView from "./views/admin/AdminHistoryListView";
 
 function App() {
   const location = useLocation();
   const { showLoginModal, showOtpModal, showRegisterModal } = useModal();
   const { checkAuth } = useAuth();
-  const [checkingAuth, setCheckingAuth] = useState(false);
+  const [checkingAuth, setCheckingAuth] = useState(true);
   const { setTransitionColor } = useTransitionColor();
   const navigate = useNavigate();
 
@@ -40,11 +43,10 @@ function App() {
   async function pathCheck(path: string) {
     setCheckingAuth(true);
     try {
-
       if (await checkAuth()) {
-        navigate(path);
+        navigate(path, { replace: true });
       } else {
-        navigate("/not-found");
+        navigate("/not-found", { replace: true });
       }
     } finally {
       setCheckingAuth(false);
@@ -54,6 +56,8 @@ function App() {
   useEffect(() => {
     if (location.pathname.startsWith("/admin")) {
       pathCheck(location.pathname);
+    } else {
+      setCheckingAuth(false);
     }
   }, [location.pathname]);
 
@@ -85,8 +89,11 @@ function App() {
             <Route path="admin" element={<AdminDashboardView />} />
             <Route path="admin/calendar" element={<AdminCalendarView />} />
             <Route path="admin/products" element={<AdminProductListView />} />
+            <Route path="admin/histories" element={<AdminHistoryListView />} />
             <Route path="admin/product/add" element={<AddNewProductView />} />
             <Route path="admin/product/edit/:productId" element={<EditProductView />} />
+            <Route path="admin/orders" element={<AdminOrderListView />} />
+            <Route path="admin/orders/:purchaseId" element={<AdminOrderDetailView />} />
           </Routes>
         </AnimatePresence>
       }

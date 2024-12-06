@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import { Product, Variant } from "../../types/Product";
 import { retrieveProducts, deleteVariant, deleteProduct } from "../../services/ProducApiService";
+import { formatToIdr } from "../../types/Formatter";
 import Sidebar from "../../components/admin/views/AdminDashboardView/Sidebar"
 
 export default function AdminProductListView() {
@@ -159,13 +160,7 @@ function VariantItem({ product, variant, fetchProducts }: VariantItemProps) {
       <td className="p-2 text-center">{product.name} ({variant.type})</td>
       <td className="p-2 text-center">{product.category}</td>
       <td className="p-2 text-center flex justify-between">
-        <p>Rp</p>
-        <p>
-          {variant.price.toLocaleString("id-ID", {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2,
-          })}
-        </p>
+        {formatToIdr(variant.price)}
       </td>
       <td className="p-2 text-center">{product.available ? "Tersedia" : "Tidak Tersedia"}</td>
       <td className="p-2 text-center">

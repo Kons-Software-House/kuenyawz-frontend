@@ -18,3 +18,33 @@ export const createOrder = async (fullAddress: string, latitude: number, longitu
     const response = await apiClient.post('/orders', data);
     return response.data;
 }
+
+export const retrieveOrders = async (params?: any): Promise<any> => {
+    const response = await apiClient.get('/orders', { params });
+    return response.data;
+}
+
+export const retrieveOrder = async (purchaseId: string): Promise<any> => {
+    const response = await apiClient.get(`/orders/${purchaseId}`);
+    return response.data;
+}
+
+export const confirmOrder = async (purchaseId: string): Promise<any> => {
+    const response = await apiClient.post(`/orders/${purchaseId}/confirm`);
+    return response.data;
+}
+
+export const cancelOrder = async (purchaseId: string): Promise<any> => {
+    const response = await apiClient.post(`/orders/${purchaseId}/cancel`);
+    return response.data;
+}
+
+export const refundOrder = async (purchaseId: string): Promise<any> => {
+    const response = await apiClient.post(`/orders/${purchaseId}/refund`);
+    return response.data;
+}
+
+export const updateOrderStatus = async (purchaseId: string): Promise<any> => {
+    const response = await apiClient.post(`/orders/${purchaseId}/status/next`);
+    return response.data;
+}

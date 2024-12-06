@@ -13,6 +13,12 @@ export default function AvailabilityTable() {
           Libur
         </p>
       </div>
+      <div className="text-inherit flex items-center gap-2">
+        <div className="aspect-[1/1] h-6 xl:h-8 bg-availability-200 border rounded-full"></div>
+        <p>
+          Persiapan
+        </p>
+      </div>
       <div className="h-full flex items-end text-sm underline underline-offset-2 font-clear">
         <p>
           Tiap Pesanan memerlukan waktu minimal 2 hari sebelum hari-H
