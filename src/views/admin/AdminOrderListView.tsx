@@ -1,9 +1,10 @@
-import Sidebar from "../../components/admin/views/AdminDashboardView/Sidebar";
 import { useEffect, useState } from "react";
-import { retrieveOrders } from "../../services/OrderApiService";
-import { Order } from "../../types/Orders";
 import { Link } from "react-router-dom";
 
+import { Order } from "../../types/Order";
+import { LocalizedOrderStatus } from "../../types/OrderStatus";
+import { retrieveOrders } from "../../services/OrderApiService";
+import Sidebar from "../../components/admin/views/AdminDashboardView/Sidebar";
 
 export default function AdminOrderListView() {
   const [loading, setLoading] = useState(true)
@@ -67,7 +68,7 @@ export default function AdminOrderListView() {
                     <tr key={order.purchaseId} className="border-b border-gray-200 odd:bg-[#ffffe8] even:bg-[#fefed0]">
                       <td className="p-2">{order.fullAddress}</td>
                       <td className="p-2">{order.eventDate}</td>
-                      <td className="text-center p-2">{order.status}</td>
+                      <td className="text-center p-2">{LocalizedOrderStatus[order.status as keyof typeof LocalizedOrderStatus]}</td>
                       <td className="flex justify-center p-2">
                         <Link to={`/admin/orders/${order.purchaseId}`}>
                           <button className="border-2 border-secondary-100 text-black px-4 py-1 rounded-md p-2">Detil</button>
