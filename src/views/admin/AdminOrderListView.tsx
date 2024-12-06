@@ -8,11 +8,11 @@ import Sidebar from "../../components/admin/views/AdminDashboardView/Sidebar";
 
 export default function AdminOrderListView() {
   const [loading, setLoading] = useState(true)
-  const [orders, setOrders] = useState<Order[]>([]);
+  const [activeOrders, setActiveOrders] = useState<Order[]>([]);
   const [page, setPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
 
-  const fetchOrders = async (newPage?: number) => {
+  const fetchOrders = async (newPage?: number, orderStatus?: string) => {
     setLoading(true);
     if (newPage && newPage < 0) {
       newPage = 0;
@@ -20,16 +20,19 @@ export default function AdminOrderListView() {
     if (newPage && newPage > totalPages - 1) {
       newPage = undefined;
     }
+    if (orderStatus === "") {
+      orderStatus = undefined;
+    }
 
     try {
       const params = {
         page: newPage,
         pageSize: 15,
-        // status: "CONFIRMING",
+        status: orderStatus
       };
 
       const response = await retrieveOrders(params);
-      setOrders(response.content);
+      separateActiveOrders(response.content);
       setPage(response.page.number);
       setTotalPages(response.page.totalPages);
     } catch (error) {
@@ -37,6 +40,11 @@ export default function AdminOrderListView() {
     } finally {
       setLoading(false);
     }
+  }
+
+  const separateActiveOrders = (orders: Order[]) => {
+    const activeOrders = orders.filter(order => order.status !== "DELIVERED");
+    setActiveOrders(activeOrders);
   }
 
   useEffect(() => {
