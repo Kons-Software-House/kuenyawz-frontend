@@ -77,7 +77,7 @@ export default function AdminOrderListView() {
               <thead>
                 <tr className="border-b bg-secondary-100">
                   <th className="text-left p-2">Alamat Pengiriman</th>
-                  <th className="text-left p-2">Tanggal</th>
+                  <th className="text-left p-2">Tanggal Pengiriman</th>
                   <th className="text-center p-2">Status</th>
                   <th className="text-center p-2">Aksi</th>
                 </tr>
