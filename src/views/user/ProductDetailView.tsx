@@ -115,7 +115,7 @@ export default function ProductDetailPage() {
               </div>
             </div>
           </Container>
-          <div className={`hidden sm:block absolute left-0 right-0 -mt-[46rem] xl:-mt-[50rem] md:h-[6rem] -z-10 ${LighterBackgroundColors[CategoryColors[product.category as keyof typeof CategoryColors] as keyof typeof LighterBackgroundColors]}`} />
+          <div className={`hidden sm:block absolute left-0 right-0 -mt-[46rem] 2xl:-mt-[60rem] xl:-mt-[50rem] md:h-[6rem] -z-10 ${LighterBackgroundColors[CategoryColors[product.category as keyof typeof CategoryColors] as keyof typeof LighterBackgroundColors]}`} />
         </>
       }
     </>
