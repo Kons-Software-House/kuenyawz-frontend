@@ -7,7 +7,7 @@ export default function LoadingLayer() {
   return (
     <div className='flex flex-col h-full w-full fixed'>
       <div className='flex' >
-        <div className={`${transitionColor} h-[10rem] lg:h-[18rem] w-full brightness-[95%]`} />
+        <div className={`${transitionColor} h-[8rem] sm:h-[10rem] lg:h-[18rem] w-full brightness-[95%]`} />
       </div >
       <div className='flex h-screen'>
         <div

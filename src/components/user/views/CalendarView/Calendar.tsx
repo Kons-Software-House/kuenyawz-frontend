@@ -202,12 +202,12 @@ function YearMonth({ year, month, onPrevMonth, onNextMonth }: YearMonthProps) {
           {year}
         </div>
       </div>
-      <div className="flex items-center lg:gap-4 select-none">
+      <div className="flex items-center gap-6 select-none">
         <div onClick={onPrevMonth}>
-          <ChevronLeft size={26} />
+          <ChevronLeft />
         </div>
         <div onClick={onNextMonth}>
-          <ChevronRight size={26} />
+          <ChevronRight />
         </div>
       </div>
     </div>

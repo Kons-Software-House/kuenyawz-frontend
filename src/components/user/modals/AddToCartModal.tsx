@@ -3,12 +3,12 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { motion } from "framer-motion";
 import { ShoppingBag } from "lucide-react";
 
-import { LighterBorderColors } from "../core/Colors";
 import Backdrop from "../core/Backdrop";
 import { Variant } from "../../../types/Product";
 import { formatToIdr } from "../../../types/Formatter";
 import { useModal } from "../../../contexts/ModalContext";
 import { addToUserCart } from "../../../services/UserApiService";
+import { useAuth } from "../../../contexts/AuthContext";
 
 type AddToCartModalProps = {
   variants: Variant[];
@@ -18,6 +18,7 @@ export default function AddToCartModal({ variants }: AddToCartModalProps) {
   const { setShowAddToCartModal } = useModal();
   const [selectedVariant, setSelectedVariant] = useState<Variant | null>(variants.length > 0 ? variants[0] : null);
   const [minQuantity, setMinQuantity] = useState(selectedVariant?.minQuantity || 1);
+  const { setCartCount, cartCount } = useAuth();
 
   const validateValues = (values: { quantity: number }) => {
     const errors: Partial<{ quantity: string }> = {};
@@ -30,14 +31,23 @@ export default function AddToCartModal({ variants }: AddToCartModalProps) {
   }
 
   useEffect(() => {
-    console.log(selectedVariant?.minQuantity)
     setMinQuantity(selectedVariant?.minQuantity || 1)
   }, [selectedVariant])
 
   const handleAddToCart = async (values: { quantity: number, note: string }) => {
-    if (selectedVariant) {
-      await addToUserCart(selectedVariant.variantId.toString(), values.quantity, values.note)
-      setShowAddToCartModal(false)
+    try {
+
+      if (selectedVariant) {
+        await addToUserCart(selectedVariant.variantId.toString(), values.quantity, values.note)
+        setCartCount(cartCount + 1)
+        setShowAddToCartModal(false)
+      }
+    } catch (error: any) {
+      if (error.response.status === 409) {
+        alert("Produk Sudah Ada Di Dalam Keranjang");
+        return;
+      }
+      alert("Gagal Menambahkan Produk Ke Dalam Keranjang: " + error.response.data.message);
     }
   }
 

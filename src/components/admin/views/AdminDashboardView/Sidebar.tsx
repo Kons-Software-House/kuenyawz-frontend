@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { Gauge, CakeSlice, ShoppingBag, History, CalendarCheck } from "lucide-react";
 
 import Logo from "../../../../assets/Navbar/Main.png"
 
@@ -12,31 +13,31 @@ export default function Sidebar() {
       <nav className="flex flex-col items-start py-4">
         <Link to="/admin" className="flex items-center py-2 pl-4 pr-6 hover:bg-secondary-100 w-full">
           <span className="mr-2">
-            [ ]
+            <Gauge />
           </span>
           Dashboard
         </Link>
         <Link to="/admin/products" className="flex items-center py-2 pl-4 pr-6 hover:bg-secondary-100 w-full">
           <span className="mr-2">
-            [ ]
+            <ShoppingBag />
           </span>
           Produk
         </Link>
         <Link to="/admin/orders" className="flex items-center py-2 pl-4 pr-6 hover:bg-secondary-100 w-full">
           <span className="mr-2">
-            [ ]
+            <CakeSlice />
           </span>
           Pesanan
         </Link>
         <Link to="/admin/histories" className="flex items-center py-2 pl-4 pr-6 hover:bg-secondary-100 w-full">
           <span className="mr-2">
-            [ ]
+            <History />
           </span>
           Riwayat
         </Link>
         <Link to="/admin/calendar" className="flex items-center py-2 pl-4 pr-6 hover:bg-secondary-100 w-full">
           <span className="mr-2">
-            [ ]
+            <CalendarCheck />
           </span>
           Kalender
         </Link>

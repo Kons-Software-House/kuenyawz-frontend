@@ -10,6 +10,7 @@ type AuthContextType = {
   fullName: string;
   phone: string;
   cartCount: number;
+  setCartCount: (count: number) => void;
   checkAuth: () => Promise<boolean>;
   handleLogin: (phone: string, password: string) => Promise<boolean>;
   handleLogout: () => void;
@@ -159,7 +160,7 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
   }
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, otpCountdown, fullName, phone, cartCount, checkAuth, handleLogin, handleLogout, handleRegister, handleSendOtp, handleVerifyOtp }}>
+    <AuthContext.Provider value={{ isAuthenticated, otpCountdown, fullName, phone, cartCount, setCartCount, checkAuth, handleLogin, handleLogout, handleRegister, handleSendOtp, handleVerifyOtp }}>
       {children}
     </AuthContext.Provider>
   );

@@ -10,10 +10,12 @@ import { retrieveUserCart, deleteFromUserCart, updateCartItem } from "../../serv
 import { retrieveOrders } from "../../services/OrderApiService"
 import Container from "../../components/user/core/Container"
 import UpperSection from "../../components/user/core/UpperSection"
+import { useAuth } from "../../contexts/AuthContext"
 
 export default function CartView() {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
   const [orders, setOrders] = useState<Order[]>([])
+  const { cartCount, setCartCount } = useAuth()
 
   const retrieveCartItems = async () => {
     try {
@@ -37,11 +39,11 @@ export default function CartView() {
   const handleDeleteCartItem = async (cartItemId: string) => {
     try {
       await deleteFromUserCart(cartItemId)
-      retrieveCartItems()
     } catch (error) {
       console.error(error)
     } finally {
       retrieveCartItems()
+      setCartCount(cartCount - 1)
     }
   }
 

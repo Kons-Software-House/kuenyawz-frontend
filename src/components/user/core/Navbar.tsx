@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
+import { CakeSlice, Calendar, Store, LogIn, LogOut } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 import { useAuth } from "../../../contexts/AuthContext";
@@ -18,11 +19,11 @@ export default function Navbar() {
 
   return (
     <motion.div>
-      <nav className={`w-full text-base font-nav bg-black/10 absolute z-30 h-10 lg:h-16 px-4 lg:px-12 lg:text-xl flex items-center`}>
+      <nav className={`w-full text-base font-nav bg-black/10 absolute z-30 h-10 sm:h-14 lg:h-16 px-4 lg:px-12 lg:text-xl xl:text-2xl flex items-center`}>
         <div className="h-full w-full flex items-center justify-between">
           <div className={"md:basis-1/3 flex items-center justify-start"}>
             <Link to="/">
-              <motion.img src={Main} className="h-8 lg:h-10 md:h-12 mt-1 object-cover" />
+              <motion.img src={Main} className="h-8 sm:h-10 md:h-12 mt-1 object-cover" />
             </Link>
           </div>
 
@@ -69,7 +70,7 @@ export default function Navbar() {
             >
               <motion.img
                 src={CartIcon}
-                className="h-6 lg:h-8"
+                className="h-8"
                 whileHover={{ scale: 1.1 }}
               />
               {isAuthenticated && cartCount > 0 && (
@@ -81,7 +82,7 @@ export default function Navbar() {
 
             {/* Mobile Hamburger Menu */}
             <button
-              className="md:hidden z-50 relative"
+              className="md:hidden z-50 relative scale-125"
               onClick={toggleMenu}
             >
               <div className={`w-6 h-0.5 bg-black`} />
@@ -110,7 +111,7 @@ export default function Navbar() {
                 animate={{ x: 0 }}
                 exit={{ x: "100%" }}
                 transition={{ type: "tween" }}
-                className="fixed top-0 right-0 w-40 h-full bg-secondary-500 z-50 shadow-lg"
+                className="fixed top-0 right-0 w-64 h-full bg-secondary-500 z-50 shadow-lg"
               >
                 <Link to="/" onClick={() => { setIsMenuOpen(false) }} className='w-full flex items-center justify-center mt-2'>
                   <motion.img src={Main} className="h-8 mt-1 object-cover" />
@@ -126,7 +127,7 @@ export default function Navbar() {
                           {isAuthenticated ? "Keluar" : "Masuk"}
                         </p>
                         <div>
-                          [ ]
+                          {isAuthenticated ? <LogOut size={24} /> : <LogIn size={24} />}
                         </div>
                       </button>
                       <hr className='bg-black mb-4' />
@@ -151,6 +152,13 @@ type NavButtonSmallProps = {
 function NavButtonSmall(
   { text, href, setIsMenuOpen }: NavButtonSmallProps
 ) {
+
+  const icons: { [key: string]: JSX.Element } = {
+    "Produk": <CakeSlice />,
+    "Kalender": <Calendar />,
+    "Tentang": <Store />
+  }
+
   return (
     <li>
       <Link to={href} onClick={() => setIsMenuOpen(false)}>
@@ -159,7 +167,7 @@ function NavButtonSmall(
             {text}
           </p>
           <div>
-            [ ]
+            {icons[text]}
           </div>
         </div>
         <hr className='bg-black mb-4' />
