@@ -11,8 +11,12 @@ export default function OrderCount() {
   useEffect(() => {
     const fetchOrderCount = async () => {
       try {
-        const response = await retrieveOrders();
+        const params = {
+          statuses: "CONFIRMING, CONFIRMED, PROCESSING"
+        };
+        const response = await retrieveOrders(params);
         const orders = response.content;
+        console.log(orders);
         separateActiveOrders(orders);
         separateConfirmedOrders(orders);
         separateProcessedOrders(orders);
