@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { Product, Variant } from "../../types/Product";
-import { retrieveProducts, deleteVariant, deleteProduct } from "../../services/ProducApiService";
+import { retrieveProducts, deleteVariant, deleteProduct, refreshRecommenders } from "../../services/ProducApiService";
 import { formatToIdr } from "../../types/Formatter";
 import Sidebar from "../../components/admin/views/AdminDashboardView/Sidebar"
 
@@ -84,7 +84,13 @@ export default function AdminProductListView() {
                   <option value="other">Lainnya</option>
                 </select>
               </div>
-              <Link className="p-2 px-4 bg-secondary-300 border-2 border-secondary-100 rounded-lg" to={"/admin/products/add"}>Buat Produk Baru</Link>
+              <div className="flex gap-4">
+                <button className="p-2 px-4 bg-secondary-300 border-2 border-secondary-100 rounded-lg" onClick={() => {
+                  refreshRecommenders();
+                  fetchProducts();
+                }}>Perbarui Rekomendasi</button>
+                <Link className="p-2 px-4 bg-secondary-300 border-2 border-secondary-100 rounded-lg" to={"/admin/products/add"}>Buat Produk Baru</Link>
+              </div>
             </div>
             {/* table */}
             <table className="w-full bg-secondary-250">
