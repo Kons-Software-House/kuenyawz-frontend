@@ -57,3 +57,8 @@ export const uploadProductImages = async (productId: string, images: File[]): Pr
     const response = await apiClient.post(`/images/${productId}/batch`, formData);
     return response.data;
 }
+
+export const refreshRecommenders = async (): Promise<any> => {
+    const response = await apiClient.post('/recommender/generate');
+    return response.data;
+}
