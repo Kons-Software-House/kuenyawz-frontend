@@ -1,7 +1,7 @@
 # Frontend of WZ Snack n Bites Website
 Catering Service Website For Kuenya WZ Located in South Jakarta.
 
-[Main Repository](https://github.com/vianneynara/wz-snack-n-bites)
+[Main Repository](https://github.com/vianneynara/kuenyawz)
 ## Features
 - [x] User Management (Register, Login)
 - [x] Products Management
@@ -13,7 +13,7 @@ Catering Service Website For Kuenya WZ Located in South Jakarta.
 - Open Route Service
 
 ## Prerequisites
-- Connected to the [Api Server](https://github.com/vianneynara/wz-snack-n-bites-api)
+- Connected to the [Api Server](https://github.com/vianneynara/kuenyawz-api)
 - Node.js
 - Open Route Service API key you can get it [here](https://openrouteservice.org)
 
