@@ -3,7 +3,6 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { motion } from "framer-motion";
 import { ShoppingBag } from "lucide-react";
 
-import { LighterBorderColors } from "../core/Colors";
 import Backdrop from "../core/Backdrop";
 import { Variant } from "../../../types/Product";
 import { formatToIdr } from "../../../types/Formatter";
