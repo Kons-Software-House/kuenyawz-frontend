@@ -12,7 +12,7 @@ interface CategoryStats {
 }
 
 
-export function CategorySpreadChart() {
+export default function CategorySpreadChart() {
   const [data, setData] = useState<CategoryStats[]>([
     { name: 'Cake', value: 0 },
     { name: 'Pasta', value: 0 },
