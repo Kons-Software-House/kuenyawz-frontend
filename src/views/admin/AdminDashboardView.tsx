@@ -1,4 +1,5 @@
 import { CategorySpreadChart } from "../../components/admin/views/AdminDashboardView/Charts"
+import OrderCount from "../../components/admin/views/AdminDashboardView/OrderCount"
 import Sidebar from "../../components/admin/views/AdminDashboardView/Sidebar"
 
 export default function AdminDashboardView() {
@@ -14,7 +15,8 @@ export default function AdminDashboardView() {
               <h2 className="font-semibold font-clear">Sebaran Kategori</h2>
               <CategorySpreadChart />
             </div>
-            <div className="shadow-lg border-2 border-secondary-100 rounded-lg">
+            <div className="shadow-lg border-2 border-secondary-100 rounded-lg flex flex-col items-center">
+              <OrderCount />
             </div>
             <div className="shadow-lg border-2 border-secondary-100 rounded-lg">
             </div>
