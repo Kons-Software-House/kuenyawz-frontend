@@ -43,7 +43,7 @@ export default function AdminOrderListView() {
   }
 
   const separateActiveOrders = (orders: Order[]) => {
-    const activeOrders = orders.filter(order => order.status !== "DELIVERED");
+    const activeOrders = orders.filter(order => order.status !== "DELIVERED" && order.status !== "CANCELLED");
     setActiveOrders(activeOrders);
   }
 

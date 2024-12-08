@@ -15,7 +15,7 @@ export default function LandingView() {
           <div className='bg-white h-4/6 w-11/12 aspect-[1/1] shadow-lg hidden md:block'>
           </div>
         </Column>
-        <Column background='bg-secondary-200' header='Kalender' description='Perayaan Anda, Kreasi Kami' href='/calenar'>
+        <Column background='bg-secondary-200' header='Kalender' description='Perayaan Anda, Kreasi Kami' href='/calendar'>
           <div className='bg-white h-4/6 w-11/12 aspect-[1/1] shadow-lg hidden md:block'>
           </div>
         </Column>

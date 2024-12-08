@@ -17,6 +17,7 @@ import ProductListView from "./views/user/ProductListView";
 import ProductDetailPage from "./views/user/ProductDetailView";
 import CartView from "./views/user/CartView";
 import PaymentView from "./views/user/PaymentView";
+import ActiveOrderView from "./views/user/ActiveOrderView";
 import AdminDashboardView from "./views/admin/AdminDashboardView";
 import AdminCalendarView from "./views/admin/AdminCalendarView";
 import AdminProductListView from "./views/admin/AdminProductListView";
@@ -85,6 +86,7 @@ function App() {
             <Route path="/product/:productId" element={<ProductDetailPage />} />
             <Route path="/cart" element={<CartView />} />
             <Route path="/cart/shipment" element={<PaymentView />} />
+            <Route path="orders/:purchaseId" element={<ActiveOrderView />} />
             <Route path="*" element={<NotFoundView />} />
             <Route path="admin" element={<AdminDashboardView />} />
             <Route path="admin/calendar" element={<AdminCalendarView />} />
