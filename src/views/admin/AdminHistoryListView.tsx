@@ -25,7 +25,7 @@ export default function AdminHistoryListView() {
       const params = {
         page: newPage,
         pageSize: 15,
-        status: "DELIVERED"
+        statuses: "DELIVERED, CANCELLED"
       };
 
       const response = await retrieveOrders(params);
