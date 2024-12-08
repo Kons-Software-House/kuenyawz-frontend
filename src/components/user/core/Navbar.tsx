@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
+import { CakeSlice, Calendar, Store, LogIn, LogOut } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 import { useAuth } from "../../../contexts/AuthContext";
@@ -126,7 +127,7 @@ export default function Navbar() {
                           {isAuthenticated ? "Keluar" : "Masuk"}
                         </p>
                         <div>
-                          [ ]
+                          {isAuthenticated ? <LogOut size={24} /> : <LogIn size={24} />}
                         </div>
                       </button>
                       <hr className='bg-black mb-4' />
@@ -151,6 +152,13 @@ type NavButtonSmallProps = {
 function NavButtonSmall(
   { text, href, setIsMenuOpen }: NavButtonSmallProps
 ) {
+
+  const icons: { [key: string]: JSX.Element } = {
+    "Produk": <CakeSlice />,
+    "Kalender": <Calendar />,
+    "Tentang": <Store />
+  }
+
   return (
     <li>
       <Link to={href} onClick={() => setIsMenuOpen(false)}>
@@ -159,7 +167,7 @@ function NavButtonSmall(
             {text}
           </p>
           <div>
-            [ ]
+            {icons[text]}
           </div>
         </div>
         <hr className='bg-black mb-4' />
