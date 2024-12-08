@@ -120,17 +120,17 @@ export default function ProductListView() {
 function PaginationControls({ page, totalPages, onPageChange }: { page: number, totalPages: number, onPageChange: (newPage: number) => void }) {
   return (
     <div className="flex flex-col lg:flex-row justify-between items-center my-2 lg:my-4 gap-2">
-      <p className="text-sm lg:text-lg">Menampilkan {page} dari {totalPages} halaman</p>
+      <p className="text-base lg:text-lg">Menampilkan {page} dari {totalPages} halaman</p>
       <div className="flex gap-2">
         <button
-          className="bg-secondary-100 text-white text-sm md:text-md px-2 lg:px-4 rounded"
+          className="bg-secondary-100 text-white text-base px-2 lg:px-4 rounded"
           disabled={page <= 1}
           onClick={() => onPageChange(page - 1)}
         >
           Sebelumnya
         </button>
         <button
-          className="bg-secondary-100 text-white text-sm md:text-md px-2 lg:px-4 rounded"
+          className="bg-secondary-100 text-white text-base px-2 lg:px-4 rounded"
           disabled={page >= totalPages}
           onClick={() => onPageChange(page + 1)}
         >
