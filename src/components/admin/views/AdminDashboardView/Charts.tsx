@@ -1,15 +1,69 @@
 import { PieChart, Pie, Cell } from 'recharts';
+import { useState, useEffect } from 'react';
+
+import { retrieveProducts } from '../../../../services/ProducApiService';
+import { Product } from '../../../../types/Product';
 
 const COLORS = ['#B88655', '#D49A6A', '#E59B4C', '#B38486', '#899B78'];
 
+interface CategoryStats {
+  name: string;
+  value: number;
+}
+
+
 export function CategorySpreadChart() {
-  const data = [
-    { name: 'Cake', value: 10 },
-    { name: 'Pasta', value: 5 },
-    { name: 'Pastry', value: 20 },
-    { name: 'Pie & Pudding', value: 15 },
-    { name: 'Other', value: 50 },
-  ]
+  const [data, setData] = useState<CategoryStats[]>([
+    { name: 'Cake', value: 0 },
+    { name: 'Pasta', value: 0 },
+    { name: 'Pastry', value: 0 },
+    { name: 'Pie', value: 0 },
+    { name: 'Other', value: 0 },
+  ]);
+
+  useEffect(() => {
+    const fetchCategoryStats = async () => {
+      try {
+        const params = { pageSize: 1000, available: true };
+        const data = await retrieveProducts(params);
+        const products: Product[] = data.content;
+        const categoryStats: CategoryStats[] = [
+          { name: 'Cake', value: 0 },
+          { name: 'Pasta', value: 0 },
+          { name: 'Pastry', value: 0 },
+          { name: 'Pie', value: 0 },
+          { name: 'Other', value: 0 },
+        ];
+
+        products.forEach(product => {
+          switch (product.category) {
+            case 'CAKE':
+              categoryStats[0].value += 1;
+              break;
+            case 'PASTA':
+              categoryStats[1].value += 1;
+              break;
+            case 'PASTRY':
+              categoryStats[2].value += 1;
+              break;
+            case 'PIE':
+              categoryStats[3].value += 1;
+              break;
+            default:
+              categoryStats[4].value += 1;
+          }
+        });
+
+        setData(categoryStats);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+
+    fetchCategoryStats();
+  }, []);
+
+
   return (
     <div className="aspect-[1/1] h-80  flex flex-col items-center">
       <PieChart width={200} height={200} className="mt-4">
@@ -34,7 +88,7 @@ export function CategorySpreadChart() {
         <PieHelper color='bg-tetriary-100' label='Cake' />
         <PieHelper color='bg-tetriary-200' label='Pasta' />
         <PieHelper color='bg-tetriary-300' label='Pastry' />
-        <PieHelper color='bg-tetriary-400' label='Pie & Pudding' />
+        <PieHelper color='bg-tetriary-400' label='Pie' />
         <PieHelper color='bg-tetriary-500' label='Other' />
       </div>
     </div>
