@@ -21,14 +21,14 @@ export default function AdminOrderListView() {
       newPage = undefined;
     }
     if (orderStatus === "") {
-      orderStatus = undefined;
+      orderStatus = "PENDING, CONFIRMING, CONFIRMED, PROCESSING";
     }
 
     try {
       const params = {
         page: newPage,
         pageSize: 15,
-        status: orderStatus
+        statuses: orderStatus
       };
 
       const response = await retrieveOrders(params);
