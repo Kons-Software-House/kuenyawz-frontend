@@ -5,15 +5,17 @@ Catering Service Website For Kuenya WZ Located in South Jakarta.
 ## Features
 - [x] User Management (Register, Login)
 - [x] Products Management
-- [ ] Recommender System with Apriori
-- [ ] Transaction Management
+- [x] Recommender System with Apriori
+- [x] Transaction Management
 
 ## Tech used
 - React, Typescript
+- Open Route Service
 
 ## Prerequisites
 - Connected to the [Api Server](https://github.com/vianneynara/wz-snack-n-bites-api)
 - Node.js
+- Open Route Service API key you can get it [here](https://openrouteservice.org)
 
 ## Installation
 1. Clone the repository
