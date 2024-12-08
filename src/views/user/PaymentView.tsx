@@ -90,7 +90,7 @@ export default function PaymentView() {
     try {
       const response = await createOrder(fullAddress, lat, lon, eventDate, paymentType, deliveryOption, purchaseItems)
       window.open(response.transactions[0].paymentUrl, '_blank');
-      navigate('/')
+      navigate('/cart')
     } catch (error) {
       console.error(error)
     }
