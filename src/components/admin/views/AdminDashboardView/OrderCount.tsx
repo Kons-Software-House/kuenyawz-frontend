@@ -16,7 +16,6 @@ export default function OrderCount() {
         };
         const response = await retrieveOrders(params);
         const orders = response.content;
-        console.log(orders);
         separateActiveOrders(orders);
         separateConfirmedOrders(orders);
         separateProcessedOrders(orders);
