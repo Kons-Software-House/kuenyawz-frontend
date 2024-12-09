@@ -13,7 +13,10 @@ export const createOrder = async (fullAddress: string, latitude: number, longitu
         eventDate,
         paymentType,
         deliveryOption,
-        purchaseItems
+        purchaseItems,
+        callbacks: {
+            finish: `${import.meta.env.VITE_FRONTEND_URL}/cart`,
+        }
     };
     const response = await apiClient.post('/orders', data);
     return response.data;
