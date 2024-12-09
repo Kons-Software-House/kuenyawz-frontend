@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import { CakeSlice, Calendar, Store, LogIn, LogOut } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { useAuth } from "../../../contexts/AuthContext";
 import { useModal } from "../../../contexts/ModalContext";
@@ -11,10 +11,20 @@ import Main from "../../../assets/Navbar/Main.png"
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const modalContext = useModal()
-  const { isAuthenticated, cartCount, handleLogout } = useAuth()
+  const navigate = useNavigate()
+  const { isAuthenticated, cartCount, handleLogout, checkAuth } = useAuth()
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  }
+
+  const handleAdminDashboard = async () => {
+    console.log("a")
+    if (window.location.pathname === "/") {
+      if (await checkAuth()) {
+        navigate('/admin')
+      }
+    }
   }
 
   return (
@@ -22,7 +32,7 @@ export default function Navbar() {
       <nav className={`w-full text-base font-nav bg-black/10 absolute z-30 h-10 sm:h-14 lg:h-16 px-4 lg:px-12 lg:text-xl xl:text-2xl flex items-center`}>
         <div className="h-full w-full flex items-center justify-between">
           <div className={"md:basis-1/3 flex items-center justify-start"}>
-            <Link to="/">
+            <Link to="/" onClick={() => handleAdminDashboard()}>
               <motion.img src={Main} className="h-8 sm:h-10 md:h-12 mt-1 object-cover" />
             </Link>
           </div>
