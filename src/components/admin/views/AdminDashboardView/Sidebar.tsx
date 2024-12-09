@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Gauge, CakeSlice, ShoppingBag, History, CalendarCheck } from "lucide-react";
+import { Gauge, CakeSlice, ShoppingBag, History, CalendarCheck, CircleArrowLeft } from "lucide-react";
 
 import Logo from "../../../../assets/Navbar/Main.png"
 
@@ -40,6 +40,12 @@ export default function Sidebar() {
             <CalendarCheck />
           </span>
           Kalender
+        </Link>
+        <Link to="/" className="flex items-center py-2 pl-4 pr-6 hover:bg-secondary-100 w-full">
+          <span className="mr-2">
+            <CircleArrowLeft />
+          </span>
+          Keluar
         </Link>
       </nav>
     </motion.div>
