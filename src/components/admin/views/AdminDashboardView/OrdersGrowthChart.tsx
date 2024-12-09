@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-import { retrieveOrders } from '../../../services/OrderApiService';
-import { Order } from '../../../types/Order';
+import { retrieveOrders } from '../../../../services/OrderApiService';
+import { Order } from '../../../../types/Order';
 
 export default function OrdersGrowthChart() {
     const [chartData, setChartData] = useState<{ name: string, Orders: number }[]>([]);

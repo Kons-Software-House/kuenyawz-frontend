@@ -1,5 +1,5 @@
 import CategorySpreadChart from "../../components/admin/views/AdminDashboardView/CategorySpreadChart"
-import OrdersGrowthChart from "../../components/admin/views/OrdersGrowthChart"
+import OrdersGrowthChart from "../../components/admin/views/AdminDashboardView/OrdersGrowthChart"
 import OrderCount from "../../components/admin/views/AdminDashboardView/OrderCount"
 import Sidebar from "../../components/admin/views/AdminDashboardView/Sidebar"
 

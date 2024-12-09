@@ -29,7 +29,7 @@ export default function CartView() {
 
   const fetchOrders = async () => {
     try {
-      const response = await retrieveOrders({ statuses: "PENDING, CONFIRMING, CONFIRMED, PROCESSING" });
+      const response = await retrieveOrders({ statuses: "PENDING, CONFIRMING, CONFIRMED, PROCESSING", page: 1, pageSize: 1 });
       setOrders(response.content);
     } catch (error) {
       console.error(error);
