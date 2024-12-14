@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 import Backdrop from "../core/Backdrop";
 import { useAuth } from "../../../contexts/AuthContext";
 import { useModal } from "../../../contexts/ModalContext";
-import Hidden from "../../../assets/Forms/hidden.svg";
-import Visible from "../../../assets/Forms/visible.svg";
+import Hidden from "../../../assets/Forms/Hidden.svg";
+import Visible from "../../../assets/Forms/Visible.svg";
 
 interface RegisterFormValues {
   fullName: string;
