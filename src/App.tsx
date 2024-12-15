@@ -92,8 +92,8 @@ function App() {
             <Route path="admin/calendar" element={<AdminCalendarView />} />
             <Route path="admin/products" element={<AdminProductListView />} />
             <Route path="admin/histories" element={<AdminHistoryListView />} />
-            <Route path="admin/product/add" element={<AddNewProductView />} />
-            <Route path="admin/product/edit/:productId" element={<EditProductView />} />
+            <Route path="admin/products/add" element={<AddNewProductView />} />
+            <Route path="admin/products/edit/:productId" element={<EditProductView />} />
             <Route path="admin/orders" element={<AdminOrderListView />} />
             <Route path="admin/orders/:purchaseId" element={<AdminOrderDetailView />} />
           </Routes>
