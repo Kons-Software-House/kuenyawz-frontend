@@ -64,14 +64,14 @@ export default function AddToCartModal({ variants }: AddToCartModalProps) {
                   {variants.map((variant, index) => (
                     <div
                       key={index}
-                      className={`flex flex-col grow items-center justify-center p-1 rounded-md cursor-pointer rounded-xl border-double border-secondary-300 border-8 ${selectedVariant === variant ? 'bg-secondary-100 text-white' : 'bg-white'}`}
+                      className={`flex flex-col grow items-center justify-center p-1 rounded-md cursor-pointer rounded-xl border-double border-secondary-300 border-8 ${selectedVariant === variant ? 'bg-white' : 'bg-secondary-100 text-white'}`}
                       onClick={() => {
                         setSelectedVariant(variant);
                         setFieldValue('quantity', variant.minQuantity);
                       }}
                     >
-                      <span className={`${selectedVariant === variant ? 'drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]' : ''} font-semibold`}>{variant.type}</span>
-                      <span className={`${selectedVariant === variant ? 'drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]' : ''}`}>{formatToIdr(variant.price)} / pc</span>
+                      <span className={`${selectedVariant === variant ? '' : 'drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]'} font-semibold`}>{variant.type}</span>
+                      <span className={`${selectedVariant === variant ? '' : 'drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]'}`}>{formatToIdr(variant.price)} / pc</span>
                     </div>
                   ))}
                 </div>
