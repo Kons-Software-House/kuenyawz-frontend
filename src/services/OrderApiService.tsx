@@ -2,7 +2,10 @@ import axios from "axios";
 
 const apiClient = axios.create({
     baseURL: import.meta.env.VITE_API_URL,
-    withCredentials: true
+    withCredentials: true,
+    headers: {
+        "ngrok-skip-browser-warning": true
+    },
 });
 
 export const createOrder = async (fullAddress: string, latitude: number, longitude: number, eventDate: string, paymentType: string, deliveryOption: string, purchaseItems: any[]): Promise<any> => {
