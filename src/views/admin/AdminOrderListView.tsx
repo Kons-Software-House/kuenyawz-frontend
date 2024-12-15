@@ -92,7 +92,7 @@ export default function AdminOrderListView() {
                       <td className="p-2">{order.eventDate}</td>
                       <td className="text-center p-2">{LocalizedOrderStatus[order.status as keyof typeof LocalizedOrderStatus]}</td>
                       <td className="flex justify-center p-2">
-                        <Link to={`/admin/orders/${order.purchaseId}`}>
+                        <Link to={`/admin/orders/${order.purchaseId.toString()}`} >
                           <button className="border-2 border-secondary-100 text-black px-4 py-1 rounded-md p-2">Detil</button>
                         </Link>
                       </td>
