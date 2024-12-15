@@ -6,7 +6,10 @@ const apiClient = axios.create({
     transformResponse: [(data) => {
         return JSONbig.parse(data);
     }],
-    withCredentials: true
+    withCredentials: true,
+    headers: {
+        "ngrok-skip-browser-warning": true
+    },
 });
 
 export const retrieveProducts = async (params?: any): Promise<any> => {
