@@ -67,7 +67,7 @@ export default function AdminOrderDetailView() {
           <div className="bg-secondary-300 p-4">
             <div className="flex justify-between">
               <div>
-                <h2 className="font-bold">Order ID: {order.purchaseId}</h2>
+                <h2 className="font-bold">Order ID: {order.purchaseId.toString()}</h2>
                 <p>Tanggal Pemesanan: {new Date(order.eventDate).toLocaleDateString()}</p>
                 <p>Status: {LocalizedOrderStatus[order.status as keyof typeof LocalizedOrderStatus]}</p>
               </div>
