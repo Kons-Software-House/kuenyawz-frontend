@@ -138,11 +138,11 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
 
   const handleSendOtp = async (phone: string) => {
     try {
+      setOtpCountdown(60);
       await requestOtp(phone);
       if (phone.length < 8) {
         return;
       }
-      setOtpCountdown(60);
       setPhone(phone);
     } catch (error: any) {
       alert("Failed to send OTP: " + error.response.data.message);
