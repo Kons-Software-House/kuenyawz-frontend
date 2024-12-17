@@ -5,6 +5,7 @@ import { Product } from "../../types/Product";
 import { retrieveProducts } from "../../services/ProducApiService";
 import { ProductCard } from "../../components/user/core/ProductCard";
 import UpperSection from "../../components/user/core/UpperSection"
+import LoadingCard from "../../components/user/core/LoadingCard";
 
 export default function ProductListView() {
   const [isLoading, setIsLoading] = useState(true)
@@ -13,6 +14,7 @@ export default function ProductListView() {
   const [totalPages, setTotalPages] = useState(0);
   const [keyword, setKeyword] = useState("");
   const [category, setCategory] = useState("");
+  const isLargeScreen = window.matchMedia('(min-width: 1024px)').matches;
 
   const debounceTimeout = useRef<NodeJS.Timeout | null>(null);
 
@@ -90,29 +92,37 @@ export default function ProductListView() {
           />
         </div>
       </div>
-      {isLoading ?
-        <div className="flex justify-center items-center h-96 min-h-screen">
-          <p className="text-2xl">Memuat produk...</p>
-        </div>
-        :
-        <div className="w-full flex flex-col items-center lg:w-3/4 m-auto min-h-screen">
-          <PaginationControls page={page} totalPages={totalPages} onPageChange={(newPage) => {
-            setPage(newPage);
-            fetchProducts(newPage, keyword, category);
-          }} />
+      <div className="flex justify-center items-center">
+        <PaginationControls page={page} totalPages={totalPages} onPageChange={(newPage) => {
+          setPage(newPage);
+          fetchProducts(newPage, keyword, category);
+        }} />
+      </div>
+      <div className="w-full flex flex-col items-center lg:w-3/4 m-auto min-h-screen">
+        {isLoading ?
+          <>
+            <div className="grid grid-cols-3 lg:grid-cols-4 p-4 w-full gap-4 md:gap-8">
+              {[...Array(isLargeScreen ? 4 : 3)].map((_, index) => (
+                <LoadingCard key={index} />
+              ))}
+            </div>
+            <p className="text-center text-base text-gray-500">Memuat...</p>
+          </>
+          :
+          <>
+            <div className='grid grid-cols-3 lg:grid-cols-4 p-4 w-full gap-4 md:gap-8'>
+              {products.map((product) => (
+                <ProductCard key={product.productId} product={product} />
+              ))}
+            </div >
 
-          <div className='grid grid-cols-3 lg:grid-cols-4 p-4 w-full gap-4 md:gap-8'>
-            {products.map((product) => (
-              <ProductCard key={product.productId} product={product} />
-            ))}
-          </div >
-
-          <PaginationControls page={page} totalPages={totalPages} onPageChange={(newPage) => {
-            setPage(newPage);
-            fetchProducts(newPage, keyword, category);
-          }} />
-        </div>
-      }
+            <PaginationControls page={page} totalPages={totalPages} onPageChange={(newPage) => {
+              setPage(newPage);
+              fetchProducts(newPage, keyword, category);
+            }} />
+          </>
+        }
+      </div>
     </>
   )
 }
