@@ -4,7 +4,6 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Product } from "../../types/Product";
 import { retrieveProducts } from "../../services/ProducApiService";
 import { ProductCard } from "../../components/user/core/ProductCard";
-import Container from "../../components/user/core/Container"
 import UpperSection from "../../components/user/core/UpperSection"
 
 export default function ProductListView() {
@@ -96,7 +95,7 @@ export default function ProductListView() {
           <p className="text-2xl">Memuat produk...</p>
         </div>
         :
-        <Container>
+        <div className="w-full flex flex-col items-center lg:w-3/4 m-auto">
           <PaginationControls page={page} totalPages={totalPages} onPageChange={(newPage) => {
             setPage(newPage);
             fetchProducts(newPage, keyword, category);
@@ -112,7 +111,7 @@ export default function ProductListView() {
             setPage(newPage);
             fetchProducts(newPage, keyword, category);
           }} />
-        </Container>
+        </div>
       }
     </>
   )
