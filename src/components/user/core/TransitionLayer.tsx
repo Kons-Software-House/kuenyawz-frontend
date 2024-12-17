@@ -5,11 +5,11 @@ import { useTransitionColor } from '../../../contexts/TransitionColorContext';
 
 export default function TransitionLayer() {
   const handleAnimationStart = () => {
-    document.body.style.overflow = 'hidden';
+    window.scrollTo(0, 0);
   };
 
   const handleAnimationEnd = () => {
-    document.body.style.overflow = '';
+    window.scrollTo(0, 0);
   };
 
   const { transitionColor } = useTransitionColor();
