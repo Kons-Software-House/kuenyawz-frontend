@@ -34,11 +34,11 @@ export const ProductCard = React.memo(({ product }: ProductCardProps) => {
         <motion.p className="absolute font-fancy text-base sm:text-2xl xl:text-3xl text-white text-shadow-sm overflow-hidden text-center z-10 px-1 py-2" variants={hoverVariant}>
           {product.name}
         </motion.p>
-        <LazyImage src={product.images ? product.images[0] : ''} alt={product.name} className="w-full h-full object-cover" onLoad={() => setImageLoaded(true)} />
+        <LazyImage src={product.images ? product.images[0] : ''} alt={product.name} className={`w-full h-full object-cover ${background}`} onLoad={() => setImageLoaded(true)} />
         <div className={`absolute z-10 bottom-0 left-0 right-0 text-[0.4rem] sm:text-xs text-center block lg:hidden bg-white`}>
           {product.name}
         </div>
-        <motion.div className={`absolute top-0 left-0 right-0 bottom-0 ${background}`} initial={{ right: 0 }} animate={imageLoaded ? { right: '100%' } : { right: 0 }} transition={{ duration: 0.3 }} />
+        <motion.div className={`absolute top-0 left-0 right-0 bottom-0 animate-pulse ${background}`} initial={{ right: 0 }} animate={imageLoaded ? { right: '100%' } : { right: 0 }} transition={{ duration: 0.3 }} />
       </motion.div>
     </Link>
   )
