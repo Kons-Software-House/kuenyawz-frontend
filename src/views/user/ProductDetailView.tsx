@@ -13,6 +13,7 @@ import Container from "../../components/user/core/Container"
 import LoadingLayer from "../../components/user/core/LoadingLayer";
 import UpperSection from "../../components/user/core/UpperSection"
 import AddToCartModal from "../../components/user/modals/AddToCartModal";
+import LazyImage from "../../components/user/core/LazyImage";
 
 export default function ProductDetailPage() {
   const { productId } = useParams<{ productId: string }>();
@@ -77,7 +78,7 @@ export default function ProductDetailPage() {
                   {product.tagline}
                 </p>
                 <div className={`overflow-hidden aspect-[3/4.5] bg-gray-100 w-full rounded-lg border-4 sm:border-8 ${LighterBorderColors[CategoryColors[product.category as keyof typeof CategoryColors] as keyof typeof LighterBorderColors]} rounded-lg`}>
-                  <img className="aspect-[3/4.5] w-full object-cover rounded-lg shadow-md scale-105 hover:scale-110 transition ease-in-out duration-300" draggable="false" alt="Product" src={product.images[0]} />
+                  <LazyImage className="aspect-[3/4.5] w-full object-cover rounded-lg shadow-md scale-105 hover:scale-110 transition ease-in-out duration-300" draggable="false" alt="Product" src={product.images[0]} />
                 </div>
                 <div className="sm:h-12 sm:w-full">
                 </div>
@@ -89,12 +90,12 @@ export default function ProductDetailPage() {
                 <div className="h-12 w-full order-last md::hidden">
                 </div>
                 <div className={`overflow-hidden aspect-[1/1] bg-gray-100 w-full rounded-lg border-4 sm:border-8 ${LighterBorderColors[CategoryColors[product.category as keyof typeof CategoryColors] as keyof typeof LighterBorderColors]} rounded-lg`}>
-                  <img className="aspect-[1/1] w-full object-cover rounded-lg shadow-md scale-105 hover:scale-110 transition ease-in-out duration-300" draggable="false" alt="Product" src={product.images[1]} />
+                  <LazyImage className="aspect-[1/1] w-full object-cover rounded-lg shadow-md scale-105 hover:scale-110 transition ease-in-out duration-300" draggable="false" alt="Product" src={product.images[1]} />
                 </div>
               </Column>
               <Column span2={true} moveRange={20}>
                 <div className={`overflow-hidden aspect-[10/12] bg-gray-100 w-full rounded-lg border-4 sm:border-8  ${LighterBorderColors[CategoryColors[product.category as keyof typeof CategoryColors] as keyof typeof LighterBorderColors]} rounded-lg`}>
-                  <img className="aspect-[10/12] w-full scale-105 hover:scale-110 transition ease-in-out duration-300" draggable="false" alt="Product" src={product.images[2]} />
+                  <LazyImage className="aspect-[10/12] w-full scale-105 hover:scale-110 transition ease-in-out duration-300" draggable="false" alt="Product" src={product.images[2]} />
                 </div>
                 <div className="hidden md:block">
                   <AddToCartButton color={CategoryColors[product.category] as 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500'} onClick={handleAddToCart} />
