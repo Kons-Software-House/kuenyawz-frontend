@@ -15,7 +15,6 @@ export default function ActiveOrderView() {
 
   const fetchOrder = async () => {
     try {
-      console.log(purchaseId)
       if (purchaseId) {
         const response = await retrieveOrder(purchaseId);
         setOrder(response);

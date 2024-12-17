@@ -45,14 +45,6 @@ export default function PaymentView() {
     retrieveCartItems()
   }, [])
 
-  useEffect(() => {
-    if (selectedLocation && selectedLocation.lat !== INITIAL_LOCATION.lat && selectedLocation.lon !== INITIAL_LOCATION.lon) {
-      const distance = routeDistance ? routeDistance : 0
-      const deliveryFee = calculateDeliveryFee(distance)
-      console.log(`Delivery fee: ${deliveryFee}`)
-    }
-  }, [selectedLocation, routeDistance])
-
   const handleSubmit = async (values: any) => {
     if (!selectedDates || selectedDates.length < 3) {
       alert('Tanggal pengiriman harus dipilih')
