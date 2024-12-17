@@ -8,9 +8,10 @@ import { Order } from "../../types/Order"
 import { formatToIdr } from "../../types/Formatter"
 import { retrieveUserCart, deleteFromUserCart, updateCartItem } from "../../services/UserApiService"
 import { retrieveOrders } from "../../services/OrderApiService"
+import { useAuth } from "../../contexts/AuthContext"
 import Container from "../../components/user/core/Container"
 import UpperSection from "../../components/user/core/UpperSection"
-import { useAuth } from "../../contexts/AuthContext"
+import LazyImage from "../../components/user/core/LazyImage"
 
 export default function CartView() {
   const [cartItems, setCartItems] = useState<CartItem[]>([])
@@ -131,7 +132,7 @@ function CartItemComponent({ cartItem, handleDeleteCartItem, handleUpdateCartIte
         <div className="grow">
           <div className="flex gap-4 grow">
             <Link to={`/product/${cartItem.product.productId}`}>
-              <img src={cartItem.product.images ? cartItem.product.images[0] : ''} alt={cartItem.product.name} className="aspect-[6/9] w-12 object-cover rounded-md bg-gray-100 border border-gray-400 rounded" />
+              <LazyImage src={cartItem.product.images[0]} alt={cartItem.product.name} className="aspect-[6/9] w-12 object-cover rounded-md bg-gray-100 border border-gray-400 rounded" />
             </Link>
             <div className="flex flex-col gap-2 justify-center">
               <Link to={`/product/${cartItem.product.productId}`}>
