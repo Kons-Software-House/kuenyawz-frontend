@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { Product } from "../../types/Product";
 import { retrieveProducts } from "../../services/ProducApiService";
@@ -127,14 +128,14 @@ function PaginationControls({ page, totalPages, onPageChange }: { page: number, 
           disabled={page <= 1}
           onClick={() => onPageChange(page - 1)}
         >
-          Sebelumnya
+          <ChevronLeft />
         </button>
         <button
           className="bg-secondary-100 text-white text-base px-2 lg:px-4 rounded"
           disabled={page >= totalPages}
           onClick={() => onPageChange(page + 1)}
         >
-          Selanjutnya
+          <ChevronRight />
         </button>
       </div>
     </div>
