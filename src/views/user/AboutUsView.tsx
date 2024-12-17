@@ -3,6 +3,7 @@ import Container from "../../components/user/core/Container";
 import PinpointIcon from "../../assets/AboutUs/PinpointIcon.png";
 import InstagramIcon from "../../assets/AboutUs/InstagramIcon.png";
 import UpperSection from "../../components/user/core/UpperSection";
+import { Link } from "react-router-dom";
 
 export default function AboutUsView() {
   return (
@@ -38,9 +39,9 @@ export default function AboutUsView() {
             </div>
           </div>
           <div className="flex gap-4">
-            <div className="flex p-2">
+            <Link className="flex p-2" to={"https://www.instagram.com/kuenyawz/"}>
               <img className="h-8 md:h-10" src={InstagramIcon} alt="" />
-            </div>
+            </Link>
             <div className="grid grid-rows-2">
               <h3 className="font-clear text-text-dark text-lg md:text-xl tracking-tight">Instagram
               </h3>
