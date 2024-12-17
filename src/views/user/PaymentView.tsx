@@ -29,6 +29,7 @@ export default function PaymentView() {
   const [selectedLocation, setSelectedLocation] = useState<Location>(INITIAL_LOCATION);
   const [routeDistance, setRouteDistance] = useState<number | null>(null);
   const [selectedDates, setSelectedDates] = useState<Date[]>([]);
+  const [isProcessing, setIsProcessing] = useState(false);
   const navigate = useNavigate();
 
   const retrieveCartItems = async () => {
@@ -48,6 +49,11 @@ export default function PaymentView() {
   const handleSubmit = async (values: any) => {
     if (!selectedDates || selectedDates.length < 3) {
       alert('Tanggal pengiriman harus dipilih')
+      return
+    }
+
+    if (selectedDates[0] < new Date()) {
+      alert('Tanggal pengiriman tidak boleh sebelum hari ini')
       return
     }
 
@@ -80,6 +86,7 @@ export default function PaymentView() {
       }
     })
     try {
+      setIsProcessing(true)
       const response = await createOrder(fullAddress, lat, lon, eventDate, paymentType, deliveryOption, purchaseItems)
       window.open(response.transactions[0].paymentUrl, '_blank');
       navigate('/cart')
@@ -90,6 +97,7 @@ export default function PaymentView() {
 
   return (
     <>
+      {isProcessing && <div className="fixed animate-pulse top-0 left-0 bottom-0 right-0 backdrop-blur-sm z-30 animate-pulsing bg-black/50 flex justify-center items-center" />}
       <UpperSection title="Pembayaran" />
       <Container>
         <Formik initialValues={{ fullAddress: '' }} onSubmit={(values) => { handleSubmit(values) }}>
