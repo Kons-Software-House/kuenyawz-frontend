@@ -19,7 +19,6 @@ export default function Navbar() {
   }
 
   const handleAdminDashboard = async () => {
-    console.log("a")
     if (window.location.pathname === "/") {
       if (await checkAuth()) {
         navigate('/admin')
