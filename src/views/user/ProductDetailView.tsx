@@ -87,8 +87,8 @@ export default function ProductDetailPage() {
                   {product.tagline}
                 </p>
                 <div className={`relative overflow-hidden aspect-[3/4.5] bg-gray-100 w-full rounded-lg border-4 sm:border-8 ${LighterBorderColors[CategoryColors[product.category as keyof typeof CategoryColors] as keyof typeof LighterBorderColors]} rounded-lg`}>
-                  <LazyImage className="aspect-[3/4.5] w-full object-cover rounded-lg shadow-md scale-105 hover:scale-110 transition ease-in-out duration-300" draggable="false" alt="Product" src={product.images[0]} onLoad={() => handleImageLoad(0)} />
-                  <motion.div className={`absolute top-0 left-0 right-0 bottom-0 ${CategoryColors[product.category] as 'bg-secondary-200' | 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500'}`} initial={{ right: 0 }} animate={imageLoaded[0] ? { right: '100%' } : { right: 0 }} transition={{ duration: 0.3 }} />
+                  <LazyImage className="aspect-[3/4.5] w-full object-cover rounded-lg shadow-md scale-105 hover:scale-110 transition ease-in-out duration-300" draggable="false" alt="" src={product.images[0]} onLoad={() => handleImageLoad(0)} />
+                  <motion.div className={`absolute top-0 left-0 right-0 bottom-0 animate-pulse ${CategoryColors[product.category] as 'bg-secondary-200' | 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500'}`} initial={{ right: 0 }} animate={imageLoaded[0] ? { right: '100%' } : { right: 0 }} transition={{ duration: 0.3 }} />
                 </div>
                 <div className="sm:h-12 sm:w-full">
                 </div>
@@ -100,14 +100,14 @@ export default function ProductDetailPage() {
                 <div className="h-12 w-full order-last md::hidden">
                 </div>
                 <div className={`relative overflow-hidden aspect-[1/1] bg-gray-100 w-full rounded-lg border-4 sm:border-8 ${LighterBorderColors[CategoryColors[product.category as keyof typeof CategoryColors] as keyof typeof LighterBorderColors]} rounded-lg`}>
-                  <LazyImage className="aspect-[1/1] w-full object-cover rounded-lg shadow-md scale-105 hover:scale-110 transition ease-in-out duration-300" draggable="false" alt="Product" src={product.images[1]} onLoad={() => handleImageLoad(1)} />
-                  <motion.div className={`absolute top-0 left-0 right-0 bottom-0 ${CategoryColors[product.category] as 'bg-secondary-200' | 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500'}`} initial={{ right: 0 }} animate={imageLoaded[1] ? { right: '100%' } : { right: 0 }} transition={{ duration: 0.3 }} />
+                  <LazyImage className="aspect-[1/1] w-full object-cover rounded-lg shadow-md scale-105 hover:scale-110 transition ease-in-out duration-300" draggable="false" alt="" src={product.images[1]} onLoad={() => handleImageLoad(1)} />
+                  <motion.div className={`absolute top-0 left-0 right-0 bottom-0 animate-pulse ${CategoryColors[product.category] as 'bg-secondary-200' | 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500'}`} initial={{ right: 0 }} animate={imageLoaded[1] ? { right: '100%' } : { right: 0 }} transition={{ duration: 0.3 }} />
                 </div>
               </Column>
               <Column span2={true} moveRange={20}>
                 <div className={`relative overflow-hidden aspect-[10/12] bg-gray-100 w-full rounded-lg border-4 sm:border-8  ${LighterBorderColors[CategoryColors[product.category as keyof typeof CategoryColors] as keyof typeof LighterBorderColors]} rounded-lg`}>
-                  <LazyImage className="aspect-[10/12] w-full scale-105 hover:scale-110 transition ease-in-out duration-300" draggable="false" alt="Product" src={product.images[2]} onLoad={() => handleImageLoad(2)} />
-                  <motion.div className={`absolute top-0 left-0 right-0 bottom-0 ${CategoryColors[product.category] as 'bg-secondary-200' | 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500'}`} initial={{ right: 0 }} animate={imageLoaded[2] ? { right: '100%' } : { right: 0 }} transition={{ duration: 0.3 }} />
+                  <LazyImage className="aspect-[10/12] w-full scale-105 hover:scale-110 transition ease-in-out duration-300" draggable="false" alt='' src={product.images[2]} onLoad={() => handleImageLoad(2)} />
+                  <motion.div className={`absolute top-0 left-0 right-0 bottom-0 animate-pulse ${CategoryColors[product.category] as 'bg-secondary-200' | 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500'}`} initial={{ right: 0 }} animate={imageLoaded[2] ? { right: '100%' } : { right: 0 }} transition={{ duration: 0.3 }} />
                 </div>
                 <div className="hidden md:block">
                   <AddToCartButton color={CategoryColors[product.category] as 'bg-tetriary-100' | 'bg-tetriary-200' | 'bg-tetriary-300' | 'bg-tetriary-400' | 'bg-tetriary-500'} onClick={handleAddToCart} />
