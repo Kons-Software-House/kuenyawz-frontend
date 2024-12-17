@@ -62,9 +62,9 @@ export default function AddToCartModal({ variants }: AddToCartModalProps) {
                 <span className="text-lg font-semibold">Pilih Varian</span>
                 <div className="flex gap-1">
                   {variants.map((variant, index) => (
-                    <div
+                    <motion.div
                       key={index}
-                      className={`flex flex-col grow items-center justify-center p-1 rounded-md cursor-pointer rounded-xl border-double border-secondary-300 border-8 ${selectedVariant === variant ? 'bg-white' : 'bg-secondary-100 text-white'}`}
+                      className={`flex flex-col grow items-center justify-center p-1 rounded-md cursor-pointer rounded-xl border-double border-secondary-300 border-8 ${selectedVariant === variant ? 'bg-secondary-500' : 'bg-secondary-100 text-white hover:bg-secondary-200'}`}
                       onClick={() => {
                         setSelectedVariant(variant);
                         setFieldValue('quantity', variant.minQuantity);
@@ -72,7 +72,7 @@ export default function AddToCartModal({ variants }: AddToCartModalProps) {
                     >
                       <span className={`${selectedVariant === variant ? '' : 'drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]'} font-semibold`}>{variant.type}</span>
                       <span className={`${selectedVariant === variant ? '' : 'drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]'}`}>{formatToIdr(variant.price)} / pc</span>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
@@ -86,7 +86,6 @@ export default function AddToCartModal({ variants }: AddToCartModalProps) {
                 <Field name="note" placeholder="Catatan" className="px-2 py-1 border border-gray-300 rounded" />
               </div>
               <ErrorMessage name="note" component="p" className="text-red-500 text-sm" />
-              {/* <button className="bg-secondary-100 text-white p-2 rounded-md" type="submit">Tambah ke Keranjang</button> */}
               <AddToCartButton />
             </Form>
           )}
