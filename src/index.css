@@ -14,14 +14,11 @@ button:focus {
     outline: none;
 }
 
-::-webkit-scrollbar {
-    display: none;
-    /* Hide the scrollbar */
+body {
+    overflow-y: scroll;
+    scrollbar-gutter: stable both-edges;
 }
 
-body {
-    scrollbar-width: none;
-    /* Hide scrollbar for Firefox */
-    -ms-overflow-style: none;
-    /* Hide scrollbar for IE/Edge */
+* {
+    scrollbar-width: thin;
 }

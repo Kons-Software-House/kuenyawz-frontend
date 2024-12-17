@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { Product } from "../../types/Product";
 import { retrieveProducts } from "../../services/ProducApiService";
 import { ProductCard } from "../../components/user/core/ProductCard";
-import Container from "../../components/user/core/Container"
 import UpperSection from "../../components/user/core/UpperSection"
 
 export default function ProductListView() {
@@ -61,7 +61,7 @@ export default function ProductListView() {
     <>
       <UpperSection title="Produk Kami" subtitle="Kelezatan Dalam Setiap Kreasi" />
       <div className="w-full flex justify-center p-2 -mb-2 lg:mb-0">
-        <div className="border-2 border-secondary-100 w-full flex lg:w-3/4">
+        <div className="border-2 border-secondary-100 w-full flex lg:w-3/4 rounded-lg overflow-hidden">
           {/* Filters */}
           <div className="border-r-2 border-secondary-100 px-1">
             <select name="category" id="category" className="p-1 lg:p-2 text-sm lg:text-md" onChange={(e) => {
@@ -95,7 +95,7 @@ export default function ProductListView() {
           <p className="text-2xl">Memuat produk...</p>
         </div>
         :
-        <Container>
+        <div className="w-full flex flex-col items-center lg:w-3/4 m-auto min-h-screen">
           <PaginationControls page={page} totalPages={totalPages} onPageChange={(newPage) => {
             setPage(newPage);
             fetchProducts(newPage, keyword, category);
@@ -111,7 +111,7 @@ export default function ProductListView() {
             setPage(newPage);
             fetchProducts(newPage, keyword, category);
           }} />
-        </Container>
+        </div>
       }
     </>
   )
@@ -120,21 +120,21 @@ export default function ProductListView() {
 function PaginationControls({ page, totalPages, onPageChange }: { page: number, totalPages: number, onPageChange: (newPage: number) => void }) {
   return (
     <div className="flex flex-col lg:flex-row justify-between items-center my-2 lg:my-4 gap-2">
-      <p className="text-base lg:text-lg">Menampilkan {page} dari {totalPages} halaman</p>
       <div className="flex gap-2">
         <button
-          className="bg-secondary-100 text-white text-base px-2 lg:px-4 rounded"
+          className="bg-secondary-100 text-white text-base px-1 sm:px-2 lg:px-4 rounded"
           disabled={page <= 1}
           onClick={() => onPageChange(page - 1)}
         >
-          Sebelumnya
+          <ChevronLeft />
         </button>
+        <p className="text-base sm:text-lg lg:text-xl">{page} / {totalPages}</p>
         <button
-          className="bg-secondary-100 text-white text-base px-2 lg:px-4 rounded"
+          className="bg-secondary-100 text-white text-base px-1 sm:px-2 lg:px-4 rounded"
           disabled={page >= totalPages}
           onClick={() => onPageChange(page + 1)}
         >
-          Selanjutnya
+          <ChevronRight />
         </button>
       </div>
     </div>
