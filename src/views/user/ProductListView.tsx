@@ -95,7 +95,7 @@ export default function ProductListView() {
           <p className="text-2xl">Memuat produk...</p>
         </div>
         :
-        <div className="w-full flex flex-col items-center lg:w-3/4 m-auto">
+        <div className="w-full flex flex-col items-center lg:w-3/4 m-auto min-h-screen">
           <PaginationControls page={page} totalPages={totalPages} onPageChange={(newPage) => {
             setPage(newPage);
             fetchProducts(newPage, keyword, category);
