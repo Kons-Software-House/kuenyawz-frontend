@@ -6,6 +6,7 @@ import 'react-image-crop/dist/ReactCrop.css'
 import { Product } from '../../types/Product';
 import { editProduct } from '../../services/ProducApiService';
 import { retrieveProductById } from "../../services/ProducApiService";
+import { retrieveProductImage } from '../../services/ImageApiService';
 import Sidebar from "../../components/admin/views/AdminDashboardView/Sidebar";
 
 export default function EditProductView() {
@@ -24,9 +25,9 @@ export default function EditProductView() {
         const response = await retrieveProductById(productId)
         console.log(response)
         if (response) {
-          sixByNineRef.current = response.images[0]
-          oneByOneRef.current = response.images[1]
-          fiveBySixRef.current = response.images[2]
+          sixByNineRef.current = await retrieveProductImage(response.images[0])
+          oneByOneRef.current = await retrieveProductImage(response.images[1])
+          fiveBySixRef.current = await retrieveProductImage(response.images[2])
         }
         setProduct(response)
         setVariantCount(response.variants.length)
