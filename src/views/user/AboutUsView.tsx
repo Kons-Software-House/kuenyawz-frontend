@@ -34,18 +34,18 @@ export default function AboutUsView() {
               <h3 className="font-clear text-text-dark text-lg md:text-xl tracking-tight">Telepon & WhatsApp
               </h3>
               <p className="font-clear text-text-light text-sm md:text-lg">
-                0812-3456-7890
+                0896-0325-6115
               </p>
             </div>
           </div>
           <div className="flex gap-4">
-            <Link className="flex p-2" to={"https://www.instagram.com/kuenyawz/"}>
+            <div className="flex p-2">
               <img className="h-8 md:h-10" src={InstagramIcon} alt="" />
-            </Link>
+            </div>
             <div className="grid grid-rows-2">
               <h3 className="font-clear text-text-dark text-lg md:text-xl tracking-tight">Instagram
               </h3>
-              <p className="font-clear text-text-light text-sm md:text-lg">
+              <p className="font-clear text-text-light text-sm md:text-lg underline underline-offset-2" onClick={() => window.open("https://www.instagram.com/kuenyawz")}>
                 @kuenyawz
               </p>
             </div>
