@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 import { Product } from "../../types/Product";
 import { retrieveProducts } from "../../services/ProducApiService";
@@ -132,21 +133,25 @@ function PaginationControls({ page, totalPages, onPageChange }: { page: number, 
   return (
     <div className="flex flex-col lg:flex-row justify-between items-center my-2 lg:my-4 gap-2">
       <div className="flex gap-2">
-        <button
+        <motion.button
           className="bg-secondary-100 text-white text-base px-1 sm:px-2 lg:px-4 rounded"
           disabled={page <= 1}
           onClick={() => onPageChange(page - 1)}
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.92 }}
         >
           <ChevronLeft />
-        </button>
+        </motion.button>
         <p className="text-base sm:text-lg lg:text-xl">{page} / {totalPages}</p>
-        <button
+        <motion.button
           className="bg-secondary-100 text-white text-base px-1 sm:px-2 lg:px-4 rounded"
           disabled={page >= totalPages}
           onClick={() => onPageChange(page + 1)}
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.92 }}
         >
           <ChevronRight />
-        </button>
+        </motion.button>
       </div>
     </div>
   );
