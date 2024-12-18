@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Cookie, CalendarRange, MailQuestion } from "lucide-react";
 
 import TransitionLayer from "../../components/user/core/TransitionLayer";
 import HorizontalScroller from "../../components/user/views/LandingView/HorizontalScroller";
@@ -13,14 +14,17 @@ export default function LandingView() {
       <div className='lg:h-[28rem] grid md:grid-cols-3 lg:grid-rows-3'>
         <Column background='bg-secondary-300' header='Produk Kami' description='Kelezatan Dalam Setiap Kreasi' href='/products'>
           <div className='bg-white h-4/6 w-11/12 aspect-[1/1] shadow-lg order-last md:order-first'>
+            <Cookie color="#cfb285" className="w-full h-full p-6" />
           </div>
         </Column>
         <Column background='bg-secondary-200' header='Kalender' description='Perayaan Anda, Kreasi Kami' href='/calendar'>
           <div className='bg-white h-4/6 w-11/12 aspect-[1/1] shadow-lg order-last md:order-first'>
+            <CalendarRange color="#cfb285" className="w-full h-full p-6" />
           </div>
         </Column>
         <Column background='bg-secondary-100' header='Tentang Kami' description='Ciptakan Pertemuan Manis' href='/about'>
-          <div className='bg-white h-4/6 w-11/12 aspect-[1/1] shadow-lg order-last md:order-first'>
+          <div className='bg-white h-4/6 w-11/12 aspect-[1/1] shadow-lg order-last md:order-first relative'>
+            <MailQuestion color="#cfb285" className="w-full h-full p-6" />
           </div>
         </Column>
       </div >
