@@ -119,6 +119,7 @@ export default function ProductListView() {
             <PaginationControls page={page} totalPages={totalPages} onPageChange={(newPage) => {
               setPage(newPage);
               fetchProducts(newPage, keyword, category);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
             }} />
           </>
         }
