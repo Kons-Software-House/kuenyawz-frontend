@@ -3,7 +3,6 @@ import Container from "../../components/user/core/Container";
 import PinpointIcon from "../../assets/AboutUs/PinpointIcon.png";
 import InstagramIcon from "../../assets/AboutUs/InstagramIcon.png";
 import UpperSection from "../../components/user/core/UpperSection";
-import { Link } from "react-router-dom";
 
 export default function AboutUsView() {
   return (
