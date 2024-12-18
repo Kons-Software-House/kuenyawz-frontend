@@ -9,7 +9,7 @@ const apiClient = axios.create({
 });
 
 export const retrieveClosedDates = async (from: string, to: string): Promise<any> => {
-    const response = await apiClient.get('/closure', { params: { from, to } });
+    const response = await apiClient.get('/closure', { params: { from, to, pageSize: 31 } });
     return response.data;
 };
 
