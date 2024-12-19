@@ -12,7 +12,7 @@ type LazyImageProps = {
 
 const LazyImage: React.FC<LazyImageProps> = ({ src, alt, className, draggable, onLoad }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const [imageSrc, setImageSrc] = useState('');
+  const [imageSrc, setImageSrc] = useState<undefined | string>(undefined);
   const imgRef = useRef<HTMLImageElement | null>(null);
 
   useEffect(() => {
@@ -53,15 +53,19 @@ const LazyImage: React.FC<LazyImageProps> = ({ src, alt, className, draggable, o
     };
   }, []);
 
+  const handleImageLoad = () => {
+    if (onLoad) onLoad();
+  };
+
   return (
     <img
       ref={imgRef}
-      src={imageSrc}
+      src={imageSrc || undefined}
       alt={alt}
       className={className}
       loading="lazy"
       draggable={draggable}
-      onLoad={onLoad}
+      onLoad={handleImageLoad}
     />
   );
 };
