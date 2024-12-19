@@ -118,6 +118,7 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
     try {
       logoutAccount();
       setIsAuthenticated(false);
+      setFullName('');
       navigate('/');
     } catch (error: any) {
       alert("Failed to logout: " + error.response.data.message);
