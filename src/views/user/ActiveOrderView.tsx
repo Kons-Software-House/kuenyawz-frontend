@@ -7,6 +7,7 @@ import { retrieveOrder, cancelOrder } from "../../services/OrderApiService"
 import { LocalizedOrderStatus } from "../../types/OrderStatus"
 import Container from "../../components/user/core/Container"
 import UpperSection from "../../components/user/core/UpperSection"
+import whatsappIcon from "../../assets/core/whatsapp.svg"
 
 export default function ActiveOrderView() {
   const { purchaseId: purchaseId } = useParams<{ purchaseId: string }>();
@@ -99,6 +100,15 @@ export default function ActiveOrderView() {
                   </tr>
                 </tbody>
               </table>
+              <div>
+                <h2 className="font-bold mt-4">Hubungi Kami</h2>
+                <a href={`https://wa.me/62${import.meta.env.VITE_ADMIN_PHONE as string}?text=Halo,%20saya%20ingin%20menanyakan%20tentang%20pesanan%20dengan%20ID%20${order.purchaseId.toString()}`} target="_blank" rel="noreferrer noopener" className="text-blue-500 flex items-center mt-2">
+                  <img src={whatsappIcon} alt="whatsapp" className="w-8 inline-block mr-2" />
+                  <p>
+                    Whatsapp
+                  </p>
+                </a>
+              </div>
             </div>
             {order.status === "PENDING" &&
               <>
