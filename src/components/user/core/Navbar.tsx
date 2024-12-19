@@ -12,7 +12,7 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const modalContext = useModal()
   const navigate = useNavigate()
-  const { isAuthenticated, cartCount, handleLogout, checkAuth } = useAuth()
+  const { isAuthenticated, fullName, cartCount, handleLogout, checkAuth } = useAuth()
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -43,6 +43,10 @@ export default function Navbar() {
           </ul>
 
           <div className="basis-1/3 flex items-center justify-end gap-4">
+            {isAuthenticated && <div className="hidden md:block">
+              <p className="text-sm lg:text-xl font-bold">{fullName}</p>
+            </div>
+            }
             <div className="hidden md:block">
               {isAuthenticated ? (
                 <div onClick={handleLogout}>
