@@ -3,6 +3,7 @@ import Container from "../../components/user/core/Container";
 import PinpointIcon from "../../assets/AboutUs/PinpointIcon.png";
 import InstagramIcon from "../../assets/AboutUs/InstagramIcon.png";
 import UpperSection from "../../components/user/core/UpperSection";
+import { formatPhoneNumber } from "../../types/Formatter";
 
 export default function AboutUsView() {
   return (
@@ -33,7 +34,7 @@ export default function AboutUsView() {
               <h3 className="font-clear text-text-dark text-lg md:text-xl tracking-tight">Telepon & WhatsApp
               </h3>
               <p className="font-clear text-text-light text-sm md:text-lg">
-                0896-0325-6115
+                {formatPhoneNumber(import.meta.env.VITE_ADMIN_PHONE as string)}
               </p>
             </div>
           </div>
