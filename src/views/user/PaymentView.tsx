@@ -151,13 +151,13 @@ function CartSummary({ cartItems, routeDistance }: CartSummaryProps) {
       <span className="text-lg font-semibold">Total Belanja</span>
       <div className="grid grid-cols-2">
         <span>Subtotal</span>
-        <span className="text-end">Rp {formattedSubtotal}</span>
+        <span className="text-end">{formattedSubtotal}</span>
       </div>
       <hr className="bg-black my-2 border-black" />
       <span className="text-lg font-semibold">Biaya Transaksi</span>
       <div className="grid grid-cols-2">
         <span>Biaya Layanan</span>
-        <span className="text-end">Rp 4.000</span>
+        <span className="text-end">{formatToIdr(4000)}</span>
         <span>Biaya Pengiriman</span>
         <span className="text-end">{formattedDeliveryFee}</span>
       </div>
@@ -165,7 +165,7 @@ function CartSummary({ cartItems, routeDistance }: CartSummaryProps) {
       <span className="text-lg font-semibold">Total Pembayaran</span>
       <div className="grid grid-cols-2">
         <span>Total</span>
-        <span className="text-end">Rp {formattedTotal}</span>
+        <span className="text-end">{formattedTotal}</span>
       </div>
     </div>
   )
