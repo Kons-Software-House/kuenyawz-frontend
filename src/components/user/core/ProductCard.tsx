@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-import { CategoryColors, LighterBackgroundColors, LighterBorderColors } from "./Colors";
+import { CategoryColors, LighterBorderColors } from "./Colors";
 import { Product } from "../../../types/Product";
 import { useTransitionColor } from "../../../contexts/TransitionColorContext";
 import React, { useState } from "react";
@@ -35,7 +35,7 @@ export const ProductCard = React.memo(({ product }: ProductCardProps) => {
           {product.name}
         </motion.p>
         <div className="w-full h-full overflow-hidden">
-          <LazyImage src={product.images ? product.images[0] : ''} alt='' className={`w-full h-full object-cover ${LighterBackgroundColors[background]} ${!imageLoaded && 'scale-125'} duration-700	`} onLoad={() => setImageLoaded(true)} />
+          <LazyImage src={product.images ? product.images[0] : ''} alt='' className={`w-full h-full object-cover} ${!imageLoaded && 'scale-125'} duration-700	`} onLoad={() => setImageLoaded(true)} />
         </div>
         <div className={`absolute z-10 bottom-0 left-0 right-0 text-[0.4rem] sm:text-xs text-center block lg:hidden bg-white`}>
           {product.name}
